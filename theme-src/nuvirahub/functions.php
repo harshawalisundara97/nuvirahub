@@ -202,9 +202,6 @@ function nuvirahub_fallback_menu() {
 	echo '<li><a href="' . esc_url( home_url( '/' ) ) . '">Home</a></li>';
 	$pages = array(
 		'Services'           => 'services',
-		'Startup Launchpad'  => 'startup-launchpad',
-		'Logistics'          => 'logistics',
-		'ERP Solutions'      => 'erp-solutions',
 		'Spices'             => 'spices',
 		'Portfolio'          => 'portfolio',
 		'About'              => 'about',
