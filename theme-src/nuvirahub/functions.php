@@ -163,6 +163,102 @@ add_action( 'admin_post_nopriv_nuvirahub_contact', 'nuvirahub_handle_contact' );
 add_action( 'admin_post_nuvirahub_contact', 'nuvirahub_handle_contact' );
 
 /**
+ * Output Schema.org JSON-LD structured data in the document head.
+ *
+ * This tells Google we're an Organization + LocalBusiness, which makes our
+ * search results richer (logo, hours, phone, address shown directly in SERPs).
+ * It also publishes a FAQPage block on the Startup Launchpad page, which can
+ * earn "People also ask"-style rich snippets.
+ */
+function nuvirahub_schema_jsonld() {
+	$logo_url = get_template_directory_uri() . '/assets/favicons/og-image.png';
+
+	$org = array(
+		'@context'    => 'https://schema.org',
+		'@type'       => array( 'Organization', 'LocalBusiness' ),
+		'@id'         => home_url( '/#organization' ),
+		'name'        => 'Nuvirahub (Pvt) Ltd',
+		'url'         => home_url( '/' ),
+		'logo'        => $logo_url,
+		'image'       => $logo_url,
+		'email'       => 'nuvirahub@gmail.com',
+		'telephone'   => '+94716722599',
+		'priceRange'  => '$$',
+		'address'     => array(
+			'@type'           => 'PostalAddress',
+			'streetAddress'   => '27/2E Pieris Avenue',
+			'addressLocality' => 'Kalubowila, Dehiwala',
+			'addressRegion'   => 'Western Province',
+			'postalCode'      => '10350',
+			'addressCountry'  => 'LK',
+		),
+		'founders'    => array(
+			array( '@type' => 'Person', 'name' => 'Harsha Walisundara' ),
+			array( '@type' => 'Person', 'name' => 'Akalanka Navarathne' ),
+			array( '@type' => 'Person', 'name' => 'Heshan Wijesundara' ),
+		),
+		'sameAs'      => array(), // Add LinkedIn, FB, Instagram URLs here when ready
+		'openingHoursSpecification' => array(
+			array(
+				'@type'     => 'OpeningHoursSpecification',
+				'dayOfWeek' => array( 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday' ),
+				'opens'     => '09:00',
+				'closes'    => '18:00',
+			),
+			array(
+				'@type'     => 'OpeningHoursSpecification',
+				'dayOfWeek' => 'Saturday',
+				'opens'     => '09:00',
+				'closes'    => '13:00',
+			),
+		),
+		'areaServed'  => array(
+			array( '@type' => 'Country', 'name' => 'Sri Lanka' ),
+			array( '@type' => 'Country', 'name' => 'Latvia' ),
+		),
+	);
+
+	echo "\n<!-- Schema.org -->\n";
+	echo '<script type="application/ld+json">' . wp_json_encode( $org, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT ) . '</script>' . "\n";
+
+	// FAQPage schema on the Startup Launchpad page
+	if ( is_page( 'startup-launchpad' ) ) {
+		$faq = array(
+			'@context' => 'https://schema.org',
+			'@type'    => 'FAQPage',
+			'mainEntity' => array(
+				array(
+					'@type' => 'Question',
+					'name'  => 'How long does business registration take in Sri Lanka?',
+					'acceptedAnswer' => array(
+						'@type' => 'Answer',
+						'text'  => 'Typical timeline is 7–14 working days for a (Pvt) Ltd company. We handle ROC filing, name reservation, Articles of Association, and director consents end-to-end.',
+					),
+				),
+				array(
+					'@type' => 'Question',
+					'name'  => 'What documents do I need to start a business in Sri Lanka?',
+					'acceptedAnswer' => array(
+						'@type' => 'Answer',
+						'text'  => 'NIC copies, proposed company name (3 options), registered address proof, director/shareholder details, Form 1 (Application for Incorporation), Forms 18 & 19 (Director consents), and the Articles of Association. We prepare everything for you.',
+					),
+				),
+				array(
+					'@type' => 'Question',
+					'name'  => 'Do I need a VAT registration?',
+					'acceptedAnswer' => array(
+						'@type' => 'Answer',
+						'text'  => 'VAT registration is mandatory when annual turnover exceeds LKR 80 million. Below that, it is optional but can be beneficial for B2B operations.',
+					),
+				),
+			),
+		);
+		echo '<script type="application/ld+json">' . wp_json_encode( $faq, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT ) . '</script>' . "\n";
+	}
+}
+add_action( 'wp_head', 'nuvirahub_schema_jsonld', 5 );
+
+/**
  * Excerpt length.
  */
 function nuvirahub_excerpt_length( $length ) {

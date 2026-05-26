@@ -690,6 +690,36 @@ a { color: inherit; text-decoration: none; }
   color: #fff;
 }
 
+.nv-founders {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.nv-founders .nv-avatar {
+  width: 64px; height: 64px;
+  font-size: 22px;
+  margin: 0 auto 10px;
+  border-width: 2px;
+}
+.nv-founder { text-align: center; }
+.nv-founder-name {
+  font-family: var(--display);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.25;
+}
+.nv-founder-role {
+  font-size: 11px;
+  color: var(--accent2);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+@media (max-width: 480px) {
+  .nv-founders { grid-template-columns: 1fr; gap: 20px; }
+}
+
 .nv-value {
   display: flex; gap: 12px;
   margin-bottom: 16px;
@@ -1012,9 +1042,49 @@ a { color: inherit; text-decoration: none; }
   transition: color .2s;
 }
 .nv-footer-link:hover { color: var(--text); }
-.nv-footer-bottom {
+.nv-footer-contact {
   max-width: 1100px;
   margin: 32px auto 0;
+  padding: 24px 0;
+  border-top: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+}
+.nv-footer-contact h4 {
+  font-family: var(--display);
+  font-size: 11px !important;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: var(--accent2);
+  margin-bottom: 10px;
+}
+.nv-footer-contact address,
+.nv-footer-contact span {
+  font-style: normal;
+  font-size: 13px;
+  color: var(--muted2);
+  line-height: 1.6;
+}
+.nv-footer-contact a {
+  display: block;
+  font-size: 13px;
+  color: var(--text);
+  line-height: 1.7;
+  transition: color .2s;
+}
+.nv-footer-contact a:hover { color: var(--accent2); }
+@media (max-width: 760px) {
+  .nv-footer-contact { grid-template-columns: 1fr 1fr; gap: 24px; }
+}
+@media (max-width: 480px) {
+  .nv-footer-contact { grid-template-columns: 1fr; }
+}
+
+.nv-footer-bottom {
+  max-width: 1100px;
+  margin: 24px auto 0;
   padding-top: 24px;
   border-top: 1px solid var(--border);
   display: flex;
@@ -1022,7 +1092,14 @@ a { color: inherit; text-decoration: none; }
   align-items: center;
   font-size: 12px;
   color: var(--muted);
+  gap: 16px;
 }
+.nv-footer-legal a {
+  color: var(--muted);
+  transition: color .2s;
+  margin: 0 2px;
+}
+.nv-footer-legal a:hover { color: var(--text); }
 @media (max-width: 600px) { .nv-footer-bottom { flex-direction: column; gap: 8px; text-align: center; } }
 .nv-social { display: flex; gap: 10px; }
 .nv-social-btn {
@@ -2026,6 +2103,102 @@ a { color: inherit; text-decoration: none; }
 /* ============================================================
    33 — REDUCED MOTION OVERRIDES (preserved)
    ============================================================ */
+/* ============================================================
+   33b — LEGAL DOCUMENT PAGES (Privacy / Terms / Shipping)
+   ============================================================ */
+.nv-legal {
+  max-width: 760px;
+  margin: 0 auto;
+  font-family: var(--body);
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--muted2);
+}
+.nv-legal-meta {
+  font-family: var(--display);
+  font-size: 12px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--accent2);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 16px;
+  margin-bottom: 32px;
+}
+.nv-legal h2 {
+  font-family: var(--display);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--text);
+  margin: 40px 0 12px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.nv-legal h2:first-of-type { border-top: none; padding-top: 0; margin-top: 0; }
+.nv-legal h3 {
+  font-family: var(--display);
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--text);
+  margin: 24px 0 8px;
+}
+.nv-legal p, .nv-legal ul, .nv-legal ol { margin-bottom: 18px; }
+.nv-legal ul, .nv-legal ol { padding-left: 24px; }
+.nv-legal li { margin-bottom: 8px; }
+.nv-legal strong { color: var(--text); }
+.nv-legal a {
+  color: var(--accent2);
+  border-bottom: 1px solid rgba(167,139,250,.35);
+  transition: color .2s, border-color .2s;
+}
+.nv-legal a:hover { color: var(--accent3); border-bottom-color: var(--accent3); }
+.nv-legal em { color: var(--text); font-style: italic; }
+
+/* ============================================================
+   33c — CUSTOM 404 PAGE
+   ============================================================ */
+.nv-404 {
+  min-height: calc(100vh - 64px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 48px 32px;
+  position: relative;
+  overflow: hidden;
+}
+.nv-404-content { max-width: 560px; position: relative; z-index: 1; }
+.nv-404-glyph {
+  font-family: var(--display);
+  font-size: clamp(120px, 22vw, 240px);
+  font-weight: 800;
+  line-height: 1;
+  background: linear-gradient(135deg, var(--accent2), var(--accent3));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 24px;
+  letter-spacing: -.04em;
+}
+.nv-404 h1 {
+  font-family: var(--display);
+  font-size: clamp(28px, 4vw, 36px);
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: var(--text);
+}
+.nv-404 p {
+  color: var(--muted2);
+  font-size: 16px;
+  line-height: 1.7;
+  margin-bottom: 28px;
+}
+.nv-404-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
 /* ============================================================
    34 — SPICE PRODUCT PAGE (Nuvira Spice Co.)
    ============================================================ */

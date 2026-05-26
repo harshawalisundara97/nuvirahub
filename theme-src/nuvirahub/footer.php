@@ -13,6 +13,9 @@ $nv_contact   = nuvirahub_get_page_by_title( 'Contact' );
 $nv_launch    = nuvirahub_get_page_by_title( 'Startup Launchpad' );
 $nv_logist    = nuvirahub_get_page_by_title( 'Logistics' );
 $nv_erp       = nuvirahub_get_page_by_title( 'ERP Solutions' );
+$nv_privacy   = nuvirahub_get_page_by_title( 'Privacy Policy' );
+$nv_terms     = nuvirahub_get_page_by_title( 'Terms of Service' );
+$nv_shipping  = nuvirahub_get_page_by_title( 'Shipping &amp; Refunds' );
 
 if ( ! function_exists( 'nv_link' ) ) {
 	function nv_link( $page, $slug ) {
@@ -54,12 +57,37 @@ if ( ! function_exists( 'nv_link' ) ) {
 			<a class="nv-footer-link" href="<?php echo esc_url( nv_link( $nv_portfolio, 'portfolio' ) ); ?>">Portfolio</a>
 			<a class="nv-footer-link" href="<?php echo esc_url( nv_link( $nv_blog, 'blog' ) ); ?>">Blog</a>
 			<a class="nv-footer-link" href="<?php echo esc_url( nv_link( $nv_contact, 'contact' ) ); ?>">Contact</a>
-			<a class="nv-footer-link" href="mailto:<?php echo esc_attr( get_option( 'admin_email' ) ); ?>"><?php echo esc_html( get_option( 'admin_email' ) ); ?></a>
 		</div>
 	</div>
+
+	<!-- Contact strip -->
+	<div class="nv-footer-contact">
+		<div>
+			<h4>Visit</h4>
+			<address>27/2E Pieris Avenue<br>Kalubowila, Dehiwala<br>Sri Lanka 10350</address>
+		</div>
+		<div>
+			<h4>Talk</h4>
+			<a href="tel:+94716722599">+94 71 672 2599</a><br>
+			<a href="<?php echo esc_url( nuvirahub_wa_link( 'Hi Nuvirahub!' ) ); ?>" target="_blank" rel="noopener">WhatsApp us</a>
+		</div>
+		<div>
+			<h4>Email</h4>
+			<a href="mailto:nuvirahub@gmail.com">nuvirahub@gmail.com</a>
+		</div>
+		<div>
+			<h4>Hours</h4>
+			<span>Mon–Fri · 9am–6pm IST<br>Sat · 9am–1pm</span>
+		</div>
+	</div>
+
 	<div class="nv-footer-bottom">
-		<span>&copy; <?php echo esc_html( gmdate( 'Y' ) ); ?> <?php echo esc_html( get_bloginfo( 'name' ) ? get_bloginfo( 'name' ) : 'Nuvirahub' ); ?>. All rights reserved.</span>
-		<span>Colombo, Sri Lanka · Mon–Fri 9am–6pm</span>
+		<span>&copy; <?php echo esc_html( gmdate( 'Y' ) ); ?> <strong>Nuvirahub (Pvt) Ltd</strong>. All rights reserved.</span>
+		<span class="nv-footer-legal">
+			<?php if ( $nv_privacy ) : ?><a href="<?php echo esc_url( get_permalink( $nv_privacy->ID ) ); ?>">Privacy</a> · <?php endif; ?>
+			<?php if ( $nv_terms ) : ?><a href="<?php echo esc_url( get_permalink( $nv_terms->ID ) ); ?>">Terms</a> · <?php endif; ?>
+			<?php if ( $nv_shipping ) : ?><a href="<?php echo esc_url( get_permalink( $nv_shipping->ID ) ); ?>">Shipping &amp; Refunds</a><?php endif; ?>
+		</span>
 	</div>
 </footer>
 

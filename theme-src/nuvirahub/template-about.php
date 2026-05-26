@@ -28,9 +28,13 @@ get_header();
 		</div>
 		<div class="nv-reveal">
 			<div class="nv-about-visual">
-				<div class="nv-avatar">N</div>
-				<h3 style="font-family:'Syne',sans-serif;font-size:20px;font-weight:700;margin-bottom:4px">The Nuvirahub Team</h3>
-				<p style="font-size:13px;color:var(--muted2);margin-bottom:28px">Designers, Developers &amp; Strategists</p>
+				<div class="nv-founders">
+					<div class="nv-founder"><div class="nv-avatar">HW</div><div class="nv-founder-name">Harsha Walisundara</div><div class="nv-founder-role">Co-founder</div></div>
+					<div class="nv-founder"><div class="nv-avatar" style="background:linear-gradient(135deg,#0ea5e9,#06b6d4)">AN</div><div class="nv-founder-name">Akalanka Navarathne</div><div class="nv-founder-role">Co-founder</div></div>
+					<div class="nv-founder"><div class="nv-avatar" style="background:linear-gradient(135deg,#f59e0b,#ef4444)">HW</div><div class="nv-founder-name">Heshan Wijesundara</div><div class="nv-founder-role">Co-founder</div></div>
+				</div>
+				<h3 style="font-family:'Syne',sans-serif;font-size:20px;font-weight:700;margin:24px 0 4px">Three founders. One mission.</h3>
+				<p style="font-size:13px;color:var(--muted2);margin-bottom:28px">Engineers, designers &amp; business builders based in Dehiwala, Sri Lanka.</p>
 				<div style="text-align:left">
 					<div class="nv-skill"><div class="nv-skill-label"><span>UI/UX Design</span><span>95%</span></div><div class="nv-skill-track"><div class="nv-skill-fill" style="width:95%"></div></div></div>
 					<div class="nv-skill"><div class="nv-skill-label"><span>Web Development</span><span>90%</span></div><div class="nv-skill-track"><div class="nv-skill-fill" style="width:90%"></div></div></div>
