@@ -52,6 +52,23 @@
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 
+<!-- Page loader — fades out on window.load (see main.js) -->
+<div class="nv-loader" id="nv-loader" aria-hidden="true">
+	<div class="nv-loader-inner">
+		<svg class="nv-loader-ring" viewBox="0 0 60 60" width="60" height="60">
+			<circle cx="30" cy="30" r="26" stroke="rgba(108,99,255,.15)" stroke-width="3" fill="none"/>
+			<circle class="nv-loader-spin" cx="30" cy="30" r="26" stroke="url(#nv-loader-grad)" stroke-width="3" fill="none" stroke-linecap="round" stroke-dasharray="60 200" />
+			<defs>
+				<linearGradient id="nv-loader-grad" x1="0" y1="0" x2="1" y2="1">
+					<stop offset="0%" stop-color="#a78bfa"/>
+					<stop offset="100%" stop-color="#38bdf8"/>
+				</linearGradient>
+			</defs>
+		</svg>
+		<div class="nv-loader-label">Nuvirahub</div>
+	</div>
+</div>
+
 <nav class="nv-nav" id="nv-nav">
 	<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="nv-logo" aria-label="Nuvirahub home">
 		<?php

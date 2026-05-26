@@ -9,6 +9,19 @@
   const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  /* ---------- 0. Page loader fade-out ---------- */
+  const loader = $('#nv-loader');
+  if (loader) {
+    const hide = () => {
+      loader.classList.add('done');
+      setTimeout(() => loader.remove(), 600);
+    };
+    if (document.readyState === 'complete') hide();
+    else window.addEventListener('load', hide);
+    // Safety fallback — never block the page longer than 3s
+    setTimeout(hide, 3000);
+  }
+
   /* ---------- 1. Sticky nav style on scroll ---------- */
   const nav = $('#nv-nav');
   if (nav) {

@@ -1720,6 +1720,61 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* ============================================================
+   24b — PAGE LOADER
+   ============================================================ */
+.nv-loader {
+  position: fixed; inset: 0;
+  background: var(--bg);
+  z-index: 99999;
+  display: flex; align-items: center; justify-content: center;
+  transition: opacity .55s var(--ease), visibility .55s;
+}
+.nv-loader.done { opacity: 0; visibility: hidden; pointer-events: none; }
+.nv-loader-inner {
+  display: flex; flex-direction: column; align-items: center; gap: 18px;
+}
+.nv-loader-spin {
+  transform-origin: 30px 30px;
+  animation: nvLoaderSpin 1s linear infinite;
+}
+@keyframes nvLoaderSpin {
+  to { transform: rotate(360deg); }
+}
+.nv-loader-label {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, #fff, var(--accent2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ============================================================
+   24c — INLINE SVG ICONS (nv_icon helper)
+   ============================================================ */
+.nv-icon {
+  display: inline-block;
+  vertical-align: middle;
+  flex-shrink: 0;
+  color: currentColor;
+}
+/* When an icon sits next to text in a CTA / button, add a gap */
+.nv-btn-primary .nv-icon,
+.nv-btn-ghost   .nv-icon,
+.nv-cta .nv-icon,
+.nv-spice-buy .nv-icon,
+.nv-spice-origin .nv-icon { margin-right: 6px; }
+
+/* Footer contact icons */
+.nv-footer-contact .nv-icon { margin-right: 6px; opacity: .7; }
+
+/* Logistics region <h4> with leading icon */
+.nv-coverage-region h4 .nv-icon { margin-right: 8px; color: var(--accent2); }
+
+/* ============================================================
    25 — SCROLL PROGRESS BAR (A6)
    ============================================================ */
 .nv-scroll-progress {

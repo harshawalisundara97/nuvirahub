@@ -27,13 +27,13 @@ $erp_url    = $erp ? get_permalink( $erp->ID ) : '#erp';
 <!-- 7-PILLAR GRID -->
 <div class="nv-section nv-reveal">
 	<div class="nv-pillars">
-		<a class="nv-pillar" href="#software"><div class="nv-pillar-num">01</div><div class="nv-pillar-icon">💻</div><h3>Software &amp; Apps</h3><p>Web, mobile, Windows apps — custom-built for your workflow.</p></a>
-		<a class="nv-pillar" href="<?php echo esc_url( $launch_url ); ?>"><div class="nv-pillar-num">02</div><div class="nv-pillar-icon">🚀</div><h3>Startup Launchpad</h3><p>We start your business with you. Registration, docs, authorities, done.</p></a>
-		<a class="nv-pillar" href="#consulting"><div class="nv-pillar-num">03</div><div class="nv-pillar-icon">📈</div><h3>Business Growth Consulting</h3><p>Strategy, processes, and the operational playbook to scale you up.</p></a>
-		<a class="nv-pillar" href="<?php echo esc_url( $logist_url ); ?>"><div class="nv-pillar-num">04</div><div class="nv-pillar-icon">🚢</div><h3>Logistics — Sea &amp; Air</h3><p>End-to-end freight forwarding. Containers, courier, customs, delivered.</p></a>
-		<a class="nv-pillar" href="#creative"><div class="nv-pillar-num">05</div><div class="nv-pillar-icon">🎨</div><h3>Creative &amp; Design</h3><p>Graphic design, 3D rendering, AutoCAD architectural &amp; house plans.</p></a>
-		<a class="nv-pillar" href="#marketing"><div class="nv-pillar-num">06</div><div class="nv-pillar-icon">📣</div><h3>Brand &amp; Digital Marketing</h3><p>Identity, social media, SEO — the engine that brings customers in.</p></a>
-		<a class="nv-pillar" href="<?php echo esc_url( $erp_url ); ?>"><div class="nv-pillar-num">07</div><div class="nv-pillar-icon">🏢</div><h3>ERP for Enterprise</h3><p>Finance, HR, inventory, CRM, production — one connected system.</p></a>
+		<a class="nv-pillar" href="#software"><div class="nv-pillar-num">01</div><div class="nv-pillar-icon"><?php echo nv_icon( "monitor", 32 ); ?></div><h3>Software &amp; Apps</h3><p>Web, mobile, Windows apps — custom-built for your workflow.</p></a>
+		<a class="nv-pillar" href="<?php echo esc_url( $launch_url ); ?>"><div class="nv-pillar-num">02</div><div class="nv-pillar-icon"><?php echo nv_icon( "rocket", 32 ); ?></div><h3>Startup Launchpad</h3><p>We start your business with you. Registration, docs, authorities, done.</p></a>
+		<a class="nv-pillar" href="#consulting"><div class="nv-pillar-num">03</div><div class="nv-pillar-icon"><?php echo nv_icon( "trending-up", 32 ); ?></div><h3>Business Growth Consulting</h3><p>Strategy, processes, and the operational playbook to scale you up.</p></a>
+		<a class="nv-pillar" href="<?php echo esc_url( $logist_url ); ?>"><div class="nv-pillar-num">04</div><div class="nv-pillar-icon"><?php echo nv_icon( "ship", 32 ); ?></div><h3>Logistics — Sea &amp; Air</h3><p>End-to-end freight forwarding. Containers, courier, customs, delivered.</p></a>
+		<a class="nv-pillar" href="#creative"><div class="nv-pillar-num">05</div><div class="nv-pillar-icon"><?php echo nv_icon( "palette", 32 ); ?></div><h3>Creative &amp; Design</h3><p>Graphic design, 3D rendering, AutoCAD architectural &amp; house plans.</p></a>
+		<a class="nv-pillar" href="#marketing"><div class="nv-pillar-num">06</div><div class="nv-pillar-icon"><?php echo nv_icon( "megaphone", 32 ); ?></div><h3>Brand &amp; Digital Marketing</h3><p>Identity, social media, SEO — the engine that brings customers in.</p></a>
+		<a class="nv-pillar" href="<?php echo esc_url( $erp_url ); ?>"><div class="nv-pillar-num">07</div><div class="nv-pillar-icon"><?php echo nv_icon( "building-2", 32 ); ?></div><h3>ERP for Enterprise</h3><p>Finance, HR, inventory, CRM, production — one connected system.</p></a>
 	</div>
 </div>
 
@@ -45,9 +45,9 @@ $erp_url    = $erp ? get_permalink( $erp->ID ) : '#erp';
 	<h2 class="nv-title">Apps for every screen — and the desktop too.</h2>
 	<p class="nv-sub">Whether your customers live in a browser, a phone, or a Windows shop floor, we ship the right tool.</p>
 	<div class="nv-grid-3" style="margin-top:32px">
-		<div class="nv-glass"><div class="nv-card-icon">🌐</div><h4 style="font-family:var(--display);font-size:18px;margin-bottom:8px">Websites &amp; Web Apps</h4><p style="font-size:13px;color:var(--muted2)">WordPress, React, Laravel, headless commerce. Fast, responsive, SEO-ready.</p></div>
-		<div class="nv-glass"><div class="nv-card-icon">📱</div><h4 style="font-family:var(--display);font-size:18px;margin-bottom:8px">Mobile Apps</h4><p style="font-size:13px;color:var(--muted2)">Native iOS / Android and cross-platform Flutter &amp; React Native builds.</p></div>
-		<div class="nv-glass"><div class="nv-card-icon">🖥️</div><h4 style="font-family:var(--display);font-size:18px;margin-bottom:8px">Windows Applications</h4><p style="font-size:13px;color:var(--muted2)">Desktop tools in C#/.NET, Qt, Electron — POS, inventory, custom utilities.</p></div>
+		<div class="nv-glass"><div class="nv-card-icon"><?php echo nv_icon( "globe", 18 ); ?></div><h4 style="font-family:var(--display);font-size:18px;margin-bottom:8px">Websites &amp; Web Apps</h4><p style="font-size:13px;color:var(--muted2)">WordPress, React, Laravel, headless commerce. Fast, responsive, SEO-ready.</p></div>
+		<div class="nv-glass"><div class="nv-card-icon"><?php echo nv_icon( "smartphone", 18 ); ?></div><h4 style="font-family:var(--display);font-size:18px;margin-bottom:8px">Mobile Apps</h4><p style="font-size:13px;color:var(--muted2)">Native iOS / Android and cross-platform Flutter &amp; React Native builds.</p></div>
+		<div class="nv-glass"><div class="nv-card-icon"><?php echo nv_icon( "monitor", 18 ); ?></div><h4 style="font-family:var(--display);font-size:18px;margin-bottom:8px">Windows Applications</h4><p style="font-size:13px;color:var(--muted2)">Desktop tools in C#/.NET, Qt, Electron — POS, inventory, custom utilities.</p></div>
 	</div>
 </div>
 
@@ -59,9 +59,9 @@ $erp_url    = $erp ? get_permalink( $erp->ID ) : '#erp';
 	<h2 class="nv-title">Strategy that becomes a Monday-morning to-do list.</h2>
 	<p class="nv-sub">We don't hand you a 60-page slide deck. We work alongside your team, install the systems, and stay until the metric you care about moves.</p>
 	<div class="nv-grid-3" style="margin-top:32px">
-		<div class="nv-glass"><div class="nv-card-icon">🎯</div><h4 style="font-family:var(--display);font-size:18px;margin-bottom:8px">Growth Strategy</h4><p style="font-size:13px;color:var(--muted2)">Market positioning, pricing, channel selection, 90-day execution plans.</p></div>
-		<div class="nv-glass"><div class="nv-card-icon">⚙️</div><h4 style="font-family:var(--display);font-size:18px;margin-bottom:8px">Operations &amp; Process</h4><p style="font-size:13px;color:var(--muted2)">SOPs, automation, KPIs — clean up the back office so the front can sell.</p></div>
-		<div class="nv-glass"><div class="nv-card-icon">📊</div><h4 style="font-family:var(--display);font-size:18px;margin-bottom:8px">Financial Modelling</h4><p style="font-size:13px;color:var(--muted2)">Cash-flow forecasts, unit economics, investor-ready P&amp;L.</p></div>
+		<div class="nv-glass"><div class="nv-card-icon"><?php echo nv_icon( "target", 18 ); ?></div><h4 style="font-family:var(--display);font-size:18px;margin-bottom:8px">Growth Strategy</h4><p style="font-size:13px;color:var(--muted2)">Market positioning, pricing, channel selection, 90-day execution plans.</p></div>
+		<div class="nv-glass"><div class="nv-card-icon"><?php echo nv_icon( "settings", 18 ); ?></div><h4 style="font-family:var(--display);font-size:18px;margin-bottom:8px">Operations &amp; Process</h4><p style="font-size:13px;color:var(--muted2)">SOPs, automation, KPIs — clean up the back office so the front can sell.</p></div>
+		<div class="nv-glass"><div class="nv-card-icon"><?php echo nv_icon( "pie-chart", 18 ); ?></div><h4 style="font-family:var(--display);font-size:18px;margin-bottom:8px">Financial Modelling</h4><p style="font-size:13px;color:var(--muted2)">Cash-flow forecasts, unit economics, investor-ready P&amp;L.</p></div>
 	</div>
 </div>
 
@@ -73,9 +73,9 @@ $erp_url    = $erp ? get_permalink( $erp->ID ) : '#erp';
 	<h2 class="nv-title">Pixels, polygons, and blueprints.</h2>
 	<p class="nv-sub">Two-dimensional brand work, three-dimensional product &amp; interior visualisation, and full architectural drafting.</p>
 	<div class="nv-grid-3" style="margin-top:32px">
-		<div class="nv-glass"><div class="nv-card-icon">🖌️</div><h4 style="font-family:var(--display);font-size:18px;margin-bottom:8px">Graphic Design</h4><p style="font-size:13px;color:var(--muted2)">Logos, packaging, print, social creatives, presentation decks.</p></div>
-		<div class="nv-glass"><div class="nv-card-icon">🧊</div><h4 style="font-family:var(--display);font-size:18px;margin-bottom:8px">3D Rendering</h4><p style="font-size:13px;color:var(--muted2)">Product visualisation, interior walk-throughs, photoreal exterior shots.</p></div>
-		<div class="nv-glass"><div class="nv-card-icon">📐</div><h4 style="font-family:var(--display);font-size:18px;margin-bottom:8px">AutoCAD &amp; House Plans</h4><p style="font-size:13px;color:var(--muted2)">Floor plans, elevations, working drawings — submission-ready DWG &amp; PDF.</p></div>
+		<div class="nv-glass"><div class="nv-card-icon"><?php echo nv_icon( "pen-tool", 18 ); ?></div><h4 style="font-family:var(--display);font-size:18px;margin-bottom:8px">Graphic Design</h4><p style="font-size:13px;color:var(--muted2)">Logos, packaging, print, social creatives, presentation decks.</p></div>
+		<div class="nv-glass"><div class="nv-card-icon"><?php echo nv_icon( "box", 18 ); ?></div><h4 style="font-family:var(--display);font-size:18px;margin-bottom:8px">3D Rendering</h4><p style="font-size:13px;color:var(--muted2)">Product visualisation, interior walk-throughs, photoreal exterior shots.</p></div>
+		<div class="nv-glass"><div class="nv-card-icon"><?php echo nv_icon( "ruler", 18 ); ?></div><h4 style="font-family:var(--display);font-size:18px;margin-bottom:8px">AutoCAD &amp; House Plans</h4><p style="font-size:13px;color:var(--muted2)">Floor plans, elevations, working drawings — submission-ready DWG &amp; PDF.</p></div>
 	</div>
 </div>
 
@@ -87,9 +87,9 @@ $erp_url    = $erp ? get_permalink( $erp->ID ) : '#erp';
 	<h2 class="nv-title">Get found. Be remembered. Sell more.</h2>
 	<p class="nv-sub">A brand that holds together, a content engine that doesn't stop, and SEO that compounds.</p>
 	<div class="nv-grid-3" style="margin-top:32px">
-		<div class="nv-glass"><div class="nv-card-icon">🆔</div><h4 style="font-family:var(--display);font-size:18px;margin-bottom:8px">Brand Identity</h4><p style="font-size:13px;color:var(--muted2)">Naming, logo systems, colour, type, brand guidelines, asset libraries.</p></div>
-		<div class="nv-glass"><div class="nv-card-icon">📲</div><h4 style="font-family:var(--display);font-size:18px;margin-bottom:8px">Social Media</h4><p style="font-size:13px;color:var(--muted2)">Content calendars, reels, paid campaigns, community management.</p></div>
-		<div class="nv-glass"><div class="nv-card-icon">🔍</div><h4 style="font-family:var(--display);font-size:18px;margin-bottom:8px">SEO &amp; Analytics</h4><p style="font-size:13px;color:var(--muted2)">Technical SEO, content strategy, Google Business Profile, GA4 dashboards.</p></div>
+		<div class="nv-glass"><div class="nv-card-icon"><?php echo nv_icon( "id-card", 18 ); ?></div><h4 style="font-family:var(--display);font-size:18px;margin-bottom:8px">Brand Identity</h4><p style="font-size:13px;color:var(--muted2)">Naming, logo systems, colour, type, brand guidelines, asset libraries.</p></div>
+		<div class="nv-glass"><div class="nv-card-icon"><?php echo nv_icon( "share-2", 18 ); ?></div><h4 style="font-family:var(--display);font-size:18px;margin-bottom:8px">Social Media</h4><p style="font-size:13px;color:var(--muted2)">Content calendars, reels, paid campaigns, community management.</p></div>
+		<div class="nv-glass"><div class="nv-card-icon"><?php echo nv_icon( "search", 18 ); ?></div><h4 style="font-family:var(--display);font-size:18px;margin-bottom:8px">SEO &amp; Analytics</h4><p style="font-size:13px;color:var(--muted2)">Technical SEO, content strategy, Google Business Profile, GA4 dashboards.</p></div>
 	</div>
 </div>
 

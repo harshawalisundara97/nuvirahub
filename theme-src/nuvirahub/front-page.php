@@ -34,7 +34,7 @@ $erp_url       = $nv_erp ? get_permalink( $nv_erp->ID ) : home_url( '/erp-soluti
 		<h1>One partner for<br><span>everything your business needs.</span></h1>
 		<p class="nv-hero-sub">Software, consulting, freight logistics, creative, marketing, ERP — and a complete launch service for founders starting from zero. Nuvirahub is the team behind the team.</p>
 		<div class="nv-hero-actions">
-			<a class="nv-btn-primary" href="<?php echo esc_url( $launch_url ); ?>">🚀 Launch My Business</a>
+			<a class="nv-btn-primary" href="<?php echo esc_url( $launch_url ); ?>">Launch My Business</a>
 			<a class="nv-btn-ghost" href="<?php echo esc_url( $services_url ); ?>">Explore All Services</a>
 		</div>
 		<div class="nv-hero-stats">
@@ -64,7 +64,7 @@ $erp_url       = $nv_erp ? get_permalink( $nv_erp->ID ) : home_url( '/erp-soluti
 	<div class="nv-spotlight">
 		<div class="nv-spotlight-bg"></div>
 		<div class="nv-spotlight-content">
-			<div class="nv-tag">⭐ Our flagship service</div>
+			<div class="nv-tag">Our flagship service</div>
 			<h2 class="nv-spotlight-title">Starting a business?<br><span>We walk every step with you.</span></h2>
 			<p>Registration, tax IDs, documents, government authorities, banking, brand &amp; website launch — packaged into a single 14-day programme. Built for Sri Lankan founders.</p>
 			<div class="nv-spotlight-features">

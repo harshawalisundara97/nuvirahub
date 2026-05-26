@@ -30,10 +30,10 @@ if ( ! function_exists( 'nv_link' ) ) {
 			<div class="nv-footer-brand"><?php echo esc_html( get_bloginfo( 'name' ) ? get_bloginfo( 'name' ) : 'Nuvirahub' ); ?></div>
 			<p class="nv-footer-desc">One partner for software, business growth, logistics, creative, marketing and ERP — plus a complete launch service for founders starting from zero.</p>
 			<div class="nv-social" style="margin-top:20px">
-				<a class="nv-social-btn" href="#">𝕏</a>
-				<a class="nv-social-btn" href="#">in</a>
-				<a class="nv-social-btn" href="#">f</a>
-				<a class="nv-social-btn" href="#">▶</a>
+				<a class="nv-social-btn" href="#" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+				<a class="nv-social-btn" href="#" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+				<a class="nv-social-btn" href="#" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+				<a class="nv-social-btn" href="#" aria-label="X (Twitter)"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
 			</div>
 		</div>
 		<div>
@@ -49,7 +49,7 @@ if ( ! function_exists( 'nv_link' ) ) {
 			<a class="nv-footer-link" href="<?php echo esc_url( nv_link( $nv_services, 'services' ) ); ?>#consulting">Growth Consulting</a>
 			<a class="nv-footer-link" href="<?php echo esc_url( nv_link( $nv_services, 'services' ) ); ?>#creative">Creative &amp; Design</a>
 			<a class="nv-footer-link" href="<?php echo esc_url( nv_link( $nv_logist, 'logistics' ) ); ?>">Sea &amp; Air Freight</a>
-			<a class="nv-footer-link" href="<?php echo esc_url( nv_link( nuvirahub_get_page_by_title( 'Spices' ), 'spices' ) ); ?>">🌶️ Nuvira Spice Co.</a>
+			<a class="nv-footer-link" href="<?php echo esc_url( nv_link( nuvirahub_get_page_by_title( 'Spices' ), 'spices' ) ); ?>">Nuvira Spice Co.</a>
 		</div>
 		<div>
 			<h4>Company</h4>
@@ -63,20 +63,20 @@ if ( ! function_exists( 'nv_link' ) ) {
 	<!-- Contact strip -->
 	<div class="nv-footer-contact">
 		<div>
-			<h4>Visit</h4>
+			<h4><?php echo nv_icon( 'map-pin', 14 ); ?>Visit</h4>
 			<address>27/2E Pieris Avenue<br>Kalubowila, Dehiwala<br>Sri Lanka 10350</address>
 		</div>
 		<div>
-			<h4>Talk</h4>
-			<a href="tel:+94716722599">+94 71 672 2599</a><br>
+			<h4><?php echo nv_icon( 'phone', 14 ); ?>Talk</h4>
+			<a href="tel:+94716722599">+94 71 672 2599</a>
 			<a href="<?php echo esc_url( nuvirahub_wa_link( 'Hi Nuvirahub!' ) ); ?>" target="_blank" rel="noopener">WhatsApp us</a>
 		</div>
 		<div>
-			<h4>Email</h4>
+			<h4><?php echo nv_icon( 'mail', 14 ); ?>Email</h4>
 			<a href="mailto:nuvirahub@gmail.com">nuvirahub@gmail.com</a>
 		</div>
 		<div>
-			<h4>Hours</h4>
+			<h4><?php echo nv_icon( 'check-circle', 14 ); ?>Hours</h4>
 			<span>Mon–Fri · 9am–6pm IST<br>Sat · 9am–1pm</span>
 		</div>
 	</div>

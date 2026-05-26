@@ -27,12 +27,12 @@ $contact_url = $contact ? get_permalink( $contact->ID ) : home_url( '/contact' )
 	<h2 class="nv-title">Six pillars. <span>Pick what you need.</span></h2>
 	<p class="nv-sub">Roll out the whole suite or start with one. Everything talks to everything else from day one.</p>
 	<div class="nv-erp-modules">
-		<div class="nv-erp-module"><div class="nv-erp-icon">💵</div><h3>Finance &amp; Accounting</h3><p>GL, AR/AP, multi-currency, tax compliance, audit-ready reports.</p></div>
-		<div class="nv-erp-module"><div class="nv-erp-icon">👥</div><h3>HR &amp; Payroll</h3><p>Employee records, attendance, EPF/ETF, payroll, leave, performance.</p></div>
-		<div class="nv-erp-module"><div class="nv-erp-icon">📦</div><h3>Inventory &amp; Warehouse</h3><p>Multi-location stock, batch/serial tracking, barcode, stock movements.</p></div>
-		<div class="nv-erp-module"><div class="nv-erp-icon">🤝</div><h3>CRM &amp; Sales</h3><p>Pipeline, quotations, sales orders, customer 360, commission tracking.</p></div>
-		<div class="nv-erp-module"><div class="nv-erp-icon">🏭</div><h3>Production &amp; MRP</h3><p>BOM, work orders, capacity planning, shop-floor data collection.</p></div>
-		<div class="nv-erp-module"><div class="nv-erp-icon">📊</div><h3>Reporting &amp; BI</h3><p>Live dashboards, custom reports, KPI alerts on phone &amp; desktop.</p></div>
+		<div class="nv-erp-module"><div class="nv-erp-icon"><?php echo nv_icon( "banknote", 28 ); ?></div><h3>Finance &amp; Accounting</h3><p>GL, AR/AP, multi-currency, tax compliance, audit-ready reports.</p></div>
+		<div class="nv-erp-module"><div class="nv-erp-icon"><?php echo nv_icon( "users", 28 ); ?></div><h3>HR &amp; Payroll</h3><p>Employee records, attendance, EPF/ETF, payroll, leave, performance.</p></div>
+		<div class="nv-erp-module"><div class="nv-erp-icon"><?php echo nv_icon( "package", 28 ); ?></div><h3>Inventory &amp; Warehouse</h3><p>Multi-location stock, batch/serial tracking, barcode, stock movements.</p></div>
+		<div class="nv-erp-module"><div class="nv-erp-icon"><?php echo nv_icon( "handshake", 28 ); ?></div><h3>CRM &amp; Sales</h3><p>Pipeline, quotations, sales orders, customer 360, commission tracking.</p></div>
+		<div class="nv-erp-module"><div class="nv-erp-icon"><?php echo nv_icon( "factory", 28 ); ?></div><h3>Production &amp; MRP</h3><p>BOM, work orders, capacity planning, shop-floor data collection.</p></div>
+		<div class="nv-erp-module"><div class="nv-erp-icon"><?php echo nv_icon( "bar-chart", 28 ); ?></div><h3>Reporting &amp; BI</h3><p>Live dashboards, custom reports, KPI alerts on phone &amp; desktop.</p></div>
 	</div>
 </div>
 
@@ -41,9 +41,9 @@ $contact_url = $contact ? get_permalink( $contact->ID ) : home_url( '/contact' )
 	<div class="nv-tag">Why ERP</div>
 	<h2 class="nv-title">Stop running your business on <span>15 spreadsheets.</span></h2>
 	<div class="nv-grid-3" style="margin-top:32px">
-		<div class="nv-glass"><div class="nv-card-icon">⏱️</div><h4 style="font-family:var(--display);font-size:18px;margin-bottom:8px">Save 10+ hrs/week</h4><p style="font-size:13px;color:var(--muted2)">No re-entry between systems. Approvals on the phone. Reports auto-generated.</p></div>
-		<div class="nv-glass"><div class="nv-card-icon">🎯</div><h4 style="font-family:var(--display);font-size:18px;margin-bottom:8px">One source of truth</h4><p style="font-size:13px;color:var(--muted2)">Every department reads &amp; writes the same data. No more "which Excel is correct?"</p></div>
-		<div class="nv-glass"><div class="nv-card-icon">📈</div><h4 style="font-family:var(--display);font-size:18px;margin-bottom:8px">Decisions on real data</h4><p style="font-size:13px;color:var(--muted2)">Live margin, cash position, inventory value, top customers — all on your homepage.</p></div>
+		<div class="nv-glass"><div class="nv-card-icon"><?php echo nv_icon( "send", 18 ); ?></div><h4 style="font-family:var(--display);font-size:18px;margin-bottom:8px">Save 10+ hrs/week</h4><p style="font-size:13px;color:var(--muted2)">No re-entry between systems. Approvals on the phone. Reports auto-generated.</p></div>
+		<div class="nv-glass"><div class="nv-card-icon"><?php echo nv_icon( "target", 18 ); ?></div><h4 style="font-family:var(--display);font-size:18px;margin-bottom:8px">One source of truth</h4><p style="font-size:13px;color:var(--muted2)">Every department reads &amp; writes the same data. No more "which Excel is correct?"</p></div>
+		<div class="nv-glass"><div class="nv-card-icon"><?php echo nv_icon( "trending-up", 18 ); ?></div><h4 style="font-family:var(--display);font-size:18px;margin-bottom:8px">Decisions on real data</h4><p style="font-size:13px;color:var(--muted2)">Live margin, cash position, inventory value, top customers — all on your homepage.</p></div>
 	</div>
 </div>
 
@@ -52,14 +52,14 @@ $contact_url = $contact ? get_permalink( $contact->ID ) : home_url( '/contact' )
 	<div class="nv-tag">Industries we serve</div>
 	<h2 class="nv-title">Built for businesses like yours.</h2>
 	<div class="nv-grid-4" style="margin-top:32px">
-		<div class="nv-glass" style="text-align:center"><div style="font-size:36px;margin-bottom:12px">🏭</div><h4 style="font-family:var(--display);font-size:15px">Manufacturing</h4></div>
-		<div class="nv-glass" style="text-align:center"><div style="font-size:36px;margin-bottom:12px">🏪</div><h4 style="font-family:var(--display);font-size:15px">Retail &amp; Distribution</h4></div>
-		<div class="nv-glass" style="text-align:center"><div style="font-size:36px;margin-bottom:12px">🚚</div><h4 style="font-family:var(--display);font-size:15px">Logistics</h4></div>
-		<div class="nv-glass" style="text-align:center"><div style="font-size:36px;margin-bottom:12px">🏗️</div><h4 style="font-family:var(--display);font-size:15px">Construction</h4></div>
-		<div class="nv-glass" style="text-align:center"><div style="font-size:36px;margin-bottom:12px">🏥</div><h4 style="font-family:var(--display);font-size:15px">Healthcare</h4></div>
-		<div class="nv-glass" style="text-align:center"><div style="font-size:36px;margin-bottom:12px">🎓</div><h4 style="font-family:var(--display);font-size:15px">Education</h4></div>
-		<div class="nv-glass" style="text-align:center"><div style="font-size:36px;margin-bottom:12px">🌾</div><h4 style="font-family:var(--display);font-size:15px">Agriculture</h4></div>
-		<div class="nv-glass" style="text-align:center"><div style="font-size:36px;margin-bottom:12px">⚙️</div><h4 style="font-family:var(--display);font-size:15px">Services</h4></div>
+		<div class="nv-glass" style="text-align:center"><div style="margin-bottom:12px;color:var(--accent2)"><?php echo nv_icon( "factory", 32 ); ?></div><h4 style="font-family:var(--display);font-size:15px">Manufacturing</h4></div>
+		<div class="nv-glass" style="text-align:center"><div style="margin-bottom:12px;color:var(--accent2)"><?php echo nv_icon( "store", 32 ); ?></div><h4 style="font-family:var(--display);font-size:15px">Retail &amp; Distribution</h4></div>
+		<div class="nv-glass" style="text-align:center"><div style="margin-bottom:12px;color:var(--accent2)"><?php echo nv_icon( "truck", 32 ); ?></div><h4 style="font-family:var(--display);font-size:15px">Logistics</h4></div>
+		<div class="nv-glass" style="text-align:center"><div style="margin-bottom:12px;color:var(--accent2)"><?php echo nv_icon( "hard-hat", 32 ); ?></div><h4 style="font-family:var(--display);font-size:15px">Construction</h4></div>
+		<div class="nv-glass" style="text-align:center"><div style="margin-bottom:12px;color:var(--accent2)"><?php echo nv_icon( "heart-pulse", 32 ); ?></div><h4 style="font-family:var(--display);font-size:15px">Healthcare</h4></div>
+		<div class="nv-glass" style="text-align:center"><div style="margin-bottom:12px;color:var(--accent2)"><?php echo nv_icon( "graduation-cap", 32 ); ?></div><h4 style="font-family:var(--display);font-size:15px">Education</h4></div>
+		<div class="nv-glass" style="text-align:center"><div style="margin-bottom:12px;color:var(--accent2)"><?php echo nv_icon( "wheat", 32 ); ?></div><h4 style="font-family:var(--display);font-size:15px">Agriculture</h4></div>
+		<div class="nv-glass" style="text-align:center"><div style="margin-bottom:12px;color:var(--accent2)"><?php echo nv_icon( "cog", 32 ); ?></div><h4 style="font-family:var(--display);font-size:15px">Services</h4></div>
 	</div>
 </div>
 

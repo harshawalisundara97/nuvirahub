@@ -138,49 +138,49 @@ $contact_url = $contact ? get_permalink( $contact->ID ) : home_url( '/contact' )
 
 	<div class="nv-auth-grid">
 		<div class="nv-auth-card">
-			<div class="nv-auth-icon">🏛️</div>
+			<div class="nv-auth-icon"><?php echo nv_icon( "landmark", 24 ); ?></div>
 			<h4>Registrar of Companies (ROC)</h4>
 			<p>Business name reservation, incorporation, annual returns.</p>
 			<div class="nv-auth-meta"><span>📍 Colombo 02</span><span>🌐 drc.gov.lk</span></div>
 		</div>
 		<div class="nv-auth-card">
-			<div class="nv-auth-icon">💰</div>
+			<div class="nv-auth-icon"><?php echo nv_icon( "dollar-sign", 24 ); ?></div>
 			<h4>Inland Revenue Department</h4>
 			<p>TIN, VAT, income tax, withholding tax, SSCL.</p>
 			<div class="nv-auth-meta"><span>📍 Maitland Crescent</span><span>🌐 ird.gov.lk</span></div>
 		</div>
 		<div class="nv-auth-card">
-			<div class="nv-auth-icon">👥</div>
+			<div class="nv-auth-icon"><?php echo nv_icon( "users", 24 ); ?></div>
 			<h4>EPF / ETF — Dept. of Labour</h4>
 			<p>Employer registration, monthly contributions, member queries.</p>
 			<div class="nv-auth-meta"><span>📍 Narahenpita</span><span>🌐 epf.lk</span></div>
 		</div>
 		<div class="nv-auth-card">
-			<div class="nv-auth-icon">🌍</div>
+			<div class="nv-auth-icon"><?php echo nv_icon( "globe", 24 ); ?></div>
 			<h4>Board of Investment (BOI)</h4>
 			<p>Tax holidays, FDI approval, export-oriented enterprises.</p>
 			<div class="nv-auth-meta"><span>📍 World Trade Center</span><span>🌐 investsrilanka.com</span></div>
 		</div>
 		<div class="nv-auth-card">
-			<div class="nv-auth-icon">📦</div>
+			<div class="nv-auth-icon"><?php echo nv_icon( "package", 24 ); ?></div>
 			<h4>Sri Lanka Customs</h4>
 			<p>Import/export declarations, duty payments, clearance.</p>
 			<div class="nv-auth-meta"><span>📍 Times Building</span><span>🌐 customs.gov.lk</span></div>
 		</div>
 		<div class="nv-auth-card">
-			<div class="nv-auth-icon">©️</div>
+			<div class="nv-auth-icon"><?php echo nv_icon( "copyright", 24 ); ?></div>
 			<h4>NIPO — IP Office</h4>
 			<p>Trademarks, patents, industrial designs, copyrights.</p>
 			<div class="nv-auth-meta"><span>📍 Sampathpaya</span><span>🌐 nipo.gov.lk</span></div>
 		</div>
 		<div class="nv-auth-card">
-			<div class="nv-auth-icon">🏪</div>
+			<div class="nv-auth-icon"><?php echo nv_icon( "store", 24 ); ?></div>
 			<h4>Local Authority (PS / MC / UC)</h4>
 			<p>Trade licence, building approvals, environmental clearance.</p>
 			<div class="nv-auth-meta"><span>📍 Your area</span><span>🌐 lgpc.gov.lk</span></div>
 		</div>
 		<div class="nv-auth-card">
-			<div class="nv-auth-icon">🛡️</div>
+			<div class="nv-auth-icon"><?php echo nv_icon( "shield", 24 ); ?></div>
 			<h4>Data Protection Authority</h4>
 			<p>PDPA compliance, controller registration, breach reporting.</p>
 			<div class="nv-auth-meta"><span>📍 Colombo</span><span>🌐 dpa.gov.lk</span></div>
@@ -196,7 +196,7 @@ $contact_url = $contact ? get_permalink( $contact->ID ) : home_url( '/contact' )
 		<p style="color:var(--muted2);max-width:520px;margin:0 auto">Book a free 30-minute consultation. We map your business, quote the launch package, and start the same week.</p>
 		<div style="margin-top:24px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
 			<a class="nv-btn-primary" href="<?php echo esc_url( $contact_url ); ?>">Book Free Consultation</a>
-			<a class="nv-btn-ghost" href="tel:+94000000000">📞 Call us directly</a>
+			<a class="nv-btn-ghost" href="tel:+94716722599"><?php echo nv_icon( "phone", 16 ); ?>Call us directly</a>
 		</div>
 	</div>
 </div>

@@ -158,22 +158,22 @@ $spices = array(
 
 <div class="nv-page-hero nv-reveal">
 	<div class="nv-page-hero-bg"></div>
-	<div class="nv-tag">🌶️ Nuvira Spice Co.</div>
+	<div class="nv-tag">Nuvira Spice Co.</div>
 	<h1>Ceylon spices —<br><span>delivered to Latvia.</span></h1>
 	<p class="nv-sub" style="margin:0 auto;text-align:center">Single-origin spices from the hills of Sri Lanka, packed within 7 days of harvest, shipped tracked to your door in Riga, Daugavpils or anywhere across Latvia. Click any spice to order on WhatsApp — same-day reply.</p>
 	<div style="margin-top:28px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1">
 		<a class="nv-btn-primary" href="#catalog">Browse Catalog</a>
-		<a class="nv-btn-ghost" href="<?php echo esc_url( nuvirahub_wa_link( 'Hi Nuvira Spice Co.! I would like a custom spice order.' ) ); ?>" target="_blank" rel="noopener">💬 Chat on WhatsApp</a>
+		<a class="nv-btn-ghost" href="<?php echo esc_url( nuvirahub_wa_link( 'Hi Nuvira Spice Co.! I would like a custom spice order.' ) ); ?>" target="_blank" rel="noopener"><?php echo nv_icon( 'message-circle', 16 ); ?>Chat on WhatsApp</a>
 	</div>
 </div>
 
 <!-- TRUST STRIP -->
 <div class="nv-section nv-reveal" style="padding-top:32px;padding-bottom:32px">
 	<div class="nv-spice-trust">
-		<div><span class="nv-trust-icon">🌱</span><strong>Single-origin</strong>Traced to one farm or co-op</div>
-		<div><span class="nv-trust-icon">📦</span><strong>Vacuum sealed</strong>Locks in oils &amp; aroma</div>
-		<div><span class="nv-trust-icon">✈️</span><strong>5–8 day delivery</strong>Tracked, Riga to anywhere in LV</div>
-		<div><span class="nv-trust-icon">💬</span><strong>WhatsApp ordering</strong>One message, no checkout forms</div>
+		<div><span class="nv-trust-icon"><?php echo nv_icon( 'sprout', 22 ); ?></span><strong>Single-origin</strong>Traced to one farm or co-op</div>
+		<div><span class="nv-trust-icon"><?php echo nv_icon( 'package', 22 ); ?></span><strong>Vacuum sealed</strong>Locks in oils &amp; aroma</div>
+		<div><span class="nv-trust-icon"><?php echo nv_icon( 'plane', 22 ); ?></span><strong>5–8 day delivery</strong>Tracked, Riga to anywhere in LV</div>
+		<div><span class="nv-trust-icon"><?php echo nv_icon( 'message-circle', 22 ); ?></span><strong>WhatsApp ordering</strong>One message, no checkout forms</div>
 	</div>
 </div>
 
@@ -186,8 +186,8 @@ $spices = array(
 	<div class="nv-spice-grid">
 		<?php foreach ( $spices as $s ) : ?>
 			<div class="nv-spice" id="<?php echo esc_attr( $s['slug'] ); ?>">
-				<div class="nv-spice-cover" style="background-image: url('<?php echo esc_url( get_template_directory_uri() . '/assets/img/spices/' . $s['slug'] . '.png' ); ?>');">
-					<div class="nv-spice-origin">📍 <?php echo esc_html( $s['origin'] ); ?></div>
+				<div class="nv-spice-cover" style="background-image: url('<?php echo esc_url( get_template_directory_uri() . '/assets/img/spices/' . $s['slug'] . '.jpg' ); ?>');">
+					<div class="nv-spice-origin"><?php echo nv_icon( 'map-pin', 12 ); ?><?php echo esc_html( $s['origin'] ); ?></div>
 				</div>
 				<div class="nv-spice-body">
 					<h3><?php echo esc_html( $s['name'] ); ?></h3>
@@ -210,7 +210,7 @@ $spices = array(
 							<a class="nv-spice-opt" href="<?php echo esc_url( $link ); ?>" target="_blank" rel="noopener">
 								<span class="nv-spice-weight"><?php echo esc_html( $opt['weight'] ); ?></span>
 								<span class="nv-spice-price"><?php echo esc_html( NUVIRAHUB_SPICE_CURRENCY . $opt['price'] ); ?></span>
-								<span class="nv-spice-buy">💬 Order</span>
+								<span class="nv-spice-buy"><?php echo nv_icon( 'message-circle', 13 ); ?>Order</span>
 							</a>
 						<?php endforeach; ?>
 					</div>
@@ -271,7 +271,7 @@ $spices = array(
 		<h2 class="nv-title" style="margin-bottom:12px">Message us on WhatsApp.<br>We reply <span>within 2 hours.</span></h2>
 		<p style="color:var(--muted2);max-width:560px;margin:0 auto">Tell us which spices, which weights, and your Latvian address. We'll confirm the total and shipping date. Bundle discounts available.</p>
 		<div style="margin-top:28px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
-			<a class="nv-btn-primary" style="background:#25D366;border-color:#25D366" href="<?php echo esc_url( nuvirahub_wa_link( 'Hi Nuvira Spice Co.! I would like to place an order. Here is my wishlist:' ) ); ?>" target="_blank" rel="noopener">💬 Start Your Order on WhatsApp</a>
+			<a class="nv-btn-primary" style="background:#25D366;border-color:#25D366" href="<?php echo esc_url( nuvirahub_wa_link( 'Hi Nuvira Spice Co.! I would like to place an order. Here is my wishlist:' ) ); ?>" target="_blank" rel="noopener"><?php echo nv_icon( 'message-circle', 16 ); ?>Start Your Order on WhatsApp</a>
 			<a class="nv-btn-ghost" href="<?php echo esc_url( $contact_url ); ?>">Or use the contact form</a>
 		</div>
 	</div>
