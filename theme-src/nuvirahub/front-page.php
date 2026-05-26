@@ -85,13 +85,41 @@ $erp_url       = $nv_erp ? get_permalink( $nv_erp->ID ) : home_url( '/erp-soluti
 	<h2 class="nv-title">Seven services. <span>One bill. One team.</span></h2>
 	<p class="nv-sub">From the moment you have an idea to the moment you're scaling globally — every capability you need under one roof.</p>
 	<div class="nv-pillars" style="margin-top:48px">
-		<a class="nv-pillar" href="<?php echo esc_url( $services_url ); ?>#software"><div class="nv-pillar-num">01</div><div class="nv-pillar-icon">💻</div><h3>Software &amp; Apps</h3><p>Web, mobile, Windows applications — custom built.</p></a>
-		<a class="nv-pillar" href="<?php echo esc_url( $launch_url ); ?>"><div class="nv-pillar-num">02</div><div class="nv-pillar-icon">🚀</div><h3>Startup Launchpad</h3><p>We register your business and set it up — end to end.</p></a>
-		<a class="nv-pillar" href="<?php echo esc_url( $services_url ); ?>#consulting"><div class="nv-pillar-num">03</div><div class="nv-pillar-icon">📈</div><h3>Growth Consulting</h3><p>Strategy, operations, finance — playbooks that ship.</p></a>
-		<a class="nv-pillar" href="<?php echo esc_url( $logist_url ); ?>"><div class="nv-pillar-num">04</div><div class="nv-pillar-icon">🚢</div><h3>Logistics — Sea &amp; Air</h3><p>Freight forwarding, customs, door-to-door delivery.</p></a>
-		<a class="nv-pillar" href="<?php echo esc_url( $services_url ); ?>#creative"><div class="nv-pillar-num">05</div><div class="nv-pillar-icon">🎨</div><h3>Creative &amp; Design</h3><p>Graphic, 3D rendering, AutoCAD house plans.</p></a>
-		<a class="nv-pillar" href="<?php echo esc_url( $services_url ); ?>#marketing"><div class="nv-pillar-num">06</div><div class="nv-pillar-icon">📣</div><h3>Brand &amp; Marketing</h3><p>Identity, social media, SEO, content engines.</p></a>
-		<a class="nv-pillar" href="<?php echo esc_url( $erp_url ); ?>"><div class="nv-pillar-num">07</div><div class="nv-pillar-icon">🏢</div><h3>ERP for Enterprise</h3><p>Finance, HR, inventory, CRM, production — one system.</p></a>
+		<a class="nv-pillar" href="<?php echo esc_url( $services_url ); ?>#software">
+			<div class="nv-pillar-num">01</div>
+			<svg class="nv-pillar-svg" viewBox="0 0 48 48"><rect x="6" y="9" width="36" height="26" rx="2"/><line x1="6" y1="30" x2="42" y2="30"/><line x1="18" y1="40" x2="30" y2="40"/><line x1="24" y1="35" x2="24" y2="40"/></svg>
+			<h3>Software &amp; Apps</h3><p>Web, mobile, Windows applications — custom built.</p>
+		</a>
+		<a class="nv-pillar" href="<?php echo esc_url( $launch_url ); ?>">
+			<div class="nv-pillar-num">02</div>
+			<svg class="nv-pillar-svg" viewBox="0 0 48 48"><path d="M28 8c8 0 12 4 12 12 0 6-4 12-12 18-6-2-10-6-12-12-4 0-8-2-8-8 0-2 2-4 4-4 2 0 4 2 4 4l4-4c2-4 6-6 8-6z"/><circle cx="30" cy="18" r="2"/><path d="M14 34l-4 4M18 38l-4 4"/></svg>
+			<h3>Startup Launchpad</h3><p>We register your business and set it up — end to end.</p>
+		</a>
+		<a class="nv-pillar" href="<?php echo esc_url( $services_url ); ?>#consulting">
+			<div class="nv-pillar-num">03</div>
+			<svg class="nv-pillar-svg" viewBox="0 0 48 48"><polyline points="6,36 16,24 24,30 36,14 42,18"/><polyline points="36,14 42,14 42,20"/><line x1="6" y1="42" x2="42" y2="42"/></svg>
+			<h3>Growth Consulting</h3><p>Strategy, operations, finance — playbooks that ship.</p>
+		</a>
+		<a class="nv-pillar" href="<?php echo esc_url( $logist_url ); ?>">
+			<div class="nv-pillar-num">04</div>
+			<svg class="nv-pillar-svg" viewBox="0 0 48 48"><path d="M6 30l4-10h28l4 10"/><path d="M4 34c2 4 8 4 10 0s8-4 10 0 8 4 10 0 8-4 10 0"/><line x1="24" y1="10" x2="24" y2="20"/><path d="M18 14l6-4 6 4"/></svg>
+			<h3>Logistics — Sea &amp; Air</h3><p>Freight forwarding, customs, door-to-door delivery.</p>
+		</a>
+		<a class="nv-pillar" href="<?php echo esc_url( $services_url ); ?>#creative">
+			<div class="nv-pillar-num">05</div>
+			<svg class="nv-pillar-svg" viewBox="0 0 48 48"><circle cx="24" cy="24" r="18"/><circle cx="16" cy="18" r="2"/><circle cx="30" cy="14" r="2"/><circle cx="34" cy="26" r="2"/><path d="M24 42c4 0 6-2 6-5s-3-4-3-7c0-2 2-4 5-4"/></svg>
+			<h3>Creative &amp; Design</h3><p>Graphic, 3D rendering, AutoCAD house plans.</p>
+		</a>
+		<a class="nv-pillar" href="<?php echo esc_url( $services_url ); ?>#marketing">
+			<div class="nv-pillar-num">06</div>
+			<svg class="nv-pillar-svg" viewBox="0 0 48 48"><path d="M8 18v12l24 8V10L8 18z"/><path d="M32 14c4 0 7 4 7 10s-3 10-7 10"/><path d="M14 30v6c0 2 2 4 4 4s4-2 4-4v-4"/></svg>
+			<h3>Brand &amp; Marketing</h3><p>Identity, social media, SEO, content engines.</p>
+		</a>
+		<a class="nv-pillar" href="<?php echo esc_url( $erp_url ); ?>">
+			<div class="nv-pillar-num">07</div>
+			<svg class="nv-pillar-svg" viewBox="0 0 48 48"><rect x="8" y="14" width="14" height="28"/><rect x="26" y="6" width="14" height="36"/><line x1="11" y1="20" x2="19" y2="20"/><line x1="11" y1="26" x2="19" y2="26"/><line x1="11" y1="32" x2="19" y2="32"/><line x1="29" y1="14" x2="37" y2="14"/><line x1="29" y1="22" x2="37" y2="22"/><line x1="29" y1="30" x2="37" y2="30"/></svg>
+			<h3>ERP for Enterprise</h3><p>Finance, HR, inventory, CRM, production — one system.</p>
+		</a>
 	</div>
 </div>
 
@@ -113,10 +141,14 @@ $erp_url       = $nv_erp ? get_permalink( $nv_erp->ID ) : home_url( '/erp-soluti
 <div class="nv-section nv-reveal">
 	<div class="nv-tag">Client feedback</div>
 	<h2 class="nv-title">What our clients say</h2>
-	<div class="nv-grid-3" style="margin-top:40px">
-		<div class="nv-testimonial"><p class="nv-testimonial-text">"Nuvirahub registered the company, got us a website, set up our accounting and even opened the bank account. We focused on selling — they handled the rest."</p><div class="nv-testimonial-author"><div class="nv-testimonial-avatar">SA</div><div><div style="font-size:13px;font-weight:500">Sahan A.</div><div style="font-size:11px;color:var(--muted)">Founder, Brewline LK</div></div></div></div>
-		<div class="nv-testimonial"><p class="nv-testimonial-text">"Our freight from Shenzhen used to take 3 forwarders and 14 emails. With Nuvirahub it's one WhatsApp message. Containers land on time, every time."</p><div class="nv-testimonial-author"><div class="nv-testimonial-avatar" style="background:linear-gradient(135deg,#0ea5e9,#06b6d4)">MK</div><div><div style="font-size:13px;font-weight:500">Manjula K.</div><div style="font-size:11px;color:var(--muted)">COO, Crestline Imports</div></div></div></div>
-		<div class="nv-testimonial"><p class="nv-testimonial-text">"The ERP rollout was the smoothest IT project we've done. Finance, inventory, payroll — all in one place. Real-time margins for the first time ever."</p><div class="nv-testimonial-author"><div class="nv-testimonial-avatar" style="background:linear-gradient(135deg,#f59e0b,#ef4444)">PJ</div><div><div style="font-size:13px;font-weight:500">Priya J.</div><div style="font-size:11px;color:var(--muted)">Director, NovaBuild</div></div></div></div>
+	<div class="nv-testimonial-carousel">
+		<div class="nv-testimonial-track">
+			<div class="nv-testimonial"><p class="nv-testimonial-text">Nuvirahub registered the company, got us a website, set up our accounting and even opened the bank account. We focused on selling — they handled the rest.</p><div class="nv-testimonial-author"><div class="nv-testimonial-avatar">SA</div><div><div style="font-size:14px;font-weight:500">Sahan A.</div><div style="font-size:11px;color:var(--muted)">Founder, Brewline LK</div></div></div></div>
+			<div class="nv-testimonial"><p class="nv-testimonial-text">Our freight from Shenzhen used to take 3 forwarders and 14 emails. With Nuvirahub it's one WhatsApp message. Containers land on time, every time.</p><div class="nv-testimonial-author"><div class="nv-testimonial-avatar" style="background:linear-gradient(135deg,#0ea5e9,#06b6d4)">MK</div><div><div style="font-size:14px;font-weight:500">Manjula K.</div><div style="font-size:11px;color:var(--muted)">COO, Crestline Imports</div></div></div></div>
+			<div class="nv-testimonial"><p class="nv-testimonial-text">The ERP rollout was the smoothest IT project we've done. Finance, inventory, payroll — all in one place. Real-time margins for the first time ever.</p><div class="nv-testimonial-author"><div class="nv-testimonial-avatar" style="background:linear-gradient(135deg,#f59e0b,#ef4444)">PJ</div><div><div style="font-size:14px;font-weight:500">Priya J.</div><div style="font-size:11px;color:var(--muted)">Director, NovaBuild</div></div></div></div>
+			<div class="nv-testimonial"><p class="nv-testimonial-text">From the logo to the AutoCAD house plans — every deliverable came back better than we asked for. They treat your project like it's their own.</p><div class="nv-testimonial-author"><div class="nv-testimonial-avatar" style="background:linear-gradient(135deg,#10b981,#14b8a6)">RN</div><div><div style="font-size:14px;font-weight:500">Ruvini N.</div><div style="font-size:11px;color:var(--muted)">Architect, Studio R+R</div></div></div></div>
+			<div class="nv-testimonial"><p class="nv-testimonial-text">Their growth consulting team rebuilt our sales process top-to-bottom. Within 90 days we'd doubled our pipeline and tripled our close rate.</p><div class="nv-testimonial-author"><div class="nv-testimonial-avatar" style="background:linear-gradient(135deg,#ec4899,#f43f5e)">DM</div><div><div style="font-size:14px;font-weight:500">Dinuka M.</div><div style="font-size:11px;color:var(--muted)">CEO, Velo Tech</div></div></div></div>
+		</div>
 	</div>
 </div>
 
