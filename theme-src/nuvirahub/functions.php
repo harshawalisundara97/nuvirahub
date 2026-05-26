@@ -9,6 +9,25 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * Brand-wide constants.
+ * Update the WhatsApp number here once — used by the floating button, product page, etc.
+ */
+if ( ! defined( 'NUVIRAHUB_WHATSAPP' ) )       { define( 'NUVIRAHUB_WHATSAPP', '94716722599' ); }
+if ( ! defined( 'NUVIRAHUB_SPICE_BRAND' ) )    { define( 'NUVIRAHUB_SPICE_BRAND', 'Nuvira Spice Co.' ); }
+if ( ! defined( 'NUVIRAHUB_SPICE_CURRENCY' ) ) { define( 'NUVIRAHUB_SPICE_CURRENCY', '€' ); }
+
+/**
+ * Build a WhatsApp deep-link with a pre-filled message.
+ *
+ * @param string $message  Plain-text message body. Will be URL-encoded.
+ * @return string  Full wa.me URL.
+ */
+function nuvirahub_wa_link( $message = '' ) {
+	$num = preg_replace( '/[^0-9]/', '', NUVIRAHUB_WHATSAPP );
+	return 'https://wa.me/' . $num . '?text=' . rawurlencode( $message );
+}
+
 if ( ! function_exists( 'nuvirahub_setup' ) ) {
 	/**
 	 * Theme setup.
@@ -98,6 +117,7 @@ function nuvirahub_fallback_menu() {
 		'Startup Launchpad'  => 'startup-launchpad',
 		'Logistics'          => 'logistics',
 		'ERP Solutions'      => 'erp-solutions',
+		'Spices'             => 'spices',
 		'Portfolio'          => 'portfolio',
 		'About'              => 'about',
 		'Blog'               => 'blog',
