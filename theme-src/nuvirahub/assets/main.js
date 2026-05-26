@@ -241,8 +241,13 @@
   const lbTags   = $('.nv-lightbox-tags', lightbox);
 
   function openLightbox(data) {
-    lbVisual.style.background = data.gradient || 'linear-gradient(135deg, rgba(108,99,255,.3), rgba(56,189,248,.2))';
-    lbVisual.textContent = data.emoji || '✨';
+    if (data.image) {
+      lbVisual.style.background = 'url(' + data.image + ') center/cover no-repeat #0a0f1e';
+      lbVisual.textContent = '';
+    } else {
+      lbVisual.style.background = data.gradient || 'linear-gradient(135deg, rgba(108,99,255,.3), rgba(56,189,248,.2))';
+      lbVisual.textContent = data.emoji || '✨';
+    }
     lbTag.textContent = data.category || 'Project';
     lbTitle.textContent = data.title || '';
     lbDesc.textContent = data.desc || '';
@@ -266,6 +271,7 @@
         desc:     item.dataset.desc     || '',
         category: item.dataset.category || '',
         emoji:    item.dataset.emoji    || '',
+        image:    item.dataset.image    || '',
         gradient: item.dataset.gradient || '',
         tags:     (item.dataset.tags || '').split('|').filter(Boolean),
       });

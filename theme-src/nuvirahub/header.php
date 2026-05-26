@@ -53,12 +53,12 @@
 <?php wp_body_open(); ?>
 
 <nav class="nv-nav" id="nv-nav">
-	<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="nv-logo">
+	<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="nv-logo" aria-label="Nuvirahub home">
 		<?php
 		if ( has_custom_logo() ) {
 			the_custom_logo();
 		} else {
-			echo esc_html( get_bloginfo( 'name' ) ? get_bloginfo( 'name' ) : 'Nuvirahub' );
+			?><img src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/logo.png' ); ?>" alt="Nuvirahub" width="180"><?php
 		}
 		?>
 	</a>

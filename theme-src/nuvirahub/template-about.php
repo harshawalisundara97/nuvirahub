@@ -29,12 +29,27 @@ get_header();
 		<div class="nv-reveal">
 			<div class="nv-about-visual">
 				<div class="nv-founders">
-					<div class="nv-founder"><div class="nv-avatar">HW</div><div class="nv-founder-name">Harsha Walisundara</div><div class="nv-founder-role">Co-founder</div></div>
-					<div class="nv-founder"><div class="nv-avatar" style="background:linear-gradient(135deg,#0ea5e9,#06b6d4)">AN</div><div class="nv-founder-name">Akalanka Navarathne</div><div class="nv-founder-role">Co-founder</div></div>
-					<div class="nv-founder"><div class="nv-avatar" style="background:linear-gradient(135deg,#f59e0b,#ef4444)">HW</div><div class="nv-founder-name">Heshan Wijesundara</div><div class="nv-founder-role">Co-founder</div></div>
+					<div class="nv-founder">
+						<img class="nv-founder-photo" src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/founders/harsha.png' ); ?>" alt="Harsha Walisundara">
+						<div class="nv-founder-name">Harsha Walisundara</div>
+						<div class="nv-founder-role">Co-founder · Engineering Lead</div>
+						<p class="nv-founder-bio">Software Engineer at Pet Care Solution (Pvt) Ltd. Three years building production software across multiple domains — web, mobile, ERP, integrations. Brings the technical foundation behind Nuvirahub's product work.</p>
+					</div>
+					<div class="nv-founder">
+						<img class="nv-founder-photo" src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/founders/akalanka.png' ); ?>" alt="Akalanka Navarathne">
+						<div class="nv-founder-name">Akalanka Navarathne</div>
+						<div class="nv-founder-role">Co-founder · Logistics Lead</div>
+						<p class="nv-founder-bio">Sales Manager in the sea-trade sector with hands-on experience in container shipping, freight forwarding and customs clearance. Powers Nuvirahub's logistics operations and Nuvira Spice Co. export channel.</p>
+					</div>
+					<div class="nv-founder">
+						<img class="nv-founder-photo" src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/founders/heshan.png' ); ?>" alt="Heshan Wijesundara">
+						<div class="nv-founder-name">Heshan Wijesundara</div>
+						<div class="nv-founder-role">Co-founder · Commercial Lead</div>
+						<p class="nv-founder-bio">Sales Manager in the sea-trade sector with deep B2B sales and cross-border commerce experience. Drives Nuvirahub's growth consulting practice and enterprise client relationships.</p>
+					</div>
 				</div>
-				<h3 style="font-family:'Syne',sans-serif;font-size:20px;font-weight:700;margin:24px 0 4px">Three founders. One mission.</h3>
-				<p style="font-size:13px;color:var(--muted2);margin-bottom:28px">Engineers, designers &amp; business builders based in Dehiwala, Sri Lanka.</p>
+				<h3 style="font-family:'Syne',sans-serif;font-size:22px;font-weight:700;margin:32px 0 6px">Three founders. One mission.</h3>
+				<p style="font-size:13px;color:var(--muted2);margin-bottom:28px">Engineers, sales operators &amp; logistics specialists — based in Dehiwala, Sri Lanka. Combining technical depth, commercial sharpness and international trade experience under one roof.</p>
 				<div style="text-align:left">
 					<div class="nv-skill"><div class="nv-skill-label"><span>UI/UX Design</span><span>95%</span></div><div class="nv-skill-track"><div class="nv-skill-fill" style="width:95%"></div></div></div>
 					<div class="nv-skill"><div class="nv-skill-label"><span>Web Development</span><span>90%</span></div><div class="nv-skill-track"><div class="nv-skill-fill" style="width:90%"></div></div></div>

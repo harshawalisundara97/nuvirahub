@@ -186,8 +186,7 @@ $spices = array(
 	<div class="nv-spice-grid">
 		<?php foreach ( $spices as $s ) : ?>
 			<div class="nv-spice" id="<?php echo esc_attr( $s['slug'] ); ?>">
-				<div class="nv-spice-cover" style="background: <?php echo esc_attr( $s['color'] ); ?>">
-					<span class="nv-spice-emoji"><?php echo esc_html( $s['emoji'] ); ?></span>
+				<div class="nv-spice-cover" style="background-image: url('<?php echo esc_url( get_template_directory_uri() . '/assets/img/spices/' . $s['slug'] . '.png' ); ?>');">
 					<div class="nv-spice-origin">📍 <?php echo esc_html( $s['origin'] ); ?></div>
 				</div>
 				<div class="nv-spice-body">

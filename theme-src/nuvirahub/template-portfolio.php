@@ -13,6 +13,17 @@ $contact_url = $contact ? get_permalink( $contact->ID ) : home_url( '/contact' )
  * Each project: title, desc, category (slug), emoji, gradient, ratio, tags */
 $nv_projects = array(
 	array(
+		'title'    => 'SL Festival — Sri Lankan Cultural Events Platform',
+		'desc'     => 'A discovery + booking platform for Sri Lankan cultural events, festivals and pop-ups. Built by Nuvirahub end-to-end — design, WordPress backend, custom event listings, location search, and admin dashboard. Live at slfestival.lk.',
+		'category' => 'corporate',
+		'cat_label'=> 'Live Project',
+		'emoji'    => '',
+		'image'    => get_template_directory_uri() . '/assets/img/portfolio/slfestival.png',
+		'gradient' => 'linear-gradient(135deg, rgba(108,99,255,.3), rgba(56,189,248,.2))',
+		'ratio'    => '16/10',
+		'tags'     => array( 'WordPress', 'Event Listings', 'Custom Theme', 'Live' ),
+	),
+	array(
 		'title'    => 'Lumex Fashion Store',
 		'desc'     => 'A premium WooCommerce experience with glassmorphism UI, animated product cards, and a frictionless 2-click checkout. 40% conversion lift in the first quarter.',
 		'category' => 'ecommerce',
@@ -127,17 +138,23 @@ $nv_projects = array(
 	<!-- Masonry gallery -->
 	<div class="nv-masonry nv-reveal">
 		<?php foreach ( $nv_projects as $p ) : ?>
+			<?php $has_image = ! empty( $p['image'] ); ?>
 			<div class="nv-portfolio"
 			     data-cats="<?php echo esc_attr( $p['category'] ); ?>"
 			     data-title="<?php echo esc_attr( $p['title'] ); ?>"
 			     data-desc="<?php echo esc_attr( $p['desc'] ); ?>"
 			     data-category="<?php echo esc_attr( $p['cat_label'] ); ?>"
 			     data-emoji="<?php echo esc_attr( $p['emoji'] ); ?>"
+			     data-image="<?php echo esc_attr( $has_image ? $p['image'] : '' ); ?>"
 			     data-gradient="<?php echo esc_attr( $p['gradient'] ); ?>"
 			     data-tags="<?php echo esc_attr( implode( '|', $p['tags'] ) ); ?>">
-				<div class="nv-portfolio-thumb" style="background: <?php echo esc_attr( $p['gradient'] ); ?>; --ar: <?php echo esc_attr( $p['ratio'] ); ?>;">
-					<?php echo esc_html( $p['emoji'] ); ?>
-				</div>
+				<?php if ( $has_image ) : ?>
+					<div class="nv-portfolio-thumb nv-portfolio-thumb-image" style="background-image: url('<?php echo esc_url( $p['image'] ); ?>'); --ar: <?php echo esc_attr( $p['ratio'] ); ?>;"></div>
+				<?php else : ?>
+					<div class="nv-portfolio-thumb" style="background: <?php echo esc_attr( $p['gradient'] ); ?>; --ar: <?php echo esc_attr( $p['ratio'] ); ?>;">
+						<?php echo esc_html( $p['emoji'] ); ?>
+					</div>
+				<?php endif; ?>
 				<div class="nv-portfolio-hover">
 					<span>View case</span>
 					<span class="nv-arrow">→</span>
