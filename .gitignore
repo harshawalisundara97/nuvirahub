@@ -1,0 +1,12 @@
+.DS_Store
+*.log
+*.swp
+*.swo
+node_modules/
+.idea/
+.vscode/
+debug.log
+# Legacy mockup (kept locally as reference, not versioned)
+nuvirahub_full_website_ui.html
+# Original theme zip at project root (superseded by dist/nuvirahub.zip)
+/nuvirahub.zip
