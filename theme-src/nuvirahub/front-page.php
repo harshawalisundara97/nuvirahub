@@ -13,6 +13,10 @@ $nv_contact   = nuvirahub_get_page_by_title( 'Contact' );
 $nv_launch    = nuvirahub_get_page_by_title( 'Startup Launchpad' );
 $nv_logist    = nuvirahub_get_page_by_title( 'Logistics' );
 $nv_erp       = nuvirahub_get_page_by_title( 'ERP Solutions' );
+$nv_soft      = nuvirahub_get_page_by_title( 'Software & Apps' );
+$nv_cons      = nuvirahub_get_page_by_title( 'Growth Consulting' );
+$nv_creat     = nuvirahub_get_page_by_title( 'Creative & Design' );
+$nv_mark      = nuvirahub_get_page_by_title( 'Brand & Marketing' );
 
 $portfolio_url = $nv_portfolio ? get_permalink( $nv_portfolio->ID ) : home_url( '/portfolio' );
 $services_url  = $nv_services ? get_permalink( $nv_services->ID ) : home_url( '/services' );
@@ -20,6 +24,10 @@ $contact_url   = $nv_contact ? get_permalink( $nv_contact->ID ) : home_url( '/co
 $launch_url    = $nv_launch ? get_permalink( $nv_launch->ID ) : home_url( '/startup-launchpad' );
 $logist_url    = $nv_logist ? get_permalink( $nv_logist->ID ) : home_url( '/logistics' );
 $erp_url       = $nv_erp ? get_permalink( $nv_erp->ID ) : home_url( '/erp-solutions' );
+$soft_url      = $nv_soft ? get_permalink( $nv_soft->ID ) : home_url( '/software-apps' );
+$cons_url      = $nv_cons ? get_permalink( $nv_cons->ID ) : home_url( '/growth-consulting' );
+$creat_url     = $nv_creat ? get_permalink( $nv_creat->ID ) : home_url( '/creative-design' );
+$mark_url      = $nv_mark ? get_permalink( $nv_mark->ID ) : home_url( '/brand-marketing' );
 ?>
 
 <section class="nv-hero">
@@ -85,40 +93,54 @@ $erp_url       = $nv_erp ? get_permalink( $nv_erp->ID ) : home_url( '/erp-soluti
 	<h2 class="nv-title">Seven services. <span>One bill. One team.</span></h2>
 	<p class="nv-sub">From the moment you have an idea to the moment you're scaling globally — every capability you need under one roof.</p>
 	<div class="nv-pillars" style="margin-top:48px">
-		<a class="nv-pillar" href="<?php echo esc_url( $services_url ); ?>#software">
+		<a class="nv-pillar" href="<?php echo esc_url( $soft_url ); ?>">
 			<div class="nv-pillar-num">01</div>
 			<svg class="nv-pillar-svg" viewBox="0 0 48 48"><rect x="6" y="9" width="36" height="26" rx="2"/><line x1="6" y1="30" x2="42" y2="30"/><line x1="18" y1="40" x2="30" y2="40"/><line x1="24" y1="35" x2="24" y2="40"/></svg>
-			<h3>Software &amp; Apps</h3><p>Web, mobile, Windows applications — custom built.</p>
+			<h3>Software &amp; Apps</h3>
+			<p>Production-grade web platforms, native &amp; cross-platform mobile apps, and custom Windows desktop tools — built around your workflow, owned by you.</p>
+			<span class="nv-pillar-cta">Learn more →</span>
 		</a>
 		<a class="nv-pillar" href="<?php echo esc_url( $launch_url ); ?>">
 			<div class="nv-pillar-num">02</div>
 			<svg class="nv-pillar-svg" viewBox="0 0 48 48"><path d="M28 8c8 0 12 4 12 12 0 6-4 12-12 18-6-2-10-6-12-12-4 0-8-2-8-8 0-2 2-4 4-4 2 0 4 2 4 4l4-4c2-4 6-6 8-6z"/><circle cx="30" cy="18" r="2"/><path d="M14 34l-4 4M18 38l-4 4"/></svg>
-			<h3>Startup Launchpad</h3><p>We register your business and set it up — end to end.</p>
+			<h3>Startup Launchpad</h3>
+			<p>The full founder package — business registration, tax IDs, document prep, government liaison, banking, brand &amp; website. Live in 14 days.</p>
+			<span class="nv-pillar-cta">Learn more →</span>
 		</a>
-		<a class="nv-pillar" href="<?php echo esc_url( $services_url ); ?>#consulting">
+		<a class="nv-pillar" href="<?php echo esc_url( $cons_url ); ?>">
 			<div class="nv-pillar-num">03</div>
 			<svg class="nv-pillar-svg" viewBox="0 0 48 48"><polyline points="6,36 16,24 24,30 36,14 42,18"/><polyline points="36,14 42,14 42,20"/><line x1="6" y1="42" x2="42" y2="42"/></svg>
-			<h3>Growth Consulting</h3><p>Strategy, operations, finance — playbooks that ship.</p>
+			<h3>Growth Consulting</h3>
+			<p>Strategy, operations, financial modelling. We don't hand over a deck — we sit inside your team until the metric you care about moves.</p>
+			<span class="nv-pillar-cta">Learn more →</span>
 		</a>
 		<a class="nv-pillar" href="<?php echo esc_url( $logist_url ); ?>">
 			<div class="nv-pillar-num">04</div>
 			<svg class="nv-pillar-svg" viewBox="0 0 48 48"><path d="M6 30l4-10h28l4 10"/><path d="M4 34c2 4 8 4 10 0s8-4 10 0 8 4 10 0 8-4 10 0"/><line x1="24" y1="10" x2="24" y2="20"/><path d="M18 14l6-4 6 4"/></svg>
-			<h3>Logistics — Sea &amp; Air</h3><p>Freight forwarding, customs, door-to-door delivery.</p>
+			<h3>Logistics — Sea &amp; Air</h3>
+			<p>End-to-end freight forwarding. FCL/LCL ocean, express air cargo, customs clearance, marine insurance, last-mile delivery. One coordinator handles it all.</p>
+			<span class="nv-pillar-cta">Learn more →</span>
 		</a>
-		<a class="nv-pillar" href="<?php echo esc_url( $services_url ); ?>#creative">
+		<a class="nv-pillar" href="<?php echo esc_url( $creat_url ); ?>">
 			<div class="nv-pillar-num">05</div>
 			<svg class="nv-pillar-svg" viewBox="0 0 48 48"><circle cx="24" cy="24" r="18"/><circle cx="16" cy="18" r="2"/><circle cx="30" cy="14" r="2"/><circle cx="34" cy="26" r="2"/><path d="M24 42c4 0 6-2 6-5s-3-4-3-7c0-2 2-4 5-4"/></svg>
-			<h3>Creative &amp; Design</h3><p>Graphic, 3D rendering, AutoCAD house plans.</p>
+			<h3>Creative &amp; Design</h3>
+			<p>Graphic design for brand &amp; packaging, photoreal 3D product / interior renders, and full AutoCAD architectural drafting + house plan sets.</p>
+			<span class="nv-pillar-cta">Learn more →</span>
 		</a>
-		<a class="nv-pillar" href="<?php echo esc_url( $services_url ); ?>#marketing">
+		<a class="nv-pillar" href="<?php echo esc_url( $mark_url ); ?>">
 			<div class="nv-pillar-num">06</div>
 			<svg class="nv-pillar-svg" viewBox="0 0 48 48"><path d="M8 18v12l24 8V10L8 18z"/><path d="M32 14c4 0 7 4 7 10s-3 10-7 10"/><path d="M14 30v6c0 2 2 4 4 4s4-2 4-4v-4"/></svg>
-			<h3>Brand &amp; Marketing</h3><p>Identity, social media, SEO, content engines.</p>
+			<h3>Brand &amp; Marketing</h3>
+			<p>Brand identity systems, social media management with paid campaigns, technical SEO &amp; content strategy — the engine that brings customers in.</p>
+			<span class="nv-pillar-cta">Learn more →</span>
 		</a>
 		<a class="nv-pillar" href="<?php echo esc_url( $erp_url ); ?>">
 			<div class="nv-pillar-num">07</div>
 			<svg class="nv-pillar-svg" viewBox="0 0 48 48"><rect x="8" y="14" width="14" height="28"/><rect x="26" y="6" width="14" height="36"/><line x1="11" y1="20" x2="19" y2="20"/><line x1="11" y1="26" x2="19" y2="26"/><line x1="11" y1="32" x2="19" y2="32"/><line x1="29" y1="14" x2="37" y2="14"/><line x1="29" y1="22" x2="37" y2="22"/><line x1="29" y1="30" x2="37" y2="30"/></svg>
-			<h3>ERP for Enterprise</h3><p>Finance, HR, inventory, CRM, production — one system.</p>
+			<h3>ERP for Enterprise</h3>
+			<p>One connected system — finance, HR &amp; payroll, inventory, CRM, production, BI. Implementation in 8–12 weeks with 3 months free support.</p>
+			<span class="nv-pillar-cta">Learn more →</span>
 		</a>
 	</div>
 </div>
