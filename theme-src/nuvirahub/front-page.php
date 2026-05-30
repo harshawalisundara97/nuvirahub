@@ -46,10 +46,10 @@ $mark_url      = $nv_mark ? get_permalink( $nv_mark->ID ) : home_url( '/brand-ma
 			<a class="nv-btn-ghost" href="<?php echo esc_url( $services_url ); ?>">Explore All Services</a>
 		</div>
 		<div class="nv-hero-stats">
+			<div class="nv-stat"><div class="nv-stat-num">3</div><div class="nv-stat-label">Co-founders</div></div>
 			<div class="nv-stat"><div class="nv-stat-num">7</div><div class="nv-stat-label">Service Pillars</div></div>
-			<div class="nv-stat"><div class="nv-stat-num">50+</div><div class="nv-stat-label">Projects Delivered</div></div>
-			<div class="nv-stat"><div class="nv-stat-num">98%</div><div class="nv-stat-label">Client Satisfaction</div></div>
-			<div class="nv-stat"><div class="nv-stat-num">24h</div><div class="nv-stat-label">Response Time</div></div>
+			<div class="nv-stat"><div class="nv-stat-num">2026</div><div class="nv-stat-label">Founded · Dehiwala, LK</div></div>
+			<div class="nv-stat"><div class="nv-stat-num">4h</div><div class="nv-stat-label">Reply Time, Mon–Sat</div></div>
 		</div>
 	</div>
 </section>
@@ -161,15 +161,32 @@ $mark_url      = $nv_mark ? get_permalink( $nv_mark->ID ) : home_url( '/brand-ma
 <div class="nv-divider"></div>
 
 <div class="nv-section nv-reveal">
-	<div class="nv-tag">Client feedback</div>
-	<h2 class="nv-title">What our clients say</h2>
+	<div class="nv-tag">Honest words from real people</div>
+	<h2 class="nv-title">We're new. Here's what's <span>actually been said</span> about us.</h2>
+	<p class="nv-sub">Nuvirahub launched in 2026. We'd rather show one real reference than five polished fake quotes. More land here as we ship more work.</p>
+
 	<div class="nv-testimonial-carousel">
 		<div class="nv-testimonial-track">
-			<div class="nv-testimonial"><p class="nv-testimonial-text">Harsha's engineering work has been outstanding. His three years with us have spanned multiple production systems — fast delivery, clean code, and a deep willingness to learn whatever the domain needs.</p><div class="nv-testimonial-author"><div class="nv-testimonial-avatar">PC</div><div><div style="font-size:14px;font-weight:500">Pet Care Solution (Pvt) Ltd</div><div style="font-size:11px;color:var(--muted)">Harsha's current employer</div></div></div></div>
-			<div class="nv-testimonial"><p class="nv-testimonial-text">Our freight from Shenzhen used to take 3 forwarders and 14 emails. With Nuvirahub it's one WhatsApp message. Containers land on time, every time.</p><div class="nv-testimonial-author"><div class="nv-testimonial-avatar" style="background:linear-gradient(135deg,#0ea5e9,#06b6d4)">MK</div><div><div style="font-size:14px;font-weight:500">Manjula K.</div><div style="font-size:11px;color:var(--muted)">COO, Crestline Imports</div></div></div></div>
-			<div class="nv-testimonial"><p class="nv-testimonial-text">The ERP rollout was the smoothest IT project we've done. Finance, inventory, payroll — all in one place. Real-time margins for the first time ever.</p><div class="nv-testimonial-author"><div class="nv-testimonial-avatar" style="background:linear-gradient(135deg,#f59e0b,#ef4444)">PJ</div><div><div style="font-size:14px;font-weight:500">Priya J.</div><div style="font-size:11px;color:var(--muted)">Director, NovaBuild</div></div></div></div>
-			<div class="nv-testimonial"><p class="nv-testimonial-text">From the logo to the AutoCAD house plans — every deliverable came back better than we asked for. They treat your project like it's their own.</p><div class="nv-testimonial-author"><div class="nv-testimonial-avatar" style="background:linear-gradient(135deg,#10b981,#14b8a6)">RN</div><div><div style="font-size:14px;font-weight:500">Ruvini N.</div><div style="font-size:11px;color:var(--muted)">Architect, Studio R+R</div></div></div></div>
-			<div class="nv-testimonial"><p class="nv-testimonial-text">Their growth consulting team rebuilt our sales process top-to-bottom. Within 90 days we'd doubled our pipeline and tripled our close rate.</p><div class="nv-testimonial-author"><div class="nv-testimonial-avatar" style="background:linear-gradient(135deg,#ec4899,#f43f5e)">DM</div><div><div style="font-size:14px;font-weight:500">Dinuka M.</div><div style="font-size:11px;color:var(--muted)">CEO, Velo Tech</div></div></div></div>
+			<div class="nv-testimonial">
+				<p class="nv-testimonial-text">Harsha's engineering work has been consistent and dependable. Three years with us, across multiple production systems — fast delivery, clean code, and the willingness to learn whatever the domain needs.</p>
+				<div class="nv-testimonial-author">
+					<div class="nv-testimonial-avatar">PC</div>
+					<div>
+						<div style="font-size:14px;font-weight:500">Pet Care Solution (Pvt) Ltd</div>
+						<div style="font-size:11px;color:var(--muted)">On Harsha — Nuvirahub co-founder</div>
+					</div>
+				</div>
+			</div>
+			<div class="nv-testimonial">
+				<p class="nv-testimonial-text">Your project goes here. We're booking our first 5 client engagements through 2026 — if you're one of the first to work with us, your story (real numbers, real outcomes) sits in this space.</p>
+				<div class="nv-testimonial-author">
+					<div class="nv-testimonial-avatar" style="background:linear-gradient(135deg,var(--accent),var(--accent3))"><?php echo nv_icon( 'sparkles', 16 ); ?></div>
+					<div>
+						<div style="font-size:14px;font-weight:500">Be one of our first clients</div>
+						<div style="font-size:11px;color:var(--muted)">Open slots for 2026</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
