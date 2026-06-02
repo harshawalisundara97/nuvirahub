@@ -74,7 +74,7 @@
           io.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.12 });
+    }, { threshold: 0, rootMargin: '0px 0px -40px 0px' });
     reveals.forEach((el) => io.observe(el));
   } else {
     reveals.forEach((el) => el.classList.add('in'));
@@ -95,7 +95,7 @@
             io.unobserve(entry.target);
           }
         });
-      }, { threshold: 0.2 });
+      }, { threshold: 0, rootMargin: '0px 0px -40px 0px' });
       io.observe(proc);
     } else {
       steps.forEach((s) => s.classList.add('in'));
