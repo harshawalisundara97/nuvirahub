@@ -55,7 +55,6 @@ if ( ! function_exists( 'nv_link' ) ) {
 			<h4>Company</h4>
 			<a class="nv-footer-link" href="<?php echo esc_url( nv_link( $nv_about, 'about' ) ); ?>">About Us</a>
 			<a class="nv-footer-link" href="<?php echo esc_url( nv_link( $nv_portfolio, 'portfolio' ) ); ?>">Portfolio</a>
-			<a class="nv-footer-link" href="<?php echo esc_url( nv_link( $nv_blog, 'blog' ) ); ?>">Blog</a>
 			<a class="nv-footer-link" href="<?php echo esc_url( nv_link( $nv_contact, 'contact' ) ); ?>">Contact</a>
 		</div>
 	</div>

@@ -205,7 +205,6 @@ function nuvirahub_fallback_menu() {
 		'Spices'             => 'spices',
 		'Portfolio'          => 'portfolio',
 		'About'              => 'about',
-		'Blog'               => 'blog',
 		'Contact'            => 'contact',
 	);
 	foreach ( $pages as $title => $slug ) {

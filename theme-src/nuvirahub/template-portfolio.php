@@ -18,7 +18,7 @@ $nv_projects = array(
 		'category' => 'corporate',
 		'cat_label'=> 'Live Project',
 		'emoji'    => '',
-		'image'    => get_template_directory_uri() . '/assets/img/portfolio/slfestival.png',
+		'image'    => get_template_directory_uri() . '/assets/img/portfolio/slfestival.png?v=' . filemtime( get_template_directory() . '/assets/img/portfolio/slfestival.png' ),
 		'gradient' => 'linear-gradient(135deg, rgba(108,99,255,.3), rgba(56,189,248,.2))',
 		'ratio'    => '16/10',
 		'tags'     => array( 'WordPress', 'Event Listings', 'Custom Theme', 'Live' ),

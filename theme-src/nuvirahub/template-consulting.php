@@ -33,7 +33,7 @@ $contact_url = $contact ? get_permalink( $contact->ID ) : home_url( '/contact' )
 <div class="nv-section nv-reveal">
 	<div class="nv-tag">How we engage</div>
 	<h2 class="nv-title">Two ways to work with us.</h2>
-	<div class="nv-grid-3" style="grid-template-columns:1fr 1fr;margin-top:32px;gap:24px">
+	<div class="nv-grid-3" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr));margin-top:32px;gap:24px">
 		<div class="nv-glass" style="padding:32px">
 			<h4 style="font-family:var(--display);font-size:22px;margin-bottom:6px">Diagnostic Sprint</h4>
 			<p style="color:var(--accent2);font-size:13px;margin-bottom:18px">2 weeks · fixed price</p>

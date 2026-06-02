@@ -26,7 +26,7 @@ $contact_url = $contact ? get_permalink( $contact->ID ) : home_url( '/contact' )
 	<div class="nv-tag">Two modes. One coordinator.</div>
 	<h2 class="nv-title">Move it by <span>sea</span> or by <span>air</span> — your call.</h2>
 
-	<div class="nv-grid-3" style="grid-template-columns:1fr 1fr;margin-top:40px;gap:24px">
+	<div class="nv-grid-3" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr));margin-top:40px;gap:24px">
 		<div class="nv-freight-card">
 			<div class="nv-freight-icon"><?php echo nv_icon( "ship", 44 ); ?></div>
 			<h3>Sea Freight</h3>

@@ -32,11 +32,23 @@
 
   /* ---------- 2. Mobile menu toggle ---------- */
   const toggle = $('#nv-toggle');
-  const menu   = $('#primary-menu');
-  if (toggle && menu) {
-    toggle.addEventListener('click', () => menu.classList.toggle('open'));
-    menu.addEventListener('click', (e) => {
-      if (e.target.tagName === 'A') menu.classList.remove('open');
+  const panel  = $('#nv-menu-panel');
+  if (toggle && panel) {
+    const setOpen = (open) => {
+      panel.classList.toggle('open', open);
+      document.body.classList.toggle('nv-menu-open', open);
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    };
+    toggle.addEventListener('click', () => setOpen(!panel.classList.contains('open')));
+    panel.addEventListener('click', (e) => {
+      if (e.target.tagName === 'A') setOpen(false);
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') setOpen(false);
+    });
+    // Reset state if resized back to desktop
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 880) setOpen(false);
     });
   }
 
