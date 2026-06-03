@@ -221,6 +221,24 @@ function nuvirahub_fallback_menu() {
 }
 
 /**
+ * Hide the "Blog" entry from every nav menu, regardless of what the
+ * database-stored menu contains. Lets us hide Blog by deploying theme
+ * files only — no need to edit the live menu in wp-admin.
+ */
+function nuvirahub_hide_blog_from_menu( $items ) {
+	$blog_id = (int) get_option( 'page_for_posts' );
+	foreach ( $items as $key => $item ) {
+		$is_blog = ( $blog_id && 'page' === $item->object && (int) $item->object_id === $blog_id )
+			|| 0 === strcasecmp( trim( wp_strip_all_tags( $item->title ) ), 'Blog' );
+		if ( $is_blog ) {
+			unset( $items[ $key ] );
+		}
+	}
+	return $items;
+}
+add_filter( 'wp_nav_menu_objects', 'nuvirahub_hide_blog_from_menu' );
+
+/**
  * Simple, safe contact form handler.
  * Posts back to admin-post.php; sends an email to the site admin.
  */
