@@ -12,15 +12,17 @@ $contact_url = $contact ? get_permalink( $contact->ID ) : home_url( '/contact' )
 $launch  = nuvirahub_get_page_by_title( 'Startup Launchpad' );
 $logist  = nuvirahub_get_page_by_title( 'Logistics' );
 $erp     = nuvirahub_get_page_by_title( 'ERP Solutions' );
+$constr  = nuvirahub_get_page_by_title( 'Construction' );
 $launch_url = $launch ? get_permalink( $launch->ID ) : '#startup';
 $logist_url = $logist ? get_permalink( $logist->ID ) : '#logistics';
 $erp_url    = $erp ? get_permalink( $erp->ID ) : '#erp';
+$constr_url = $constr ? get_permalink( $constr->ID ) : home_url( '/construction' );
 ?>
 
 <div class="nv-page-hero nv-reveal">
 	<div class="nv-page-hero-bg"></div>
 	<div class="nv-tag">Services</div>
-	<h1>One team. <span>Seven disciplines.</span></h1>
+	<h1>One team. <span>Eight disciplines.</span></h1>
 	<p class="nv-sub" style="margin:0 auto;text-align:center">From a logo to a launched company, a freight shipment to a full ERP rollout — Nuvirahub delivers under one roof. Pick a pillar to jump into the detail.</p>
 </div>
 
@@ -34,6 +36,7 @@ $erp_url    = $erp ? get_permalink( $erp->ID ) : '#erp';
 		<a class="nv-pillar" href="#creative"><div class="nv-pillar-num">05</div><div class="nv-pillar-icon">🎨</div><h3>Creative &amp; Design</h3><p>Graphic design, 3D rendering, AutoCAD architectural &amp; house plans.</p></a>
 		<a class="nv-pillar" href="#marketing"><div class="nv-pillar-num">06</div><div class="nv-pillar-icon">📣</div><h3>Brand &amp; Digital Marketing</h3><p>Identity, social media, SEO — the engine that brings customers in.</p></a>
 		<a class="nv-pillar" href="<?php echo esc_url( $erp_url ); ?>"><div class="nv-pillar-num">07</div><div class="nv-pillar-icon">🏢</div><h3>ERP for Enterprise</h3><p>Finance, HR, inventory, CRM, production — one connected system.</p></a>
+		<a class="nv-pillar" href="<?php echo esc_url( $constr_url ); ?>"><div class="nv-pillar-num">08</div><div class="nv-pillar-icon">🏗️</div><h3>Nuvira Construction</h3><p>House design, drawings, BIM, construction and property sales.</p></a>
 	</div>
 </div>
 

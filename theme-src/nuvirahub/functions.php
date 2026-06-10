@@ -74,8 +74,12 @@ function nuvirahub_assets() {
 		array(),
 		null
 	);
-	wp_enqueue_style( 'nuvirahub-style', get_stylesheet_uri(), array( 'nuvirahub-fonts' ), '3.1.0' );
-	wp_enqueue_script( 'nuvirahub-main', get_template_directory_uri() . '/assets/main.js', array(), '3.1.0', true );
+	$css_path = get_stylesheet_directory() . '/style.css';
+	$js_path  = get_template_directory() . '/assets/main.js';
+	$css_ver  = file_exists( $css_path ) ? filemtime( $css_path ) : '3.1.0';
+	$js_ver   = file_exists( $js_path ) ? filemtime( $js_path ) : '3.1.0';
+	wp_enqueue_style( 'nuvirahub-style', get_stylesheet_uri(), array( 'nuvirahub-fonts' ), $css_ver );
+	wp_enqueue_script( 'nuvirahub-main', get_template_directory_uri() . '/assets/main.js', array(), $js_ver, true );
 }
 add_action( 'wp_enqueue_scripts', 'nuvirahub_assets' );
 
@@ -98,6 +102,7 @@ function nuvirahub_fallback_menu() {
 		'Startup Launchpad'  => 'startup-launchpad',
 		'Logistics'          => 'logistics',
 		'ERP Solutions'      => 'erp-solutions',
+		'Construction'       => 'construction',
 		'Portfolio'          => 'portfolio',
 		'About'              => 'about',
 		'Blog'               => 'blog',

@@ -26,26 +26,30 @@
 		?>
 	</a>
 
-	<button class="nv-toggle" id="nv-toggle" aria-label="Menu">&#9776;</button>
-
-	<?php
-	if ( has_nav_menu( 'primary' ) ) {
-		wp_nav_menu(
-			array(
-				'theme_location' => 'primary',
-				'container'      => false,
-				'menu_id'        => 'primary-menu',
-				'menu_class'     => 'nv-links',
-			)
-		);
-	} else {
-		nuvirahub_fallback_menu();
-	}
-	?>
+	<div class="nv-menu-panel" id="nv-menu-panel">
+		<?php
+		if ( has_nav_menu( 'primary' ) ) {
+			wp_nav_menu(
+				array(
+					'theme_location' => 'primary',
+					'container'      => false,
+					'menu_id'        => 'primary-menu',
+					'menu_class'     => 'nv-links',
+				)
+			);
+		} else {
+			nuvirahub_fallback_menu();
+		}
+		?>
+	</div>
 
 	<?php
 	$contact = nuvirahub_get_page_by_title( 'Contact' );
 	$contact_url = $contact ? get_permalink( $contact->ID ) : home_url( '/contact' );
 	?>
 	<a href="<?php echo esc_url( $contact_url ); ?>" class="nv-cta">Get Started</a>
+
+	<button class="nv-toggle" id="nv-toggle" aria-label="Menu" aria-expanded="false" aria-controls="nv-menu-panel">
+		<span></span><span></span><span></span>
+	</button>
 </nav>
