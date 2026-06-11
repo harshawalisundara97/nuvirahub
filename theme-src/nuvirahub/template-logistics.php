@@ -26,9 +26,9 @@ $contact_url = $contact ? get_permalink( $contact->ID ) : home_url( '/contact' )
 	<div class="nv-tag">Two modes. One coordinator.</div>
 	<h2 class="nv-title">Move it by <span>sea</span> or by <span>air</span> — your call.</h2>
 
-	<div class="nv-grid-3" style="grid-template-columns:1fr 1fr;margin-top:40px;gap:24px">
+	<div class="nv-grid-3" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr));margin-top:40px;gap:24px">
 		<div class="nv-freight-card">
-			<div class="nv-freight-icon">🚢</div>
+			<div class="nv-freight-icon"><?php echo nv_icon( "ship", 44 ); ?></div>
 			<h3>Sea Freight</h3>
 			<p>Cost-effective for larger shipments. We handle FCL, LCL, refrigerated and project cargo.</p>
 			<ul class="nv-checklist">
@@ -40,7 +40,7 @@ $contact_url = $contact ? get_permalink( $contact->ID ) : home_url( '/contact' )
 			</ul>
 		</div>
 		<div class="nv-freight-card">
-			<div class="nv-freight-icon">✈️</div>
+			<div class="nv-freight-icon"><?php echo nv_icon( "plane", 44 ); ?></div>
 			<h3>Air Freight</h3>
 			<p>Fast, reliable, time-critical. Door-to-door express or standard general cargo.</p>
 			<ul class="nv-checklist">
@@ -73,10 +73,10 @@ $contact_url = $contact ? get_permalink( $contact->ID ) : home_url( '/contact' )
 	<h2 class="nv-title">Where we move things.</h2>
 	<p class="nv-sub">Partner network across major trade lanes. If we don't have a desk there, we have a verified agent who does.</p>
 	<div class="nv-coverage-list">
-		<div class="nv-coverage-region"><h4>🌏 Asia–Pacific</h4><p>China, India, Singapore, Malaysia, Thailand, Vietnam, Indonesia, Australia, Japan, South Korea</p></div>
-		<div class="nv-coverage-region"><h4>🌍 Middle East &amp; Africa</h4><p>UAE, Saudi Arabia, Qatar, Oman, Kenya, South Africa, Egypt</p></div>
-		<div class="nv-coverage-region"><h4>🌍 Europe</h4><p>UK, Germany, Netherlands, France, Italy, Spain, Belgium, Poland</p></div>
-		<div class="nv-coverage-region"><h4>🌎 Americas</h4><p>USA (East &amp; West), Canada, Mexico, Brazil</p></div>
+		<div class="nv-coverage-region"><h4><?php echo nv_icon( "globe", 16 ); ?>Asia–Pacific</h4><p>China, India, Singapore, Malaysia, Thailand, Vietnam, Indonesia, Australia, Japan, South Korea</p></div>
+		<div class="nv-coverage-region"><h4><?php echo nv_icon( "globe", 16 ); ?>Middle East &amp; Africa</h4><p>UAE, Saudi Arabia, Qatar, Oman, Kenya, South Africa, Egypt</p></div>
+		<div class="nv-coverage-region"><h4><?php echo nv_icon( "globe", 16 ); ?>Europe</h4><p>UK, Germany, Netherlands, France, Italy, Spain, Belgium, Poland</p></div>
+		<div class="nv-coverage-region"><h4><?php echo nv_icon( "globe", 16 ); ?>Americas</h4><p>USA (East &amp; West), Canada, Mexico, Brazil</p></div>
 	</div>
 </div>
 
