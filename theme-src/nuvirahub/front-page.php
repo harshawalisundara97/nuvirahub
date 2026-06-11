@@ -13,6 +13,7 @@ $nv_contact   = nuvirahub_get_page_by_title( 'Contact' );
 $nv_launch    = nuvirahub_get_page_by_title( 'Startup Launchpad' );
 $nv_logist    = nuvirahub_get_page_by_title( 'Logistics' );
 $nv_erp       = nuvirahub_get_page_by_title( 'ERP Solutions' );
+$nv_constr    = nuvirahub_get_page_by_title( 'Construction' );
 
 $portfolio_url = $nv_portfolio ? get_permalink( $nv_portfolio->ID ) : home_url( '/portfolio' );
 $services_url  = $nv_services ? get_permalink( $nv_services->ID ) : home_url( '/services' );
@@ -20,6 +21,7 @@ $contact_url   = $nv_contact ? get_permalink( $nv_contact->ID ) : home_url( '/co
 $launch_url    = $nv_launch ? get_permalink( $nv_launch->ID ) : home_url( '/startup-launchpad' );
 $logist_url    = $nv_logist ? get_permalink( $nv_logist->ID ) : home_url( '/logistics' );
 $erp_url       = $nv_erp ? get_permalink( $nv_erp->ID ) : home_url( '/erp-solutions' );
+$constr_url    = $nv_constr ? get_permalink( $nv_constr->ID ) : home_url( '/construction' );
 ?>
 
 <section class="nv-hero">
@@ -38,7 +40,7 @@ $erp_url       = $nv_erp ? get_permalink( $nv_erp->ID ) : home_url( '/erp-soluti
 			<a class="nv-btn-ghost" href="<?php echo esc_url( $services_url ); ?>">Explore All Services</a>
 		</div>
 		<div class="nv-hero-stats">
-			<div class="nv-stat"><div class="nv-stat-num">7</div><div class="nv-stat-label">Service Pillars</div></div>
+			<div class="nv-stat"><div class="nv-stat-num">8</div><div class="nv-stat-label">Service Pillars</div></div>
 			<div class="nv-stat"><div class="nv-stat-num">50+</div><div class="nv-stat-label">Projects Delivered</div></div>
 			<div class="nv-stat"><div class="nv-stat-num">98%</div><div class="nv-stat-label">Client Satisfaction</div></div>
 			<div class="nv-stat"><div class="nv-stat-num">24h</div><div class="nv-stat-label">Response Time</div></div>
@@ -82,7 +84,7 @@ $erp_url       = $nv_erp ? get_permalink( $nv_erp->ID ) : home_url( '/erp-soluti
 <!-- 7-PILLAR GRID -->
 <div class="nv-section nv-reveal">
 	<div class="nv-tag">What we do</div>
-	<h2 class="nv-title">Seven services. <span>One bill. One team.</span></h2>
+	<h2 class="nv-title">Eight services. <span>One bill. One team.</span></h2>
 	<p class="nv-sub">From the moment you have an idea to the moment you're scaling globally — every capability you need under one roof.</p>
 	<div class="nv-pillars" style="margin-top:48px">
 		<a class="nv-pillar" href="<?php echo esc_url( $services_url ); ?>#software"><div class="nv-pillar-num">01</div><div class="nv-pillar-icon">💻</div><h3>Software &amp; Apps</h3><p>Web, mobile, Windows applications — custom built.</p></a>
@@ -92,6 +94,7 @@ $erp_url       = $nv_erp ? get_permalink( $nv_erp->ID ) : home_url( '/erp-soluti
 		<a class="nv-pillar" href="<?php echo esc_url( $services_url ); ?>#creative"><div class="nv-pillar-num">05</div><div class="nv-pillar-icon">🎨</div><h3>Creative &amp; Design</h3><p>Graphic, 3D rendering, AutoCAD house plans.</p></a>
 		<a class="nv-pillar" href="<?php echo esc_url( $services_url ); ?>#marketing"><div class="nv-pillar-num">06</div><div class="nv-pillar-icon">📣</div><h3>Brand &amp; Marketing</h3><p>Identity, social media, SEO, content engines.</p></a>
 		<a class="nv-pillar" href="<?php echo esc_url( $erp_url ); ?>"><div class="nv-pillar-num">07</div><div class="nv-pillar-icon">🏢</div><h3>ERP for Enterprise</h3><p>Finance, HR, inventory, CRM, production — one system.</p></a>
+		<a class="nv-pillar" href="<?php echo esc_url( $constr_url ); ?>"><div class="nv-pillar-num">08</div><div class="nv-pillar-icon">🏗️</div><h3>Construction &amp; Architecture</h3><p>House design, drawings, BIM — and we build it too.</p></a>
 	</div>
 </div>
 
