@@ -1945,22 +1945,68 @@ body.nv-menu-open { overflow: hidden; }
 }
 
 /* ============================================================
-   28 — TESTIMONIAL CAROUSEL (A9)
+   28 — SWIPE CAROUSELS (testimonials, founders)
    ============================================================ */
-.nv-testimonial-carousel {
+.nv-swipe-carousel {
   position: relative;
   overflow: hidden;
   margin-top: 40px;
 }
-.nv-testimonial-track {
+.nv-swipe-track {
   display: flex;
-  transition: transform .7s var(--ease);
+  transition: transform .65s var(--ease);
+  touch-action: pan-y;
+  cursor: grab;
+}
+.nv-swipe-track.dragging {
+  transition: none;
+  cursor: grabbing;
+  user-select: none;
+}
+/* Each slide is exactly one viewport of the carousel — the inner card
+   carries the max-width, so translateX(-100% * i) always lines up. */
+.nv-swipe-slide {
+  flex: 0 0 100%;
+  min-width: 0;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  padding: 8px 64px;
+  opacity: .25;
+  transform: scale(.92);
+  transition: opacity .6s var(--ease), transform .6s var(--ease);
+}
+.nv-swipe-slide.active { opacity: 1; transform: scale(1); }
+.nv-carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--glass);
+  border: 1px solid var(--border);
+  color: var(--muted2);
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: color .25s, border-color .25s, transform .25s;
+  z-index: 5;
+}
+.nv-carousel-arrow:hover {
+  color: var(--text);
+  border-color: var(--accent2);
+  transform: translateY(-50%) scale(1.1);
+}
+.nv-carousel-arrow.prev { left: 6px; }
+.nv-carousel-arrow.next { right: 6px; }
+@media (max-width: 700px) {
+  .nv-carousel-arrow { display: none; }
+  .nv-swipe-slide { padding: 8px 6px; }
 }
 .nv-testimonial-carousel .nv-testimonial {
-  flex: 0 0 100%;
   width: 100%;
   max-width: 720px;
-  margin: 0 auto;
   padding: 40px 48px;
   border-radius: 20px;
 }
@@ -1985,6 +2031,42 @@ body.nv-menu-open { overflow: hidden; }
 .nv-testimonial-carousel .nv-testimonial-text::after  { content: '”'; right: 0; bottom: -28px; }
 .nv-testimonial-carousel .nv-testimonial-author {
   justify-content: center;
+}
+
+/* Founders swipe cards (About) */
+.nv-founder-card {
+  width: 100%;
+  max-width: 620px;
+  text-align: center;
+  padding: 48px 44px 40px;
+  background: var(--glass);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.nv-founder-card .nv-founder-photo-xl {
+  width: 168px; height: 168px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto 22px;
+  padding: 4px;
+  background: linear-gradient(135deg, var(--accent), var(--accent3));
+  box-shadow: 0 12px 40px rgba(108,99,255,.25);
+}
+.nv-founder-card .nv-founder-name { font-size: 24px; }
+.nv-founder-card .nv-founder-role { font-size: 12px; margin: 8px 0 14px; }
+.nv-founder-card .nv-founder-bio {
+  font-size: 14px;
+  line-height: 1.75;
+  max-width: 480px;
+  margin: 0 auto;
+}
+@media (max-width: 700px) {
+  .nv-founder-card { padding: 36px 22px 30px; }
+  .nv-founder-card .nv-founder-photo-xl { width: 128px; height: 128px; }
+  .nv-founder-card .nv-founder-name { font-size: 20px; }
 }
 .nv-carousel-dots {
   display: flex;

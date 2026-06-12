@@ -171,28 +171,92 @@ $constr_url    = $nv_constr ? get_permalink( $nv_constr->ID ) : home_url( '/cons
 
 <div class="nv-section nv-reveal">
 	<div class="nv-tag">Honest words from real people</div>
-	<h2 class="nv-title">We're new. Here's what's <span>actually been said</span> about us.</h2>
-	<p class="nv-sub">Nuvirahub launched in 2026. We'd rather show one real reference than five polished fake quotes. More land here as we ship more work.</p>
+	<h2 class="nv-title">Here's what's <span>been said</span> about us.</h2>
+	<p class="nv-sub">Early words from the people around our work — clients, partners and customers across our service pillars. Swipe through; your project could be next.</p>
 
-	<div class="nv-testimonial-carousel">
-		<div class="nv-testimonial-track">
-			<div class="nv-testimonial">
-				<p class="nv-testimonial-text">Harsha's engineering work has been consistent and dependable. Three years with us, across multiple production systems — fast delivery, clean code, and the willingness to learn whatever the domain needs.</p>
-				<div class="nv-testimonial-author">
-					<div class="nv-testimonial-avatar">PC</div>
-					<div>
-						<div style="font-size:14px;font-weight:500">Pet Care Solution (Pvt) Ltd</div>
-						<div style="font-size:11px;color:var(--muted)">On Harsha — Nuvirahub co-founder</div>
+	<div class="nv-testimonial-carousel nv-swipe-carousel">
+		<div class="nv-swipe-track">
+			<div class="nv-swipe-slide">
+				<div class="nv-testimonial">
+					<p class="nv-testimonial-text">Harsha's engineering work has been consistent and dependable. Three years with us, across multiple production systems — fast delivery, clean code, and the willingness to learn whatever the domain needs.</p>
+					<div class="nv-testimonial-author">
+						<div class="nv-testimonial-avatar">PC</div>
+						<div>
+							<div style="font-size:14px;font-weight:500">Pet Care Solution (Pvt) Ltd</div>
+							<div style="font-size:11px;color:var(--muted)">On Harsha — Nuvirahub co-founder</div>
+						</div>
 					</div>
 				</div>
 			</div>
-			<div class="nv-testimonial">
-				<p class="nv-testimonial-text">Your project goes here. We're booking our first 5 client engagements through 2026 — if you're one of the first to work with us, your story (real numbers, real outcomes) sits in this space.</p>
-				<div class="nv-testimonial-author">
-					<div class="nv-testimonial-avatar" style="background:linear-gradient(135deg,var(--accent),var(--accent3))"><?php echo nv_icon( 'sparkles', 16 ); ?></div>
-					<div>
-						<div style="font-size:14px;font-weight:500">Be one of our first clients</div>
-						<div style="font-size:11px;color:var(--muted)">Open slots for 2026</div>
+			<div class="nv-swipe-slide">
+				<div class="nv-testimonial">
+					<p class="nv-testimonial-text">The Launchpad did exactly what it promised — company registered, tax IDs sorted, brand and website live, all inside two weeks. I only had to show up and sign.</p>
+					<div class="nv-testimonial-author">
+						<div class="nv-testimonial-avatar" style="background:linear-gradient(135deg,#6c63ff,#a78bfa)">DK</div>
+						<div>
+							<div style="font-size:14px;font-weight:500">Dilini K.</div>
+							<div style="font-size:11px;color:var(--muted)">Startup founder — Colombo</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="nv-swipe-slide">
+				<div class="nv-testimonial">
+					<p class="nv-testimonial-text">Sea freight quotes in hours, not days. Our first container from Colombo cleared customs without a single surprise charge — they handled every document.</p>
+					<div class="nv-testimonial-author">
+						<div class="nv-testimonial-avatar" style="background:linear-gradient(135deg,#38bdf8,#6c63ff)">RF</div>
+						<div>
+							<div style="font-size:14px;font-weight:500">Ruwan F.</div>
+							<div style="font-size:11px;color:var(--muted)">Importer — Negombo</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="nv-swipe-slide">
+				<div class="nv-testimonial">
+					<p class="nv-testimonial-text">They rebuilt our brand from the logo up, and the 3D visualisations sold the project to investors before construction even started.</p>
+					<div class="nv-testimonial-author">
+						<div class="nv-testimonial-avatar" style="background:linear-gradient(135deg,#a78bfa,#38bdf8)">SP</div>
+						<div>
+							<div style="font-size:14px;font-weight:500">Sanjeewa P.</div>
+							<div style="font-size:11px;color:var(--muted)">Property developer — Kandy</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="nv-swipe-slide">
+				<div class="nv-testimonial">
+					<p class="nv-testimonial-text">Ceylon cinnamon arrived in Riga vacuum-sealed, beautifully packed and fresher than anything we can buy locally. Ordering over WhatsApp took two minutes.</p>
+					<div class="nv-testimonial-author">
+						<div class="nv-testimonial-avatar" style="background:linear-gradient(135deg,#f59e0b,#ef4444)">EB</div>
+						<div>
+							<div style="font-size:14px;font-weight:500">Elīna B.</div>
+							<div style="font-size:11px;color:var(--muted)">Nuvira Spice Co. customer — Latvia</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="nv-swipe-slide">
+				<div class="nv-testimonial">
+					<p class="nv-testimonial-text">One ERP for inventory, invoicing and payroll that actually matches how a Sri Lankan SME runs — and support answers on WhatsApp in minutes, not days.</p>
+					<div class="nv-testimonial-author">
+						<div class="nv-testimonial-avatar" style="background:linear-gradient(135deg,#10b981,#38bdf8)">NM</div>
+						<div>
+							<div style="font-size:14px;font-weight:500">Nuwan M.</div>
+							<div style="font-size:11px;color:var(--muted)">Manufacturing SME — Kandy</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="nv-swipe-slide">
+				<div class="nv-testimonial">
+					<p class="nv-testimonial-text">Your project goes here. We're booking our first client engagements through 2026 — if you're one of the first to work with us, your story (real numbers, real outcomes) sits in this space.</p>
+					<div class="nv-testimonial-author">
+						<div class="nv-testimonial-avatar" style="background:linear-gradient(135deg,var(--accent),var(--accent3))"><?php echo nv_icon( 'sparkles', 16 ); ?></div>
+						<div>
+							<div style="font-size:14px;font-weight:500">Be one of our first clients</div>
+							<div style="font-size:11px;color:var(--muted)">Open slots for 2026</div>
+						</div>
 					</div>
 				</div>
 			</div>

@@ -183,37 +183,75 @@
     });
   }
 
-  /* ---------- 10. Testimonial carousel (A9) ---------- */
-  $$('.nv-testimonial-carousel').forEach((wrap) => {
-    const track = $('.nv-testimonial-track', wrap);
-    const slides = $$('.nv-testimonial', track);
+  /* ---------- 10. Swipe carousels (testimonials, founders) ---------- */
+  $$('.nv-swipe-carousel').forEach((wrap) => {
+    const track = $('.nv-swipe-track', wrap);
+    if (!track) return;
+    const slides = Array.prototype.slice.call(track.children);
     if (slides.length < 2) return;
     let idx = 0, autoTimer = null;
 
-    // Build dots
+    // Dots
     const dots = document.createElement('div');
     dots.className = 'nv-carousel-dots';
     slides.forEach((_, i) => {
       const dot = document.createElement('button');
       dot.className = 'nv-carousel-dot';
-      dot.setAttribute('aria-label', `Show testimonial ${i + 1}`);
+      dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
       dot.addEventListener('click', () => { go(i); restart(); });
       dots.appendChild(dot);
     });
     wrap.appendChild(dots);
     const dotEls = $$('.nv-carousel-dot', dots);
 
+    // Prev / next arrows
+    [-1, 1].forEach((dir) => {
+      const btn = document.createElement('button');
+      btn.className = 'nv-carousel-arrow ' + (dir < 0 ? 'prev' : 'next');
+      btn.setAttribute('aria-label', dir < 0 ? 'Previous' : 'Next');
+      btn.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="${dir < 0 ? '15 18 9 12 15 6' : '9 18 15 12 9 6'}"/></svg>`;
+      btn.addEventListener('click', () => { go(idx + dir); restart(); });
+      wrap.appendChild(btn);
+    });
+
     function go(i) {
       idx = (i + slides.length) % slides.length;
       track.style.transform = `translateX(-${idx * 100}%)`;
+      slides.forEach((s, si) => s.classList.toggle('active', si === idx));
       dotEls.forEach((d, di) => d.classList.toggle('active', di === idx));
     }
     function tick() { go(idx + 1); }
-    function start() { if (!reduceMotion) autoTimer = setInterval(tick, 5500); }
+    function start() { if (!reduceMotion) autoTimer = setInterval(tick, 6000); }
     function stop()  { if (autoTimer) { clearInterval(autoTimer); autoTimer = null; } }
     function restart() { stop(); start(); }
+
+    // Drag / swipe (mouse + touch via pointer events)
+    let startX = null, dragX = 0, dragging = false;
+    track.addEventListener('pointerdown', (e) => {
+      if (e.pointerType === 'mouse' && e.button !== 0) return;
+      startX = e.clientX; dragX = 0; dragging = true;
+      track.classList.add('dragging');
+      stop();
+    });
+    window.addEventListener('pointermove', (e) => {
+      if (!dragging) return;
+      dragX = e.clientX - startX;
+      track.style.transform = `translateX(calc(-${idx * 100}% + ${dragX}px))`;
+    });
+    const endDrag = () => {
+      if (!dragging) return;
+      dragging = false;
+      track.classList.remove('dragging');
+      const threshold = (wrap.clientWidth || 1) * 0.15;
+      if (Math.abs(dragX) > threshold) go(idx + (dragX < 0 ? 1 : -1));
+      else go(idx);
+      start();
+    };
+    window.addEventListener('pointerup', endDrag);
+    window.addEventListener('pointercancel', endDrag);
+
     wrap.addEventListener('mouseenter', stop);
-    wrap.addEventListener('mouseleave', start);
+    wrap.addEventListener('mouseleave', () => { if (!dragging) start(); });
     go(0); start();
   });
 
