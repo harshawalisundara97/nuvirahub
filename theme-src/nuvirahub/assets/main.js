@@ -292,6 +292,7 @@
         <h2 class="nv-lightbox-title"></h2>
         <p class="nv-lightbox-desc"></p>
         <div class="nv-lightbox-tags"></div>
+        <a class="nv-lightbox-link" target="_blank" rel="noopener" hidden></a>
       </div>
     </div>
   `;
@@ -302,6 +303,7 @@
   const lbTitle  = $('.nv-lightbox-title', lightbox);
   const lbDesc   = $('.nv-lightbox-desc', lightbox);
   const lbTags   = $('.nv-lightbox-tags', lightbox);
+  const lbLink   = $('.nv-lightbox-link', lightbox);
 
   function openLightbox(data) {
     if (data.image) {
@@ -315,6 +317,14 @@
     lbTitle.textContent = data.title || '';
     lbDesc.textContent = data.desc || '';
     lbTags.innerHTML = (data.tags || []).map((t) => `<span class="nv-tag-pill">${t}</span>`).join('');
+    if (data.link) {
+      lbLink.href = data.link;
+      lbLink.textContent = (data.linkLabel || 'Visit project') + ' ↗';
+      lbLink.hidden = false;
+    } else {
+      lbLink.hidden = true;
+      lbLink.removeAttribute('href');
+    }
     lightbox.classList.add('open');
     document.body.style.overflow = 'hidden';
   }
@@ -337,6 +347,8 @@
         image:    item.dataset.image    || '',
         gradient: item.dataset.gradient || '',
         tags:     (item.dataset.tags || '').split('|').filter(Boolean),
+        link:      item.dataset.link      || '',
+        linkLabel: item.dataset.linkLabel || '',
       });
     });
   });

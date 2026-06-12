@@ -10,108 +10,105 @@ $contact = nuvirahub_get_page_by_title( 'Contact' );
 $contact_url = $contact ? get_permalink( $contact->ID ) : home_url( '/contact' );
 
 /* Project data — edit here to add/remove projects.
- * Each project: title, desc, category (slug), emoji, gradient, ratio, tags */
+ * Each project: title, desc, category (slug), emoji, gradient, ratio, tags,
+ * link + link_label (shown as a button in the lightbox popup). */
 $nv_projects = array(
 	array(
-		'title'    => 'SL Festival — Sri Lankan Cultural Events Platform',
-		'desc'     => 'A discovery + booking platform for Sri Lankan cultural events, festivals and pop-ups. Built by Nuvirahub end-to-end — design, WordPress backend, custom event listings, location search, and admin dashboard. Live at slfestival.lk.',
-		'category' => 'corporate',
-		'cat_label'=> 'Live Project',
-		'emoji'    => '',
-		'image'    => get_template_directory_uri() . '/assets/img/portfolio/slfestival.png?v=' . filemtime( get_template_directory() . '/assets/img/portfolio/slfestival.png' ),
-		'gradient' => 'linear-gradient(135deg, rgba(108,99,255,.3), rgba(56,189,248,.2))',
-		'ratio'    => '16/10',
-		'tags'     => array( 'WordPress', 'Event Listings', 'Custom Theme', 'Live' ),
+		'title'      => 'SL Festival — Sri Lankan Cultural Events Platform',
+		'desc'       => 'A discovery + booking platform for Sri Lankan cultural events, festivals and pop-ups. Built by Nuvirahub end-to-end — design, WordPress backend, custom event listings, location search, and admin dashboard. Live at slfestival.lk.',
+		'category'   => 'web',
+		'cat_label'  => 'Live Project',
+		'emoji'      => '',
+		'image'      => get_template_directory_uri() . '/assets/img/portfolio/slfestival.png?v=' . filemtime( get_template_directory() . '/assets/img/portfolio/slfestival.png' ),
+		'gradient'   => 'linear-gradient(135deg, rgba(108,99,255,.3), rgba(56,189,248,.2))',
+		'ratio'      => '16/10',
+		'tags'       => array( 'WordPress', 'Event Listings', 'Custom Theme', 'Live' ),
+		'link'       => 'https://slfestival.lk',
+		'link_label' => 'Visit slfestival.lk',
 	),
 	array(
-		'title'    => 'Lumex Fashion Store',
-		'desc'     => 'A premium WooCommerce experience with glassmorphism UI, animated product cards, and a frictionless 2-click checkout. 40% conversion lift in the first quarter.',
-		'category' => 'ecommerce',
-		'cat_label'=> 'E-Commerce',
-		'emoji'    => '🛍️',
-		'gradient' => 'linear-gradient(135deg, rgba(236,72,153,.35), rgba(168,85,247,.25))',
-		'ratio'    => '4/3',
-		'tags'     => array( 'E-Commerce', 'WooCommerce', 'UI Design', 'Checkout UX' ),
+		'title'      => 'Ceylon Review — Places Review App',
+		'desc'       => 'Sri Lanka\'s all-in-one places review app — discover, rate and review restaurants, hotels, beaches, waterfalls, temples and shops across the island. Flutter + Material 3 with a Supabase backend (auth, PostgreSQL, row-level security), an interactive island map with category-coloured pins, and full light/dark theming.',
+		'category'   => 'app',
+		'cat_label'  => 'Mobile App',
+		'emoji'      => '🌴',
+		'gradient'   => 'linear-gradient(135deg, rgba(16,185,129,.35), rgba(56,189,248,.25))',
+		'ratio'      => '3/4',
+		'tags'       => array( 'Flutter', 'Supabase', 'Maps', 'Mobile App' ),
+		'link'       => 'https://github.com/harshawalisundara97/ceylonreview.lk',
+		'link_label' => 'View on GitHub',
 	),
 	array(
-		'title'    => 'Crestline Consulting',
-		'desc'     => 'Corporate website redesign with a dark cinematic theme, animated hero, and integrated CRM hand-off forms. Bounce rate down 38%.',
-		'category' => 'corporate',
-		'cat_label'=> 'Corporate',
-		'emoji'    => '🏢',
-		'gradient' => 'linear-gradient(135deg, rgba(245,158,11,.3), rgba(239,68,68,.25))',
-		'ratio'    => '1/1',
-		'tags'     => array( 'Corporate', 'WordPress', 'Branding', 'CRM' ),
+		'title'      => 'CarePulse — Caregiver Booking App',
+		'desc'       => 'A warm, professional healthcare app for Android — families find and book verified caregivers, monitor an admitted parent\'s daily "pulse" (vitals, meals, mood) remotely, and caregivers hand over shifts with structured summary reports. Built with Jetpack Compose + MVVM and an accessible pastel design system.',
+		'category'   => 'app',
+		'cat_label'  => 'Mobile App',
+		'emoji'      => '🩺',
+		'gradient'   => 'linear-gradient(135deg, rgba(168,230,207,.45), rgba(222,210,249,.35))',
+		'ratio'      => '4/3',
+		'tags'       => array( 'Android', 'Jetpack Compose', 'Healthcare' ),
+		'link'       => 'https://github.com/harshawalisundara97/CarePulse',
+		'link_label' => 'View on GitHub',
 	),
 	array(
-		'title'    => 'Velo App Landing',
-		'desc'     => 'High-converting SaaS landing page with parallax storytelling, pricing table, and Stripe-powered trial signup. Demo bookings up 5×.',
-		'category' => 'saas',
-		'cat_label'=> 'SaaS',
-		'emoji'    => '📱',
-		'gradient' => 'linear-gradient(135deg, rgba(16,185,129,.3), rgba(56,189,248,.25))',
-		'ratio'    => '3/4',
-		'tags'     => array( 'SaaS', 'Landing Page', 'Conversion', 'Stripe' ),
+		'title'      => 'Smart Home HMI — Qt Touchscreen Interface',
+		'desc'       => 'A 1280×800 touchscreen interface for a smart home system — dashboard, lighting, climate, security, energy and scenes across six screens. Dark industrial-modern aesthetic with teal accents, built with Qt 6, QML and C++ backend controllers.',
+		'category'   => 'embedded',
+		'cat_label'  => 'Embedded / HMI',
+		'emoji'      => '🏠',
+		'gradient'   => 'linear-gradient(135deg, rgba(20,184,166,.35), rgba(15,23,42,.5))',
+		'ratio'      => '16/10',
+		'tags'       => array( 'Qt 6', 'QML', 'C++', 'HMI' ),
+		'link'       => 'https://github.com/harshawalisundara97/smart-home-hmi-qt',
+		'link_label' => 'View on GitHub',
 	),
 	array(
-		'title'    => 'Inkline Creative Blog',
-		'desc'     => 'Editorial blog platform with custom post types, social sharing, and a newsletter funnel that converted 12% of new visitors in month one.',
-		'category' => 'blog',
-		'cat_label'=> 'Blog',
-		'emoji'    => '✍️',
-		'gradient' => 'linear-gradient(135deg, rgba(139,92,246,.35), rgba(236,72,153,.25))',
-		'ratio'    => '4/3',
-		'tags'     => array( 'Blog', 'Editorial', 'Content', 'Newsletter' ),
+		'title'      => 'Growdollar — Virtual Plant Growing App',
+		'desc'       => 'Buy a virtual plant for $1 and watch it grow through 11 stages in real time — with photo journals, GPS planting locations, gamified care metrics and live carbon-offset calculations. React Native with animated SVG plant visualisations.',
+		'category'   => 'app',
+		'cat_label'  => 'Mobile App',
+		'emoji'      => '🌱',
+		'gradient'   => 'linear-gradient(135deg, rgba(34,197,94,.35), rgba(245,158,11,.25))',
+		'ratio'      => '1/1',
+		'tags'       => array( 'React Native', 'Gamification', 'Geo' ),
+		'link'       => 'https://github.com/harshawalisundara97/Growdollar',
+		'link_label' => 'View on GitHub',
 	),
 	array(
-		'title'    => 'Zest Restaurant Group',
-		'desc'     => 'Multi-location restaurant site with online reservations, menu showcases, and a location finder powered by Mapbox. 200+ bookings/week.',
-		'category' => 'hospitality',
-		'cat_label'=> 'Hospitality',
-		'emoji'    => '🍽️',
-		'gradient' => 'linear-gradient(135deg, rgba(245,158,11,.3), rgba(16,185,129,.25))',
-		'ratio'    => '1/1',
-		'tags'     => array( 'Hospitality', 'Booking', 'Multi-location' ),
+		'title'      => 'RoomWalk — 3D Apartment Walkthroughs',
+		'desc'       => 'Apartment-search web MVP with an interactive 3D walkthrough — browse listings, open a unit and walk through the rooms right in the browser. TypeScript front end with a custom 3D viewer component.',
+		'category'   => 'web',
+		'cat_label'  => 'Web / 3D',
+		'emoji'      => '🥽',
+		'gradient'   => 'linear-gradient(135deg, rgba(99,102,241,.35), rgba(236,72,153,.25))',
+		'ratio'      => '4/3',
+		'tags'       => array( 'TypeScript', '3D Walkthrough', 'Real Estate' ),
+		'link'       => 'https://github.com/harshawalisundara97/VR-project',
+		'link_label' => 'View on GitHub',
 	),
 	array(
-		'title'    => 'EduPath Academy LMS',
-		'desc'     => 'Online learning platform with course catalog, student dashboards, video lessons, and Stripe Connect for instructor payouts.',
-		'category' => 'saas',
-		'cat_label'=> 'EdTech',
-		'emoji'    => '🎓',
-		'gradient' => 'linear-gradient(135deg, rgba(56,189,248,.3), rgba(99,102,241,.25))',
-		'ratio'    => '4/3',
-		'tags'     => array( 'Education', 'LMS', 'Dashboard', 'Stripe Connect' ),
+		'title'      => 'NuviraHub Calendar — Event Ticketing Design System',
+		'desc'       => 'Design system for a luxury event-ticketing platform — obsidian, gold and ivory with serif headlines and theatrical restraint. Full token set shipped as CSS custom properties + React Native mirrors, with high-fidelity web and mobile UI kits.',
+		'category'   => 'design',
+		'cat_label'  => 'Design System',
+		'emoji'      => '🎟️',
+		'gradient'   => 'linear-gradient(135deg, rgba(217,164,6,.35), rgba(24,24,27,.6))',
+		'ratio'      => '3/4',
+		'tags'       => array( 'Design System', 'UI Kit', 'Design Tokens' ),
+		'link'       => 'https://github.com/harshawalisundara97/nuvirahub-calender',
+		'link_label' => 'View on GitHub',
 	),
 	array(
-		'title'    => 'NovaBuild ERP Rollout',
-		'desc'     => 'Full ERP implementation — finance, HR, inventory, production — for a 200-employee construction group. Real-time margin dashboards.',
-		'category' => 'erp',
-		'cat_label'=> 'ERP',
-		'emoji'    => '🏗️',
-		'gradient' => 'linear-gradient(135deg, rgba(99,102,241,.35), rgba(56,189,248,.2))',
-		'ratio'    => '3/4',
-		'tags'     => array( 'ERP', 'Finance', 'Manufacturing' ),
-	),
-	array(
-		'title'    => 'Brewline Brand Identity',
-		'desc'     => 'Complete brand system for a Colombo specialty coffee roaster — logo, packaging, retail signage, web, social. From idea to launch in 8 weeks.',
-		'category' => 'branding',
-		'cat_label'=> 'Branding',
-		'emoji'    => '☕',
-		'gradient' => 'linear-gradient(135deg, rgba(217,119,6,.4), rgba(120,53,15,.3))',
-		'ratio'    => '1/1',
-		'tags'     => array( 'Branding', 'Packaging', 'Identity' ),
-	),
-	array(
-		'title'    => 'Horizon House Plans',
-		'desc'     => 'AutoCAD architectural drafting + 3D walk-through render for a 4-storey residential project. Submission-ready DWG + photoreal interiors.',
-		'category' => 'creative',
-		'cat_label'=> 'Architecture',
-		'emoji'    => '🏠',
-		'gradient' => 'linear-gradient(135deg, rgba(56,189,248,.3), rgba(168,85,247,.25))',
-		'ratio'    => '4/3',
-		'tags'     => array( 'AutoCAD', 'Architecture', '3D Render' ),
+		'title'      => 'Nuvirahub.com — This Website',
+		'desc'       => 'Our own home on the web — a dark glassmorphism WordPress theme built from scratch with no page builder and no build step. 13 pages, 7 service pillars, a spice shop with WhatsApp ordering, swipe carousels and 10 custom animation features in pure CSS + vanilla JS.',
+		'category'   => 'web',
+		'cat_label'  => 'Web Platform',
+		'emoji'      => '🚀',
+		'gradient'   => 'linear-gradient(135deg, rgba(108,99,255,.4), rgba(56,189,248,.3))',
+		'ratio'      => '1/1',
+		'tags'       => array( 'WordPress', 'PHP', 'Custom Theme' ),
+		'link'       => 'https://nuvirahub.com',
+		'link_label' => 'You\'re on it — visit nuvirahub.com',
 	),
 );
 ?>
@@ -120,19 +117,17 @@ $nv_projects = array(
 	<div class="nv-page-hero-bg"></div>
 	<div class="nv-tag">Selected work</div>
 	<h1>Projects we're <span>proud of</span></h1>
-	<p class="nv-sub" style="margin:0 auto;text-align:center">A cross-section of what we've shipped across software, e-commerce, branding, architecture, and ERP. Click any tile to learn more.</p>
+	<p class="nv-sub" style="margin:0 auto;text-align:center">Real work we've shipped — web platforms, mobile apps, embedded interfaces and design systems. Click any tile to learn more.</p>
 </div>
 
 <div class="nv-section">
 	<!-- Filter tabs -->
 	<div class="nv-tabs nv-reveal" role="tablist" style="margin:0 auto 32px;justify-self:center">
 		<div class="nv-tabp active" data-filter="all">All</div>
-		<div class="nv-tabp" data-filter="ecommerce">E-Commerce</div>
-		<div class="nv-tabp" data-filter="saas">SaaS</div>
-		<div class="nv-tabp" data-filter="corporate">Corporate</div>
-		<div class="nv-tabp" data-filter="branding">Branding</div>
-		<div class="nv-tabp" data-filter="creative">Creative</div>
-		<div class="nv-tabp" data-filter="erp">ERP</div>
+		<div class="nv-tabp" data-filter="web">Web</div>
+		<div class="nv-tabp" data-filter="app">Mobile Apps</div>
+		<div class="nv-tabp" data-filter="embedded">Embedded / HMI</div>
+		<div class="nv-tabp" data-filter="design">Design Systems</div>
 	</div>
 
 	<!-- Masonry gallery -->
@@ -147,7 +142,9 @@ $nv_projects = array(
 			     data-emoji="<?php echo esc_attr( $p['emoji'] ); ?>"
 			     data-image="<?php echo esc_attr( $has_image ? $p['image'] : '' ); ?>"
 			     data-gradient="<?php echo esc_attr( $p['gradient'] ); ?>"
-			     data-tags="<?php echo esc_attr( implode( '|', $p['tags'] ) ); ?>">
+			     data-tags="<?php echo esc_attr( implode( '|', $p['tags'] ) ); ?>"
+			     data-link="<?php echo esc_attr( $p['link'] ?? '' ); ?>"
+			     data-link-label="<?php echo esc_attr( $p['link_label'] ?? 'Visit project' ); ?>">
 				<?php if ( $has_image ) : ?>
 					<div class="nv-portfolio-thumb nv-portfolio-thumb-image" style="background-image: url('<?php echo esc_url( $p['image'] ); ?>'); --ar: <?php echo esc_attr( $p['ratio'] ); ?>;"></div>
 				<?php else : ?>

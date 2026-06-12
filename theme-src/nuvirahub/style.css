@@ -2354,6 +2354,27 @@ img, video, iframe, table, pre { max-width: 100%; }
   display: flex; flex-wrap: wrap; gap: 8px;
   margin-top: auto;
 }
+.nv-lightbox-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 18px;
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: var(--body);
+  color: #fff;
+  background: linear-gradient(135deg, var(--accent), #8b5cf6);
+  text-decoration: none;
+  transition: opacity .2s, transform .2s, box-shadow .2s;
+}
+.nv-lightbox-link:hover {
+  opacity: .88;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px var(--glow);
+}
 .nv-lightbox-close {
   position: absolute;
   top: 36px; right: 36px;
