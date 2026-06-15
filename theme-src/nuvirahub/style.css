@@ -2792,7 +2792,7 @@ img, video, iframe, table, pre { max-width: 100%; }
     radial-gradient(60% 60% at 50% 45%, rgba(5,8,15,.55), transparent 80%),
     linear-gradient(180deg, rgba(5,8,15,.45), rgba(5,8,15,.25) 45%, var(--bg));
 }
-html[data-theme="light"] .nv-hero-video-bg { opacity: .22; }
+html[data-theme="light"] .nv-hero-video-bg { opacity: .7; }
 html[data-theme="light"] .nv-hero-bg::after {
   background:
     radial-gradient(60% 60% at 50% 45%, rgba(245,247,252,.5), transparent 80%),
