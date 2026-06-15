@@ -9,6 +9,35 @@
   const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  /* ---------- 0a. Light / dark theme toggle ---------- */
+  (function () {
+    const root = document.documentElement;
+    const btn = $('#nv-theme-toggle');
+    const meta = $('#nv-theme-color');
+    const apply = (theme) => {
+      root.setAttribute('data-theme', theme);
+      if (btn) btn.setAttribute('aria-label',
+        theme === 'light' ? 'Switch to dark theme' : 'Switch to light theme');
+      if (meta) meta.setAttribute('content', theme === 'light' ? '#f5f7fc' : '#05080f');
+    };
+    // Ensure an explicit value (the inline head script normally sets this).
+    apply(root.getAttribute('data-theme') || 'dark');
+    if (btn) {
+      btn.addEventListener('click', () => {
+        const next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+        apply(next);
+        try { localStorage.setItem('nv-theme', next); } catch (e) {}
+      });
+    }
+    // Follow OS changes only when the user hasn't chosen explicitly.
+    const mq = window.matchMedia('(prefers-color-scheme: light)');
+    mq.addEventListener && mq.addEventListener('change', (e) => {
+      let saved = null;
+      try { saved = localStorage.getItem('nv-theme'); } catch (err) {}
+      if (!saved) apply(e.matches ? 'light' : 'dark');
+    });
+  })();
+
   /* ---------- 0. Page loader fade-out ---------- */
   const loader = $('#nv-loader');
   if (loader) {

@@ -2888,3 +2888,87 @@ img, video, iframe, table, pre { max-width: 100%; }
   }
   .nvhs-data { opacity: 0; }
 }
+
+/* ============================================================
+   36 — LIGHT / DARK THEME
+   ============================================================ */
+/* Smooth cross-fade when switching themes */
+body { transition: background-color .35s ease, color .35s ease; }
+
+/* ---- Theme toggle button (nav) ---- */
+.nv-theme-toggle {
+  width: 42px; height: 42px;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--glass);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: var(--text);
+  cursor: pointer;
+  transition: background .25s, border-color .25s, color .25s, transform .25s;
+  -webkit-tap-highlight-color: transparent;
+  order: 4;
+  flex: 0 0 auto;
+}
+.nv-theme-toggle:hover { background: var(--glass2); border-color: var(--border2); transform: translateY(-1px); }
+.nv-cta { order: 5; }
+.nv-theme-toggle .nv-icon-moon { display: none; }
+html[data-theme="light"] .nv-theme-toggle .nv-icon-sun  { display: none; }
+html[data-theme="light"] .nv-theme-toggle .nv-icon-moon { display: inline; }
+@media (max-width: 880px) {
+  .nv-theme-toggle { order: 3; margin-left: auto; }
+  .nv-toggle { margin-left: 10px; }
+}
+
+/* ---- Light-mode token overrides ---- */
+html[data-theme="light"] {
+  --bg:      #f5f7fc;
+  --bg2:     #ffffff;
+  --bg3:     #eceff7;
+  --glass:   rgba(16,21,40,0.04);
+  --glass2:  rgba(16,21,40,0.07);
+  --border:  rgba(16,21,40,0.10);
+  --border2: rgba(16,21,40,0.18);
+  --text:    #161a2b;
+  --muted:   #5a6178;
+  --muted2:  #4a5168;
+  --glow:    rgba(108,99,255,0.18);
+  --glow2:   rgba(56,189,248,0.12);
+}
+
+/* Brand logo is a black wordmark — un-invert it on light */
+html[data-theme="light"] .nv-logo img { filter: none; }
+
+/* Nav glass turns light */
+html[data-theme="light"] .nv-nav::before { background: rgba(245,247,252,0.6); }
+html[data-theme="light"] .nv-nav.scrolled::before { background: rgba(245,247,252,0.82); }
+
+/* Hero grid + orbs softened for a light canvas */
+html[data-theme="light"] .nv-hero-grid {
+  background-image:
+    linear-gradient(rgba(16,21,40,.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(16,21,40,.05) 1px, transparent 1px);
+}
+html[data-theme="light"] .nv-orb  { opacity: .16; }
+html[data-theme="light"] .nv-orb3 { opacity: .10; }
+
+/* Gradient numerals/headings start from ink (not white) so they read on light */
+html[data-theme="light"] .nv-stat-num,
+html[data-theme="light"] .nv-grad {
+  background: linear-gradient(135deg, #161a2b, var(--accent));
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Hardcoded white-alpha surfaces → ink-alpha so they show on light */
+html[data-theme="light"] :is(
+  .nv-founder, .nv-tabs, .nv-spotlight-features span, .nv-spice-origin,
+  .nv-spice-opt, .nv-newsletter-form input, .nv-form-group select,
+  .comment-form input, .comment-form textarea, .nv-links a:hover
+) { background: rgba(16,21,40,0.04); }
+html[data-theme="light"] .nv-founder:hover { background: rgba(16,21,40,0.06); }
+html[data-theme="light"] .nv-skill-track    { background: rgba(16,21,40,0.10); }
+html[data-theme="light"] .nv-carousel-dot   { background: rgba(16,21,40,0.20); }
+html[data-theme="light"] .nv-checklist li   { border-bottom-color: rgba(16,21,40,0.08); }
+
+/* Mobile menu overlay turns light */
+html[data-theme="light"] .nv-menu-panel { background: rgba(245,247,252,0.92) !important; }

@@ -10,7 +10,20 @@
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="theme-color" content="#05080f">
+	<meta name="theme-color" content="#05080f" id="nv-theme-color">
+
+	<?php /* No-flash theme: apply saved/system preference before CSS paints. */ ?>
+	<script>
+	(function(){
+		try {
+			var saved = localStorage.getItem('nv-theme');
+			var theme = saved || (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+			document.documentElement.setAttribute('data-theme', theme);
+		} catch (e) {
+			document.documentElement.setAttribute('data-theme', 'dark');
+		}
+	})();
+	</script>
 
 	<!-- Favicons (generated from brand/logo.png) -->
 	<link rel="icon" type="image/png" sizes="32x32" href="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/favicons/favicon-32.png">
@@ -79,6 +92,11 @@
 		}
 		?>
 	</a>
+
+	<button class="nv-theme-toggle" id="nv-theme-toggle" type="button" aria-label="Switch between light and dark theme" title="Toggle theme">
+		<svg class="nv-icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><line x1="12" y1="2.5" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="21.5"/><line x1="2.5" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="21.5" y2="12"/><line x1="5.2" y1="5.2" x2="6.9" y2="6.9"/><line x1="17.1" y1="17.1" x2="18.8" y2="18.8"/><line x1="5.2" y1="18.8" x2="6.9" y2="17.1"/><line x1="17.1" y1="6.9" x2="18.8" y2="5.2"/></svg>
+		<svg class="nv-icon-moon" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+	</button>
 
 	<button class="nv-toggle" id="nv-toggle" aria-label="Menu" aria-expanded="false">
 		<span></span><span></span><span></span>
