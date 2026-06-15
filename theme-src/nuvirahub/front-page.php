@@ -40,12 +40,19 @@ $constr_url    = $nv_constr ? get_permalink( $nv_constr->ID ) : home_url( '/cons
 		<div class="nv-orb nv-orb3"></div>
 	</div>
 	<div class="nv-hero-content">
-		<div class="nv-badge"><span class="nv-badge-dot"></span>Helping founders &amp; enterprises grow</div>
-		<h1>One partner for<br><span>everything your business needs.</span></h1>
-		<p class="nv-hero-sub">Software, consulting, freight logistics, creative, marketing, ERP — and a complete launch service for founders starting from zero. Nuvirahub is the team behind the team.</p>
-		<div class="nv-hero-actions">
-			<a class="nv-btn-primary" href="<?php echo esc_url( $launch_url ); ?>">Launch My Business</a>
-			<a class="nv-btn-ghost" href="<?php echo esc_url( $services_url ); ?>">Explore All Services</a>
+		<div class="nv-hero-split">
+			<div class="nv-hero-text">
+				<div class="nv-badge"><span class="nv-badge-dot"></span>Helping founders &amp; enterprises grow</div>
+				<h1>One partner for<br><span>everything your business needs.</span></h1>
+				<p class="nv-hero-sub">Software, consulting, freight logistics, creative, marketing, ERP — and a complete launch service for founders starting from zero. Nuvirahub is the team behind the team.</p>
+				<div class="nv-hero-actions">
+					<a class="nv-btn-primary" href="<?php echo esc_url( $launch_url ); ?>">Launch My Business</a>
+					<a class="nv-btn-ghost" href="<?php echo esc_url( $services_url ); ?>">Explore All Services</a>
+				</div>
+			</div>
+			<div class="nv-hero-visual" aria-hidden="true">
+				<?php get_template_part( 'parts/hero-handshake' ); ?>
+			</div>
 		</div>
 		<div class="nv-hero-stats">
 			<div class="nv-stat"><div class="nv-stat-num">3</div><div class="nv-stat-label">Co-founders</div></div>
