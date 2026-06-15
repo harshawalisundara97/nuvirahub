@@ -2792,7 +2792,7 @@ img, video, iframe, table, pre { max-width: 100%; }
 }
 
 /* ============================================================
-   35 — HERO HANDSHAKE (human + digital partnership)
+   35 — HERO VIDEO (AI partnership)
    ============================================================ */
 /* Left-align CTA buttons next to the visual on desktop */
 .nv-hero-split .nv-hero-actions { justify-content: flex-start; }
@@ -2800,93 +2800,76 @@ img, video, iframe, table, pre { max-width: 100%; }
   .nv-hero-split .nv-hero-actions { justify-content: center; }
 }
 
-/* The clasped fingers "shake" — quick handshake bursts, then rest */
-.nvhs-clasp {
-  transform-box: fill-box;
-  transform-origin: 50% 50%;
-  animation: nvhs-shake 4.5s var(--ease) infinite;
+/* Glass-framed video card with a gradient glow ring */
+.nv-video-card {
+  position: relative;
+  width: 100%;
+  max-width: 560px;
+  margin: 0 auto;
+  aspect-ratio: 16 / 11;
+  border-radius: 24px;
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(108,99,255,.18), rgba(56,189,248,.12));
+  border: 1px solid var(--border2);
+  box-shadow: 0 30px 80px -20px rgba(108,99,255,.45),
+              inset 0 0 0 1px rgba(255,255,255,.04);
+  animation: nv-video-float 7s var(--ease) infinite;
 }
-@keyframes nvhs-shake {
-  0%   { transform: translateY(0) rotate(0deg); }
-  6%   { transform: translateY(-6px) rotate(-1.6deg); }
-  12%  { transform: translateY(3px) rotate(1deg); }
-  18%  { transform: translateY(-4px) rotate(-1deg); }
-  24%  { transform: translateY(2px) rotate(.6deg); }
-  30%  { transform: translateY(0) rotate(0deg); }
-  100% { transform: translateY(0) rotate(0deg); }
+/* soft gradient glow behind the frame */
+.nv-video-card::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, var(--accent), var(--accent3), transparent 70%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  opacity: .8;
+  pointer-events: none;
 }
-
-/* whole arms breathe ever so slightly with the shake */
-.nvhs-arm-left  { animation: nvhs-armL 4.5s var(--ease) infinite; }
-.nvhs-arm-right { animation: nvhs-armR 4.5s var(--ease) infinite; }
-@keyframes nvhs-armL {
-  0%,30%,100% { transform: translateY(0); }
-  10% { transform: translateY(-2px); }
-  20% { transform: translateY(-1px); }
+.nv-hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: inherit;
 }
-@keyframes nvhs-armR {
-  0%,30%,100% { transform: translateY(0); }
-  10% { transform: translateY(2px); }
-  20% { transform: translateY(1px); }
+/* subtle top-light sheen + edge blend into the page */
+.nv-video-sheen {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background:
+    radial-gradient(120% 80% at 15% 0%, rgba(255,255,255,.10), transparent 45%),
+    radial-gradient(100% 60% at 100% 100%, rgba(56,189,248,.10), transparent 55%);
 }
-
-/* flowing circuit traces */
-.nvhs-trace {
-  stroke-dasharray: 14 90;
-  stroke-dashoffset: 220;
-  animation: nvhs-flow 2.4s linear infinite;
-}
-.nvhs-trace2 { animation-duration: 3s; animation-delay: -.6s; }
-.nvhs-trace3 { animation-duration: 2s; animation-delay: -1.1s; }
-@keyframes nvhs-flow { to { stroke-dashoffset: 0; } }
-
-/* pulsing nodes */
-.nvhs-node { animation: nvhs-node 2.2s ease-in-out infinite; }
-.nvhs-node2 { animation-delay: -.7s; }
-.nvhs-node3 { animation-delay: -1.4s; }
-@keyframes nvhs-node {
-  0%,100% { opacity: .35; }
-  50%     { opacity: 1; }
-}
-
-/* central connection chip + glow */
-.nvhs-spark {
-  transform-box: fill-box; transform-origin: 50% 50%;
-  animation: nvhs-spark 2.6s ease-in-out infinite;
-}
-@keyframes nvhs-spark {
-  0%,100% { transform: scale(1); opacity: .9; }
-  50%     { transform: scale(1.18); opacity: 1; }
-}
-.nvhs-spark-glow {
-  transform-box: fill-box; transform-origin: 50% 50%;
-  animation: nvhs-sparkglow 2.6s ease-in-out infinite;
-}
-@keyframes nvhs-sparkglow {
-  0%,100% { opacity: .5; transform: scale(.9); }
-  50%     { opacity: 1; transform: scale(1.25); }
-}
-.nvhs-glow {
-  transform-box: fill-box; transform-origin: 50% 50%;
-  animation: nvhs-sparkglow 6s ease-in-out infinite;
+@keyframes nv-video-float {
+  0%,100% { transform: translateY(0); }
+  50%     { transform: translateY(-10px); }
 }
 
-/* data dots travelling from the digital hand into the human hand */
-.nvhs-data { offset-rotate: 0deg; animation: nvhs-data 2.8s ease-in-out infinite; opacity: 0; }
-.nvhs-data2 { animation-delay: -1.4s; }
-@keyframes nvhs-data {
-  0%   { transform: translate(-40px, 12px); opacity: 0; }
-  20%  { opacity: 1; }
-  80%  { opacity: 1; }
-  100% { transform: translate(46px, -10px); opacity: 0; }
+/* placeholder shown until the .mp4 is dropped in */
+.nv-video-placeholder {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 8px; text-align: center; padding: 24px;
+  color: var(--muted2); font-size: 13px;
+}
+.nv-video-placeholder-icon { font-size: 44px; }
+.nv-video-placeholder small { font-size: 11px; color: var(--muted); }
+.nv-video-placeholder code {
+  font-family: ui-monospace, monospace;
+  background: var(--glass2); padding: 1px 5px; border-radius: 4px;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .nvhs-clasp, .nvhs-arm-left, .nvhs-arm-right, .nvhs-trace,
-  .nvhs-node, .nvhs-spark, .nvhs-spark-glow, .nvhs-glow, .nvhs-data {
-    animation: none !important;
-  }
-  .nvhs-data { opacity: 0; }
+  .nv-video-card { animation: none; }
 }
 
 /* ============================================================

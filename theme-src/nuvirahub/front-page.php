@@ -51,7 +51,26 @@ $constr_url    = $nv_constr ? get_permalink( $nv_constr->ID ) : home_url( '/cons
 				</div>
 			</div>
 			<div class="nv-hero-visual" aria-hidden="true">
-				<?php get_template_part( 'parts/hero-handshake' ); ?>
+				<?php
+				$nv_hero_vid    = get_template_directory() . '/assets/video/ai-handshake.mp4';
+				$nv_hero_vurl   = get_template_directory_uri() . '/assets/video/ai-handshake.mp4';
+				$nv_hero_poster = get_template_directory_uri() . '/assets/video/ai-handshake.jpg';
+				$nv_has_poster  = file_exists( get_template_directory() . '/assets/video/ai-handshake.jpg' );
+				?>
+				<div class="nv-video-card">
+					<?php if ( file_exists( $nv_hero_vid ) ) : ?>
+						<video class="nv-hero-video" autoplay muted loop playsinline preload="metadata"<?php echo $nv_has_poster ? ' poster="' . esc_url( $nv_hero_poster ) . '"' : ''; ?>>
+							<source src="<?php echo esc_url( $nv_hero_vurl ); ?>" type="video/mp4">
+						</video>
+					<?php else : ?>
+						<div class="nv-video-placeholder">
+							<span class="nv-video-placeholder-icon">🤝</span>
+							<span>Hero video goes here</span>
+							<small>Drop <code>ai-handshake.mp4</code> into <code>/assets/video/</code></small>
+						</div>
+					<?php endif; ?>
+					<div class="nv-video-sheen"></div>
+				</div>
 			</div>
 		</div>
 		<div class="nv-hero-stats">
