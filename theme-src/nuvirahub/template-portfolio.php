@@ -35,8 +35,6 @@ $nv_projects = array(
 		'gradient'   => 'linear-gradient(135deg, rgba(16,185,129,.35), rgba(56,189,248,.25))',
 		'ratio'      => '3/4',
 		'tags'       => array( 'Flutter', 'Supabase', 'Maps', 'Mobile App' ),
-		'link'       => 'https://github.com/harshawalisundara97/ceylonreview.lk',
-		'link_label' => 'View on GitHub',
 	),
 	array(
 		'title'      => 'CarePulse — Caregiver Booking App',
@@ -47,8 +45,6 @@ $nv_projects = array(
 		'gradient'   => 'linear-gradient(135deg, rgba(168,230,207,.45), rgba(222,210,249,.35))',
 		'ratio'      => '4/3',
 		'tags'       => array( 'Android', 'Jetpack Compose', 'Healthcare' ),
-		'link'       => 'https://github.com/harshawalisundara97/CarePulse',
-		'link_label' => 'View on GitHub',
 	),
 	array(
 		'title'      => 'Smart Home HMI — Qt Touchscreen Interface',
@@ -59,8 +55,6 @@ $nv_projects = array(
 		'gradient'   => 'linear-gradient(135deg, rgba(20,184,166,.35), rgba(15,23,42,.5))',
 		'ratio'      => '16/10',
 		'tags'       => array( 'Qt 6', 'QML', 'C++', 'HMI' ),
-		'link'       => 'https://github.com/harshawalisundara97/smart-home-hmi-qt',
-		'link_label' => 'View on GitHub',
 	),
 	array(
 		'title'      => 'Growdollar — Virtual Plant Growing App',
@@ -71,8 +65,6 @@ $nv_projects = array(
 		'gradient'   => 'linear-gradient(135deg, rgba(34,197,94,.35), rgba(245,158,11,.25))',
 		'ratio'      => '1/1',
 		'tags'       => array( 'React Native', 'Gamification', 'Geo' ),
-		'link'       => 'https://github.com/harshawalisundara97/Growdollar',
-		'link_label' => 'View on GitHub',
 	),
 	array(
 		'title'      => 'RoomWalk — 3D Apartment Walkthroughs',
@@ -83,8 +75,6 @@ $nv_projects = array(
 		'gradient'   => 'linear-gradient(135deg, rgba(99,102,241,.35), rgba(236,72,153,.25))',
 		'ratio'      => '4/3',
 		'tags'       => array( 'TypeScript', '3D Walkthrough', 'Real Estate' ),
-		'link'       => 'https://github.com/harshawalisundara97/VR-project',
-		'link_label' => 'View on GitHub',
 	),
 	array(
 		'title'      => 'NuviraHub Calendar — Event Ticketing Design System',
@@ -95,8 +85,6 @@ $nv_projects = array(
 		'gradient'   => 'linear-gradient(135deg, rgba(217,164,6,.35), rgba(24,24,27,.6))',
 		'ratio'      => '3/4',
 		'tags'       => array( 'Design System', 'UI Kit', 'Design Tokens' ),
-		'link'       => 'https://github.com/harshawalisundara97/nuvirahub-calender',
-		'link_label' => 'View on GitHub',
 	),
 	array(
 		'title'      => 'Nuvirahub.com — This Website',
