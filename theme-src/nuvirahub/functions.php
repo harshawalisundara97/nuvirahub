@@ -18,6 +18,11 @@ if ( ! defined( 'NUVIRAHUB_SPICE_BRAND' ) )    { define( 'NUVIRAHUB_SPICE_BRAND'
 if ( ! defined( 'NUVIRAHUB_SPICE_CURRENCY' ) ) { define( 'NUVIRAHUB_SPICE_CURRENCY', '€' ); }
 
 /**
+ * Product data model (E1) — central catalogue + query helpers.
+ */
+require get_template_directory() . '/inc/products.php';
+
+/**
  * Build a WhatsApp deep-link with a pre-filled message.
  *
  * @param string $message  Plain-text message body. Will be URL-encoded.
