@@ -95,8 +95,6 @@ $nv_projects = array(
 		'gradient'   => 'linear-gradient(135deg, rgba(108,99,255,.4), rgba(56,189,248,.3))',
 		'ratio'      => '1/1',
 		'tags'       => array( 'WordPress', 'PHP', 'Custom Theme' ),
-		'link'       => 'https://nuvirahub.com',
-		'link_label' => 'You\'re on it — visit nuvirahub.com',
 	),
 );
 ?>
