@@ -284,6 +284,36 @@
     go(0); start();
   });
 
+  /* ---------- 10b. Shop category filter (E2) ---------- */
+  (function () {
+    const tabs  = $$('.nv-shop-filter');
+    const cards = $$('.nv-shop-card');
+    const empty = $('.nv-shop-empty');
+    if (!tabs.length || !cards.length) return;
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        tabs.forEach((t) => t.classList.remove('active'));
+        tab.classList.add('active');
+        const cat = tab.dataset.filter || 'all';
+        let shown = 0;
+        cards.forEach((card) => {
+          const match = cat === 'all' || card.dataset.cat === cat;
+          card.style.transition = 'opacity .35s ease, transform .35s ease';
+          if (match) {
+            shown++;
+            card.style.display = '';
+            requestAnimationFrame(() => { card.style.opacity = '1'; card.style.transform = ''; });
+          } else {
+            card.style.opacity = '0';
+            card.style.transform = 'scale(.96)';
+            setTimeout(() => { card.style.display = 'none'; }, 350);
+          }
+        });
+        if (empty) empty.hidden = shown !== 0;
+      });
+    });
+  })();
+
   /* ---------- 11. Portfolio filter + lightbox (A1) ---------- */
   const filters = $$('.nv-tabp');
   const items   = $$('.nv-portfolio[data-cats]');
