@@ -23,6 +23,11 @@ if ( ! defined( 'NUVIRAHUB_SPICE_CURRENCY' ) ) { define( 'NUVIRAHUB_SPICE_CURREN
 require get_template_directory() . '/inc/products.php';
 
 /**
+ * Product permalink routing (E4) — /product/{slug}/ rewrite.
+ */
+require get_template_directory() . '/inc/product-routing.php';
+
+/**
  * Build a WhatsApp deep-link with a pre-filled message.
  *
  * @param string $message  Plain-text message body. Will be URL-encoded.

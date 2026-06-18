@@ -363,7 +363,13 @@
       });
     }
 
-    /* Wishlist hearts (localStorage) — sets up E4 */
+    void total;
+  })();
+
+  /* ---------- 10c. Wishlist hearts (E3/E4) — works on any page ---------- */
+  (function () {
+    const buttons = $$('.nv-shop-wishlist');
+    if (!buttons.length) return;
     const KEY = 'nv-wishlist';
     const load = () => {
       try { return JSON.parse(localStorage.getItem(KEY) || '[]'); }
@@ -381,7 +387,7 @@
         btn.setAttribute('title', on ? 'Remove from wishlist' : 'Add to wishlist');
       });
     };
-    $$('.nv-shop-wishlist').forEach((btn) => {
+    buttons.forEach((btn) => {
       btn.addEventListener('click', (e) => {
         e.preventDefault(); e.stopPropagation();
         const list = load();
@@ -390,7 +396,6 @@
         if (i === -1) list.push(slug); else list.splice(i, 1);
         save(list);
         refresh();
-        // little bounce
         btn.animate(
           [{ transform: 'scale(1)' }, { transform: 'scale(1.25)' }, { transform: 'scale(1)' }],
           { duration: 320, easing: 'cubic-bezier(.2,.7,.2,1)' }
@@ -398,7 +403,145 @@
       });
     });
     refresh();
-    void total;
+  })();
+
+  /* ---------- 10d. Product detail page (E4) ---------- */
+  (function () {
+    const page = $('.nv-product-page');
+    if (!page) return;
+
+    const brand    = page.dataset.brand || '';
+    const currency = page.dataset.currency || '€';
+    const waBase   = page.dataset.waBase || '';
+    const name     = page.dataset.name || '';
+
+    const opts        = $$('.nv-product-opt', page);
+    const qty         = $('#nv-product-qty');
+    const stepUp      = $('.nv-step-up', page);
+    const stepDown    = $('.nv-step-down', page);
+    const priceEl     = $('#nv-product-price');
+    const weightEl    = $('#nv-product-weight');
+    const subtotalEl  = $('#nv-product-subtotal');
+    const stickyPrice = $('#nv-stickybar-price');
+    const orderBtn    = $('#nv-product-order');
+    const stickyOrder = $('#nv-stickybar-order');
+
+    // Current selection: from the active option pill, or fall back to the inline price.
+    const initOpt = opts.find((o) => o.classList.contains('active')) || opts[0];
+    let state = {
+      weight: initOpt ? initOpt.dataset.weight : (weightEl ? weightEl.textContent : ''),
+      price:  initOpt ? parseFloat(initOpt.dataset.price) : parseFloat((priceEl?.textContent || '').replace(/[^0-9.]/g, '')) || 0,
+      qty:    parseInt(qty?.value || '1', 10) || 1,
+    };
+
+    const fmt = (n) => currency + n.toFixed(2);
+    const buildWa = () => {
+      const subtotal = state.price * state.qty;
+      const msg =
+        `Hi ${brand}! I'd like to order:\n\n` +
+        `${name}\n` +
+        `Weight: ${state.weight}\n` +
+        `Quantity: ${state.qty}\n` +
+        `Unit price: ${fmt(state.price)}\n` +
+        `Subtotal: ${fmt(subtotal)}\n\n` +
+        `Please confirm availability and delivery time. Thanks!`;
+      return waBase + encodeURIComponent(msg);
+    };
+
+    const render = () => {
+      const subtotal = state.price * state.qty;
+      if (priceEl)     priceEl.textContent     = fmt(state.price);
+      if (weightEl)    weightEl.textContent    = state.weight;
+      if (subtotalEl)  subtotalEl.textContent  = fmt(subtotal);
+      if (stickyPrice) stickyPrice.textContent = fmt(subtotal);
+      const href = buildWa();
+      if (orderBtn)    orderBtn.href    = href;
+      if (stickyOrder) stickyOrder.href = href;
+    };
+
+    // Weight option pills
+    opts.forEach((opt) => {
+      opt.addEventListener('click', () => {
+        opts.forEach((o) => {
+          o.classList.remove('active');
+          o.setAttribute('aria-checked', 'false');
+        });
+        opt.classList.add('active');
+        opt.setAttribute('aria-checked', 'true');
+        state.weight = opt.dataset.weight;
+        state.price  = parseFloat(opt.dataset.price) || 0;
+        render();
+      });
+    });
+
+    // Qty stepper
+    const setQty = (n) => {
+      n = Math.max(1, Math.min(99, n | 0));
+      state.qty = n;
+      if (qty) qty.value = String(n);
+      render();
+    };
+    if (stepUp)   stepUp.addEventListener('click',   () => setQty(state.qty + 1));
+    if (stepDown) stepDown.addEventListener('click', () => setQty(state.qty - 1));
+    if (qty) qty.addEventListener('input', () => setQty(parseInt(qty.value || '1', 10)));
+
+    // Tabs
+    const tabs   = $$('.nv-product-tab', page);
+    const panels = $$('.nv-product-tabpanel', page);
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        const id = tab.dataset.tab;
+        tabs.forEach((t) => {
+          const on = t === tab;
+          t.classList.toggle('active', on);
+          t.setAttribute('aria-selected', on ? 'true' : 'false');
+        });
+        panels.forEach((p) => {
+          const on = p.dataset.panel === id;
+          p.classList.toggle('active', on);
+          p.hidden = !on;
+        });
+      });
+    });
+
+    // Gallery thumbnails
+    const thumbs = $$('.nv-product-thumb', page);
+    const mainImg = $('.nv-product-main-img', page);
+    thumbs.forEach((t) => {
+      t.addEventListener('click', () => {
+        thumbs.forEach((x) => x.classList.remove('active'));
+        t.classList.add('active');
+        if (mainImg && t.dataset.img) mainImg.src = t.dataset.img;
+      });
+    });
+
+    // Share button (Web Share API → copy-link fallback → toast)
+    const shareBtn = $('.nv-product-share', page);
+    if (shareBtn) {
+      shareBtn.addEventListener('click', async () => {
+        const url = location.href;
+        if (navigator.share) {
+          try { await navigator.share({ title: name, text: `${name} — ${brand}`, url }); return; }
+          catch (e) { /* user cancelled — fall through */ }
+        }
+        try { await navigator.clipboard.writeText(url); toast('Link copied to clipboard'); }
+        catch (e) { toast('Could not copy link'); }
+      });
+    }
+    function toast(msg) {
+      let t = document.querySelector('.nv-toast');
+      if (!t) {
+        t = document.createElement('div');
+        t.className = 'nv-toast';
+        document.body.appendChild(t);
+      }
+      t.textContent = msg;
+      t.classList.add('show');
+      clearTimeout(toast._t);
+      toast._t = setTimeout(() => t.classList.remove('show'), 2200);
+    }
+
+    render();
   })();
 
   /* ---------- 11. Portfolio filter + lightbox (A1) ---------- */
