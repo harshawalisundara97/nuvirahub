@@ -2986,3 +2986,232 @@ html[data-theme="light"] .nv-menu-panel { background: rgba(245,247,252,0.92) !im
   color: var(--muted2); font-size: 14px;
 }
 .nv-shop-empty a { color: var(--accent2); }
+
+/* ============================================================
+   38 — SHOP CATALOGUE E3 (toolbar, wishlist, breadcrumbs)
+   ============================================================ */
+.nv-breadcrumbs {
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 18px;
+  letter-spacing: .02em;
+}
+.nv-breadcrumbs a {
+  color: var(--muted2);
+  text-decoration: none;
+  transition: color .2s;
+}
+.nv-breadcrumbs a:hover { color: var(--text); }
+.nv-breadcrumb-sep { margin: 0 8px; opacity: .5; }
+.nv-breadcrumbs [aria-current="page"] { color: var(--text); }
+
+.nv-shop-tabs {
+  margin: 0 auto 24px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.nv-shop-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 18px;
+  margin-bottom: 24px;
+  background: var(--glass);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.nv-shop-search {
+  position: relative;
+  flex: 1 1 280px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  transition: border-color .2s, background .2s;
+}
+.nv-shop-search:focus-within {
+  border-color: var(--accent2);
+  background: rgba(255,255,255,0.08);
+}
+.nv-shop-search svg { color: var(--muted2); flex-shrink: 0; }
+.nv-shop-search input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text);
+  font-family: var(--body);
+  font-size: 14px;
+  min-width: 0;
+}
+.nv-shop-search input::placeholder { color: var(--muted); }
+.nv-shop-sort {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.nv-shop-sort-label {
+  font-size: 12px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+.nv-shop-sort select {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text);
+  font-family: var(--body);
+  font-size: 13px;
+  padding: 9px 28px 9px 12px;
+  cursor: pointer;
+  transition: border-color .2s, background .2s;
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, var(--muted2) 50%),
+                    linear-gradient(135deg, var(--muted2) 50%, transparent 50%);
+  background-position: calc(100% - 14px) 50%, calc(100% - 9px) 50%;
+  background-size: 5px 5px;
+  background-repeat: no-repeat;
+}
+.nv-shop-sort select:hover,
+.nv-shop-sort select:focus { border-color: var(--accent2); background-color: rgba(255,255,255,0.08); outline: none; }
+.nv-shop-sort select option { background: var(--bg2); color: var(--text); }
+.nv-shop-result-count {
+  font-size: 12px;
+  color: var(--muted2);
+  margin-left: auto;
+  white-space: nowrap;
+}
+.nv-shop-result-count #nv-shop-shown {
+  color: var(--text);
+  font-weight: 600;
+}
+
+/* Make the thumb a real link without changing the look */
+.nv-shop-thumb-link {
+  display: block;
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+}
+.nv-shop-overlay-cta {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 10px 16px;
+  background: linear-gradient(0deg, rgba(5,8,15,.85), transparent);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity .25s, transform .25s;
+  pointer-events: none;
+  z-index: 3;
+}
+.nv-shop-card:hover .nv-shop-overlay-cta {
+  opacity: 1;
+  transform: translateY(0);
+}
+.nv-shop-title-link {
+  text-decoration: none;
+  color: inherit;
+}
+.nv-shop-title-link:hover h3 { color: var(--accent2); }
+.nv-shop-title-link h3 { transition: color .2s; }
+
+/* Wishlist heart (top-right of card) */
+.nv-shop-wishlist {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(5,8,15,.55);
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: 50%;
+  color: rgba(255,255,255,.85);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  cursor: pointer;
+  z-index: 4;
+  transition: background .2s, border-color .2s, color .2s, transform .2s;
+}
+.nv-shop-wishlist:hover {
+  background: rgba(5,8,15,.78);
+  border-color: var(--accent2);
+  color: var(--accent2);
+  transform: scale(1.06);
+}
+.nv-shop-wishlist.on {
+  color: #ef4444;
+  border-color: #ef4444;
+  background: rgba(239,68,68,.18);
+}
+.nv-shop-wishlist.on svg path {
+  fill: #ef4444;
+  stroke: #ef4444;
+}
+
+/* Card needs a positioning context for the wishlist */
+.nv-shop-card { position: relative; }
+
+/* Bulk pricing pill in card footer */
+.nv-shop-wholesale {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--accent2);
+  background: rgba(167,139,250,.12);
+  border: 1px solid rgba(167,139,250,.3);
+  text-decoration: none;
+  transition: background .2s, color .2s;
+}
+.nv-shop-wholesale:hover {
+  background: rgba(167,139,250,.24);
+  color: var(--text);
+}
+
+/* Empty-state polish */
+.nv-shop-empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 56px 16px;
+  color: var(--muted2);
+  font-size: 14px;
+}
+.nv-shop-empty a { color: var(--accent2); }
+.nv-shop-reset {
+  background: transparent;
+  border: 1px solid var(--border2);
+  color: var(--text);
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-family: var(--body);
+  font-size: 13px;
+  cursor: pointer;
+  transition: background .2s, border-color .2s;
+}
+.nv-shop-reset:hover { background: var(--glass2); border-color: var(--accent2); }
+
+@media (max-width: 640px) {
+  .nv-shop-toolbar { gap: 10px; padding: 10px 12px; }
+  .nv-shop-result-count { margin-left: 0; width: 100%; text-align: center; }
+}

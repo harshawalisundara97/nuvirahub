@@ -284,34 +284,121 @@
     go(0); start();
   });
 
-  /* ---------- 10b. Shop category filter (E2) ---------- */
+  /* ---------- 10b. Shop catalogue: filter + search + sort + wishlist (E2/E3) ---------- */
   (function () {
-    const tabs  = $$('.nv-shop-filter');
-    const cards = $$('.nv-shop-card');
-    const empty = $('.nv-shop-empty');
-    if (!tabs.length || !cards.length) return;
+    const tabs    = $$('.nv-shop-filter');
+    const cards   = $$('.nv-shop-card');
+    const empty   = $('.nv-shop-empty');
+    const search  = $('#nv-shop-search');
+    const sort    = $('#nv-shop-sort');
+    const shown$  = $('#nv-shop-shown');
+    const reset   = $('#nv-shop-reset');
+    if (!cards.length) return;
+
+    const state = { cat: 'all', q: '', sort: 'featured' };
+    const total = cards.length;
+
+    const apply = () => {
+      let shown = 0;
+      cards.forEach((card) => {
+        const catOk = state.cat === 'all' || card.dataset.cat === state.cat;
+        const qOk   = !state.q || (card.dataset.search || '').indexOf(state.q) !== -1;
+        const match = catOk && qOk;
+        card.style.transition = 'opacity .3s ease, transform .3s ease';
+        if (match) {
+          shown++;
+          card.style.display = '';
+          requestAnimationFrame(() => { card.style.opacity = '1'; card.style.transform = ''; });
+        } else {
+          card.style.opacity = '0';
+          card.style.transform = 'scale(.96)';
+          setTimeout(() => { card.style.display = 'none'; }, 300);
+        }
+      });
+      // sort: rewrite flex `order` so we don't reflow the DOM
+      const sorted = cards.slice().sort((a, b) => {
+        switch (state.sort) {
+          case 'price-asc':  return parseFloat(a.dataset.price) - parseFloat(b.dataset.price);
+          case 'price-desc': return parseFloat(b.dataset.price) - parseFloat(a.dataset.price);
+          case 'name-asc':   return (a.dataset.name || '').localeCompare(b.dataset.name || '');
+          case 'featured':
+          default: {
+            const r = (+a.dataset.featRank) - (+b.dataset.featRank);
+            return r !== 0 ? r : (+a.dataset.origIndex) - (+b.dataset.origIndex);
+          }
+        }
+      });
+      sorted.forEach((c, i) => { c.style.order = i + 1; });
+      if (shown$) shown$.textContent = String(shown);
+      if (empty)  empty.hidden = shown !== 0;
+    };
+
     tabs.forEach((tab) => {
       tab.addEventListener('click', () => {
         tabs.forEach((t) => t.classList.remove('active'));
         tab.classList.add('active');
-        const cat = tab.dataset.filter || 'all';
-        let shown = 0;
-        cards.forEach((card) => {
-          const match = cat === 'all' || card.dataset.cat === cat;
-          card.style.transition = 'opacity .35s ease, transform .35s ease';
-          if (match) {
-            shown++;
-            card.style.display = '';
-            requestAnimationFrame(() => { card.style.opacity = '1'; card.style.transform = ''; });
-          } else {
-            card.style.opacity = '0';
-            card.style.transform = 'scale(.96)';
-            setTimeout(() => { card.style.display = 'none'; }, 350);
-          }
-        });
-        if (empty) empty.hidden = shown !== 0;
+        state.cat = tab.dataset.filter || 'all';
+        apply();
       });
     });
+    if (search) {
+      search.addEventListener('input', () => {
+        state.q = search.value.trim().toLowerCase();
+        apply();
+      });
+    }
+    if (sort) {
+      sort.addEventListener('change', () => {
+        state.sort = sort.value;
+        apply();
+      });
+    }
+    if (reset) {
+      reset.addEventListener('click', () => {
+        tabs.forEach((t) => t.classList.toggle('active', t.dataset.filter === 'all'));
+        if (search) search.value = '';
+        if (sort)   sort.value = 'featured';
+        state.cat = 'all'; state.q = ''; state.sort = 'featured';
+        apply();
+      });
+    }
+
+    /* Wishlist hearts (localStorage) — sets up E4 */
+    const KEY = 'nv-wishlist';
+    const load = () => {
+      try { return JSON.parse(localStorage.getItem(KEY) || '[]'); }
+      catch (e) { return []; }
+    };
+    const save = (list) => {
+      try { localStorage.setItem(KEY, JSON.stringify(list)); } catch (e) {}
+    };
+    const refresh = () => {
+      const list = load();
+      $$('.nv-shop-wishlist').forEach((btn) => {
+        const on = list.indexOf(btn.dataset.slug) !== -1;
+        btn.classList.toggle('on', on);
+        btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+        btn.setAttribute('title', on ? 'Remove from wishlist' : 'Add to wishlist');
+      });
+    };
+    $$('.nv-shop-wishlist').forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault(); e.stopPropagation();
+        const list = load();
+        const slug = btn.dataset.slug;
+        const i = list.indexOf(slug);
+        if (i === -1) list.push(slug); else list.splice(i, 1);
+        save(list);
+        refresh();
+        // little bounce
+        btn.animate(
+          [{ transform: 'scale(1)' }, { transform: 'scale(1.25)' }, { transform: 'scale(1)' }],
+          { duration: 320, easing: 'cubic-bezier(.2,.7,.2,1)' }
+        );
+      });
+    });
+    refresh();
+    void total;
   })();
 
   /* ---------- 11. Portfolio filter + lightbox (A1) ---------- */
