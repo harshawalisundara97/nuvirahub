@@ -3857,3 +3857,84 @@ html[data-theme="light"] .nv-star { color: rgba(16,21,40,.18); }
   margin: 0 auto 20px;
   line-height: 1.6;
 }
+
+/* ============================================================
+   41 — WHOLESALE / B2B (E6)
+   ============================================================ */
+.nv-wholesale-grid {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 48px;
+  align-items: start;
+}
+@media (max-width: 880px) {
+  .nv-wholesale-grid { grid-template-columns: 1fr; gap: 32px; }
+}
+.nv-wholesale-aside { position: sticky; top: 96px; }
+@media (max-width: 880px) { .nv-wholesale-aside { position: static; } }
+.nv-wholesale-points {
+  list-style: none;
+  padding: 0;
+  margin-top: 24px;
+  display: grid;
+  gap: 18px;
+}
+.nv-wholesale-points li {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+.nv-wh-ico {
+  flex-shrink: 0;
+  width: 40px; height: 40px;
+  border-radius: 11px;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: rgba(167,139,250,.12);
+  border: 1px solid rgba(167,139,250,.25);
+  color: var(--accent2);
+}
+.nv-wholesale-points strong { display: block; font-size: 14px; color: var(--text); margin-bottom: 2px; }
+.nv-wholesale-points p { font-size: 13px; color: var(--muted2); line-height: 1.5; margin: 0; }
+
+.nv-wholesale-form { align-self: start; }
+
+/* Form alerts (success / error) */
+.nv-form-alert {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 14px 16px;
+  border-radius: 12px;
+  margin-bottom: 22px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.nv-form-alert svg { flex-shrink: 0; margin-top: 1px; }
+.nv-form-alert strong { font-weight: 700; }
+.nv-form-alert-ok {
+  background: rgba(16,185,129,.10);
+  border: 1px solid rgba(16,185,129,.35);
+  color: #34d399;
+}
+.nv-form-alert-err {
+  background: rgba(239,68,68,.10);
+  border: 1px solid rgba(239,68,68,.35);
+  color: #f87171;
+}
+.nv-form-alert strong { color: var(--text); }
+
+.nv-wholesale-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+.nv-wholesale-actions .nv-btn-primary { flex: 1 1 auto; padding: 14px 24px; font-size: 15px; }
+.nv-wholesale-actions .nv-wholesale-wa {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 14px 20px;
+}
+@media (max-width: 480px) {
+  .nv-wholesale-actions { flex-direction: column; }
+  .nv-wholesale-actions .nv-wholesale-wa { justify-content: center; }
+}

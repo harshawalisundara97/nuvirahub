@@ -60,6 +60,7 @@ function nv_icon( $name, $size = 24 ) {
 			'arrow-right'    => '<line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>',
 			'check'          => '<polyline points="20 6 9 17 4 12"/>',
 			'check-circle'   => '<circle cx="12" cy="12" r="10"/><polyline points="9 12 11 14 15 10"/>',
+			'alert-triangle' => '<path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>',
 			'x'              => '<line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>',
 			'menu'           => '<line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>',
 			// Pillars
@@ -266,6 +267,49 @@ function nuvirahub_handle_contact() {
 }
 add_action( 'admin_post_nopriv_nuvirahub_contact', 'nuvirahub_handle_contact' );
 add_action( 'admin_post_nuvirahub_contact', 'nuvirahub_handle_contact' );
+
+/**
+ * Wholesale / B2B inquiry handler (E6).
+ * Emails the quotation request to the site admin, then returns to the
+ * Wholesale page with a status flag.
+ */
+function nuvirahub_handle_wholesale() {
+	$back = wp_get_referer() ? wp_get_referer() : home_url( '/wholesale/' );
+	$back = remove_query_arg( array( 'wholesale' ), $back );
+
+	if ( ! isset( $_POST['nuvirahub_wholesale_nonce'] ) ||
+		! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nuvirahub_wholesale_nonce'] ) ), 'nuvirahub_wholesale' ) ) {
+		wp_safe_redirect( add_query_arg( 'wholesale', 'error', $back ) );
+		exit;
+	}
+
+	$company  = isset( $_POST['nv_company'] ) ? sanitize_text_field( wp_unslash( $_POST['nv_company'] ) ) : '';
+	$contact  = isset( $_POST['nv_contact'] ) ? sanitize_text_field( wp_unslash( $_POST['nv_contact'] ) ) : '';
+	$email    = isset( $_POST['nv_email'] ) ? sanitize_email( wp_unslash( $_POST['nv_email'] ) ) : '';
+	$product  = isset( $_POST['nv_product'] ) ? sanitize_text_field( wp_unslash( $_POST['nv_product'] ) ) : '';
+	$qty      = isset( $_POST['nv_qty'] ) ? sanitize_text_field( wp_unslash( $_POST['nv_qty'] ) ) : '';
+	$country  = isset( $_POST['nv_country'] ) ? sanitize_text_field( wp_unslash( $_POST['nv_country'] ) ) : '';
+	$notes    = isset( $_POST['nv_notes'] ) ? sanitize_textarea_field( wp_unslash( $_POST['nv_notes'] ) ) : '';
+
+	$to      = get_option( 'admin_email' );
+	$subject = 'Wholesale quotation request — ' . ( $company ? $company : $contact );
+	$body    = "WHOLESALE / B2B QUOTATION REQUEST\n\n"
+		. "Company: {$company}\n"
+		. "Contact person: {$contact}\n"
+		. "Email: {$email}\n"
+		. "Product required: {$product}\n"
+		. "Quantity required: {$qty}\n"
+		. "Destination country: {$country}\n\n"
+		. "Special requirements:\n{$notes}\n";
+	$headers = $email ? array( 'Reply-To: ' . $email ) : array();
+
+	wp_mail( $to, $subject, $body, $headers );
+
+	wp_safe_redirect( add_query_arg( 'wholesale', 'success', $back ) );
+	exit;
+}
+add_action( 'admin_post_nopriv_nuvirahub_wholesale', 'nuvirahub_handle_wholesale' );
+add_action( 'admin_post_nuvirahub_wholesale', 'nuvirahub_handle_wholesale' );
 
 /**
  * Output Schema.org JSON-LD structured data in the document head.

@@ -50,6 +50,8 @@ if ( ! function_exists( 'nv_link' ) ) {
 			<a class="nv-footer-link" href="<?php echo esc_url( nv_link( $nv_services, 'services' ) ); ?>#creative">Creative &amp; Design</a>
 			<a class="nv-footer-link" href="<?php echo esc_url( nv_link( $nv_logist, 'logistics' ) ); ?>">Sea &amp; Air Freight</a>
 			<a class="nv-footer-link" href="<?php echo esc_url( nv_link( nuvirahub_get_page_by_title( 'Spices' ), 'spices' ) ); ?>">Nuvira Spice Co.</a>
+			<a class="nv-footer-link" href="<?php echo esc_url( nv_link( nuvirahub_get_page_by_title( 'Shop' ), 'shop' ) ); ?>">Shop Catalogue</a>
+			<a class="nv-footer-link" href="<?php echo esc_url( nv_link( nuvirahub_get_page_by_title( 'Wholesale' ), 'wholesale' ) ); ?>">Wholesale &amp; B2B</a>
 		</div>
 		<div>
 			<h4>Company</h4>
