@@ -504,6 +504,20 @@
       });
     });
 
+    // Rating link near the title jumps to the Reviews tab + smooth scroll (E5)
+    const ratingLink = $('.nv-product-rating-link', page);
+    if (ratingLink) {
+      ratingLink.addEventListener('click', (e) => {
+        const tab = $('#nv-tab-reviews', page);
+        if (tab) { e.preventDefault(); tab.click(); tab.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+      });
+    }
+    // Open Reviews tab if the URL has #reviews
+    if (location.hash === '#reviews') {
+      const tab = $('#nv-tab-reviews', page);
+      if (tab) setTimeout(() => { tab.click(); tab.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 100);
+    }
+
     // Gallery thumbnails
     const thumbs = $$('.nv-product-thumb', page);
     const mainImg = $('.nv-product-main-img', page);

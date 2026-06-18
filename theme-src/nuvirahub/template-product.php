@@ -139,6 +139,17 @@ $main_img = nuvirahub_product_image_url( $product, 0 );
 				<p class="nv-product-tagline"><?php echo esc_html( $product['tagline'] ); ?></p>
 			<?php endif; ?>
 
+			<?php if ( ! empty( $product['rating']['count'] ) ) : ?>
+				<a class="nv-product-rating-link" href="#reviews">
+					<?php echo nuvirahub_stars( $product['rating']['avg'], 16 ); ?>
+					<span class="nv-product-rating-text">
+						<strong><?php echo esc_html( number_format( $product['rating']['avg'], 1 ) ); ?></strong>
+						<span class="nv-product-rating-sep">·</span>
+						<?php echo (int) $product['rating']['count']; ?> review<?php echo $product['rating']['count'] === 1 ? '' : 's'; ?>
+					</span>
+				</a>
+			<?php endif; ?>
+
 			<!-- Price -->
 			<div class="nv-product-price-row">
 				<span class="nv-product-price" id="nv-product-price"><?php echo esc_html( NUVIRAHUB_SPICE_CURRENCY . $default_opt['price'] ); ?></span>
@@ -218,6 +229,7 @@ $main_img = nuvirahub_product_image_url( $product, 0 );
 			<button class="nv-product-tab active" role="tab" aria-selected="true" data-tab="desc">Description</button>
 			<button class="nv-product-tab" role="tab" aria-selected="false" data-tab="specs">Specifications</button>
 			<button class="nv-product-tab" role="tab" aria-selected="false" data-tab="shipping">Shipping</button>
+			<button class="nv-product-tab" role="tab" aria-selected="false" data-tab="reviews" id="nv-tab-reviews">Reviews <?php echo $product['rating']['count'] ? '(' . (int) $product['rating']['count'] . ')' : ''; ?></button>
 		</div>
 
 		<div class="nv-product-tabpanel active" data-panel="desc">
@@ -261,6 +273,73 @@ $main_img = nuvirahub_product_image_url( $product, 0 );
 				<?php endif; ?>
 				<div><dt>Stock</dt><dd><?php echo esc_html( $stock[0] ); ?></dd></div>
 			</dl>
+		</div>
+
+		<div class="nv-product-tabpanel" data-panel="reviews" id="reviews" hidden>
+			<?php
+			$review_wa = nuvirahub_wa_link( sprintf(
+				"Hi %s! I'd like to leave a review for %s:\n\nRating (1-5): \nMy review: \n\nThanks!",
+				NUVIRAHUB_SPICE_BRAND,
+				$product['name']
+			) );
+			?>
+			<?php if ( $product['rating']['count'] > 0 ) : ?>
+				<div class="nv-reviews-summary">
+					<div class="nv-reviews-summary-score">
+						<span class="nv-reviews-avg"><?php echo esc_html( number_format( $product['rating']['avg'], 1 ) ); ?></span>
+						<span class="nv-reviews-of5">/ 5</span>
+					</div>
+					<div>
+						<?php echo nuvirahub_stars( $product['rating']['avg'], 20 ); ?>
+						<div class="nv-reviews-count"><?php echo (int) $product['rating']['count']; ?> review<?php echo $product['rating']['count'] === 1 ? '' : 's'; ?></div>
+					</div>
+					<a class="nv-btn-primary nv-reviews-cta" href="<?php echo esc_url( $review_wa ); ?>" target="_blank" rel="noopener">
+						<?php echo nv_icon( 'message-circle', 14 ); ?>Write a review
+					</a>
+				</div>
+
+				<ul class="nv-review-list">
+					<?php foreach ( $product['reviews'] as $r ) :
+						$rdate = ! empty( $r['date'] ) ? date_i18n( 'F j, Y', strtotime( $r['date'] ) ) : '';
+						$init  = mb_strtoupper( mb_substr( $r['author'] ?? 'A', 0, 1 ) );
+						?>
+						<li class="nv-review">
+							<div class="nv-review-head">
+								<div class="nv-review-avatar"><?php echo esc_html( $init ); ?></div>
+								<div class="nv-review-meta">
+									<div class="nv-review-author">
+										<?php echo esc_html( $r['author'] ?? 'Anonymous' ); ?>
+										<?php if ( ! empty( $r['verified'] ) ) : ?>
+											<span class="nv-review-verified" title="Verified buyer">
+												<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+												Verified buyer
+											</span>
+										<?php endif; ?>
+									</div>
+									<div class="nv-review-sub">
+										<?php echo nuvirahub_stars( (float) ( $r['rating'] ?? 0 ), 12 ); ?>
+										<?php if ( $rdate ) : ?><span class="nv-review-sub-sep">·</span><span class="nv-review-date"><?php echo esc_html( $rdate ); ?></span><?php endif; ?>
+										<?php if ( ! empty( $r['location'] ) ) : ?><span class="nv-review-sub-sep">·</span><span class="nv-review-location"><?php echo esc_html( $r['location'] ); ?></span><?php endif; ?>
+									</div>
+								</div>
+							</div>
+							<?php if ( ! empty( $r['title'] ) ) : ?>
+								<h4 class="nv-review-title"><?php echo esc_html( $r['title'] ); ?></h4>
+							<?php endif; ?>
+							<p class="nv-review-text"><?php echo esc_html( $r['text'] ?? '' ); ?></p>
+						</li>
+					<?php endforeach; ?>
+				</ul>
+			<?php else : ?>
+				<div class="nv-reviews-empty">
+					<div class="nv-reviews-empty-icon"><?php echo nv_icon( 'message-circle', 28 ); ?></div>
+					<h3>No reviews yet</h3>
+					<p>Be the first to share what you think about <?php echo esc_html( $product['name'] ); ?>. We collect reviews over WhatsApp — same-day reply.</p>
+					<a class="nv-btn-primary" href="<?php echo esc_url( $review_wa ); ?>" target="_blank" rel="noopener">
+						<?php echo nv_icon( 'message-circle', 14 ); ?>Write the first review
+					</a>
+				</div>
+			<?php endif; ?>
 		</div>
 
 		<div class="nv-product-tabpanel" data-panel="shipping" hidden>

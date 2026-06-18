@@ -155,6 +155,12 @@ $nv_wholesale_url = $nv_wholesale ? get_permalink( $nv_wholesale->ID ) : '';
 					<div class="nv-shop-cat"><?php echo esc_html( $nv_cats[ $p['category'] ] ?? $p['category'] ); ?></div>
 					<a class="nv-shop-title-link" href="<?php echo esc_url( $detail_url ); ?>"><h3><?php echo esc_html( $p['name'] ); ?></h3></a>
 					<p class="nv-shop-tagline"><?php echo esc_html( $p['tagline'] ?? '' ); ?></p>
+					<?php if ( ! empty( $p['rating']['count'] ) ) : ?>
+						<div class="nv-shop-rating">
+							<?php echo nuvirahub_stars( $p['rating']['avg'], 13 ); ?>
+							<span class="nv-shop-rating-text"><?php echo esc_html( number_format( $p['rating']['avg'], 1 ) ); ?> <span class="nv-shop-rating-count">(<?php echo (int) $p['rating']['count']; ?>)</span></span>
+						</div>
+					<?php endif; ?>
 					<?php if ( ! empty( $p['origin'] ) ) : ?>
 						<div class="nv-shop-meta"><?php echo nv_icon( 'map-pin', 12 ); ?><?php echo esc_html( $p['origin'] ); ?></div>
 					<?php endif; ?>

@@ -23,6 +23,12 @@ if ( ! defined( 'NUVIRAHUB_SPICE_CURRENCY' ) ) { define( 'NUVIRAHUB_SPICE_CURREN
 require get_template_directory() . '/inc/products.php';
 
 /**
+ * Product reviews seed data (E5) — placeholder reviews keyed by slug.
+ * Loaded BEFORE products.php uses it on first call.
+ */
+require get_template_directory() . '/inc/product-reviews.php';
+
+/**
  * Product permalink routing (E4) — /product/{slug}/ rewrite.
  */
 require get_template_directory() . '/inc/product-routing.php';

@@ -235,6 +235,9 @@ function nuvirahub_products() {
 		return $cache;
 	}
 
+	// Pull seed reviews (E5) — keyed by product slug.
+	$reviews_by_slug = function_exists( 'nuvirahub_seed_reviews' ) ? nuvirahub_seed_reviews() : array();
+
 	$out = array();
 	foreach ( nuvirahub_products_raw() as $p ) {
 		// SKU: NVH-<CAT3>-<SLUG4> e.g. NVH-SPI-CEYL
@@ -255,11 +258,61 @@ function nuvirahub_products() {
 		}
 		$p['url'] = home_url( '/product/' . $p['slug'] . '/' );
 
+		// Reviews + aggregate rating.
+		$p['reviews'] = isset( $reviews_by_slug[ $p['slug'] ] ) ? $reviews_by_slug[ $p['slug'] ] : array();
+		$p['rating']  = nuvirahub_aggregate_rating( $p['reviews'] );
+
 		$out[] = $p;
 	}
 
 	$cache = $out;
 	return $cache;
+}
+
+/**
+ * Aggregate a review list down to {avg, count}.
+ *
+ * @param array $reviews
+ * @return array{avg:float,count:int}
+ */
+function nuvirahub_aggregate_rating( $reviews ) {
+	if ( empty( $reviews ) ) {
+		return array( 'avg' => 0.0, 'count' => 0 );
+	}
+	$sum = 0; $n = 0;
+	foreach ( $reviews as $r ) {
+		$rt = isset( $r['rating'] ) ? (int) $r['rating'] : 0;
+		if ( $rt < 1 || $rt > 5 ) {
+			continue;
+		}
+		$sum += $rt;
+		$n++;
+	}
+	if ( $n === 0 ) {
+		return array( 'avg' => 0.0, 'count' => 0 );
+	}
+	return array( 'avg' => round( $sum / $n, 1 ), 'count' => $n );
+}
+
+/**
+ * Render a star-rating SVG row (E5).
+ *
+ * @param float $value 0..5; halves supported.
+ * @param int   $size  Star side length in px.
+ * @return string HTML
+ */
+function nuvirahub_stars( $value, $size = 14 ) {
+	$value = max( 0, min( 5, (float) $value ) );
+	ob_start();
+	echo '<span class="nv-stars" role="img" aria-label="' . esc_attr( number_format( $value, 1 ) . ' out of 5 stars' ) . '">';
+	for ( $i = 1; $i <= 5; $i++ ) {
+		$fill = max( 0, min( 1, $value - ( $i - 1 ) ) );
+		echo '<span class="nv-star" style="--fill:' . esc_attr( number_format( $fill * 100, 0 ) ) . '%">';
+		echo '<svg width="' . (int) $size . '" height="' . (int) $size . '" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.95 6.18 6.8.6-5.15 4.55 1.6 6.67L12 16.95 5.8 20.5l1.6-6.67L2.25 9.28l6.8-.6z"/></svg>';
+		echo '</span>';
+	}
+	echo '</span>';
+	return ob_get_clean();
 }
 
 /**
