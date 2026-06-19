@@ -29,9 +29,11 @@ require get_template_directory() . '/inc/products.php';
 require get_template_directory() . '/inc/product-reviews.php';
 
 /**
- * Product permalink routing (E4) — /product/{slug}/ rewrite.
+ * WooCommerce integration (Phase 2) — theme support, content wrappers,
+ * product import helpers. Replaces the Phase-1 custom /product/ routing,
+ * which WooCommerce now owns natively.
  */
-require get_template_directory() . '/inc/product-routing.php';
+require get_template_directory() . '/inc/woocommerce.php';
 
 /**
  * Build a WhatsApp deep-link with a pre-filled message.
