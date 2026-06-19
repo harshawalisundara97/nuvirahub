@@ -183,4 +183,31 @@ $nv_wholesale_url = $nv_wholesale ? get_permalink( $nv_wholesale->ID ) : '';
 	</div>
 </div>
 
+<!-- E8: WhatsApp order support -->
+<div class="nv-section nv-reveal" style="padding-top:0">
+	<div class="nv-shop-wa-band">
+		<div class="nv-shop-wa-icon"><?php echo nv_icon( 'message-circle', 26 ); ?></div>
+		<div class="nv-shop-wa-copy">
+			<h2>Prefer to order by chat?</h2>
+			<p>Tell us the products, weights and your delivery country on WhatsApp — we confirm the total and shipping date, usually within 2 hours. No checkout forms, bundle discounts available.</p>
+		</div>
+		<a class="nv-btn-primary nv-shop-wa-btn" href="<?php echo esc_url( nuvirahub_wa_link( 'Hi ' . NUVIRAHUB_SPICE_BRAND . '! I would like to place an order. Here is my wishlist:' ) ); ?>" target="_blank" rel="noopener">
+			<?php echo nv_icon( 'message-circle', 16 ); ?>Order on WhatsApp
+		</a>
+	</div>
+</div>
+
+<!-- E8: Newsletter -->
+<div class="nv-section nv-reveal" style="padding-top:0">
+	<div class="nv-newsletter">
+		<div class="nv-tag" style="margin-bottom:12px">Stay in the loop</div>
+		<h2 class="nv-title" style="font-size:32px;margin-bottom:8px">New spices, recipes &amp; offers — monthly.</h2>
+		<p style="font-size:14px;color:var(--muted2)">Be first to hear about new arrivals and seasonal bundles. No spam, ever.</p>
+		<form class="nv-newsletter-form" action="<?php echo esc_url( nuvirahub_wa_link( 'Hi! Please add me to your Nuvira Spice Co. updates list. My email: ' ) ); ?>" method="get" target="_blank" rel="noopener">
+			<input type="email" name="subscribe" placeholder="Your email address" required>
+			<button class="nv-btn-primary" style="padding:11px 24px" type="submit">Subscribe</button>
+		</form>
+	</div>
+</div>
+
 <?php get_footer();

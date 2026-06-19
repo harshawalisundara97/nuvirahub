@@ -4040,3 +4040,50 @@ html[data-theme="light"] .nv-star { color: rgba(16,21,40,.18); }
   font-size: 15px;
   color: var(--text);
 }
+
+/* ============================================================
+   42 — SHOP WHATSAPP ORDER-SUPPORT BAND (E8)
+   ============================================================ */
+.nv-shop-wa-band {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  padding: 28px 32px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(37,211,102,.15), rgba(20,184,166,.08));
+  border: 1px solid rgba(37,211,102,.3);
+  flex-wrap: wrap;
+}
+.nv-shop-wa-icon {
+  flex-shrink: 0;
+  width: 56px; height: 56px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  background: rgba(37,211,102,.18);
+  color: #25D366;
+}
+.nv-shop-wa-copy { flex: 1; min-width: 240px; }
+.nv-shop-wa-copy h2 {
+  font-family: var(--display);
+  font-size: 22px;
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+.nv-shop-wa-copy p {
+  font-size: 14px;
+  color: var(--muted2);
+  line-height: 1.6;
+  margin: 0;
+  max-width: 620px;
+}
+.nv-shop-wa-btn {
+  flex-shrink: 0;
+  display: inline-flex; align-items: center; gap: 8px;
+  background: #25D366 !important;
+  border-color: #25D366 !important;
+}
+.nv-shop-wa-btn:hover { box-shadow: 0 8px 28px rgba(37,211,102,.4); }
+@media (max-width: 700px) {
+  .nv-shop-wa-band { padding: 22px; }
+  .nv-shop-wa-btn { width: 100%; justify-content: center; }
+}
