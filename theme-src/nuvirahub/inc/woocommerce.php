@@ -64,6 +64,54 @@ add_filter( 'loop_shop_columns', function () {
 } );
 
 /**
+ * Retire the old WhatsApp-only /spices/ page — send it to the real Shop
+ * so there's a single, clear buying path.
+ */
+add_action( 'template_redirect', function () {
+	if ( is_page( 'spices' ) ) {
+		$shop = wc_get_page_id( 'shop' );
+		wp_safe_redirect( $shop ? get_permalink( $shop ) : home_url( '/shop/' ), 301 );
+		exit;
+	}
+} );
+
+/**
+ * Make sure the AJAX cart-fragments script is loaded so the header cart
+ * count + mini-cart refresh without a page reload.
+ */
+add_action( 'wp_enqueue_scripts', function () {
+	if ( class_exists( 'WooCommerce' ) ) {
+		wp_enqueue_script( 'wc-cart-fragments' );
+	}
+} );
+
+/**
+ * Header cart count + mini-cart contents, refreshed via cart fragments.
+ */
+function nuvirahub_cart_count_fragment() {
+	$count = WC()->cart ? WC()->cart->get_cart_contents_count() : 0;
+	ob_start();
+	?><span class="nv-cart-count<?php echo $count ? ' has-items' : ''; ?>"><?php echo (int) $count; ?></span><?php
+	return ob_get_clean();
+}
+
+function nuvirahub_minicart_fragment() {
+	ob_start();
+	?>
+	<div class="nv-minicart-body">
+		<?php woocommerce_mini_cart(); ?>
+	</div>
+	<?php
+	return ob_get_clean();
+}
+
+add_filter( 'woocommerce_add_to_cart_fragments', function ( $fragments ) {
+	$fragments['span.nv-cart-count']   = nuvirahub_cart_count_fragment();
+	$fragments['div.nv-minicart-body'] = nuvirahub_minicart_fragment();
+	return $fragments;
+} );
+
+/**
  * Shop header: product search bar + "Shop by category" tiles.
  * Tiles show on the main Shop page (all categories, even empty ones, so new
  * lines like Samahan/Biscuits/Pharmacy appear before they have products).

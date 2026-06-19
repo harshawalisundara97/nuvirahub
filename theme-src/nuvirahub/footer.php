@@ -100,6 +100,20 @@ if ( ! function_exists( 'nv_link' ) ) {
 	<span class="nv-whatsapp-tooltip">Chat with us on WhatsApp</span>
 </a>
 
+<?php if ( class_exists( 'WooCommerce' ) ) : ?>
+<!-- Slide-out mini-cart -->
+<div class="nv-cart-overlay" id="nv-cart-overlay" hidden></div>
+<aside class="nv-cart-drawer" id="nv-cart-drawer" aria-label="Shopping cart" aria-hidden="true">
+	<div class="nv-cart-drawer-head">
+		<h3>Your cart</h3>
+		<button class="nv-cart-close" id="nv-cart-close" type="button" aria-label="Close cart">&times;</button>
+	</div>
+	<div class="nv-minicart-body">
+		<?php woocommerce_mini_cart(); ?>
+	</div>
+</aside>
+<?php endif; ?>
+
 <?php wp_footer(); ?>
 </body>
 </html>

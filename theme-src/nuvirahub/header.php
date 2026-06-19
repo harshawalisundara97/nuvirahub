@@ -93,6 +93,16 @@
 		?>
 	</a>
 
+	<?php if ( class_exists( 'WooCommerce' ) ) :
+		$nv_cart_url  = function_exists( 'wc_get_cart_url' ) ? wc_get_cart_url() : home_url( '/cart/' );
+		$nv_cart_qty  = ( WC()->cart ) ? WC()->cart->get_cart_contents_count() : 0;
+	?>
+	<button class="nv-cart-toggle" id="nv-cart-toggle" type="button" aria-label="Open cart" data-cart-url="<?php echo esc_url( $nv_cart_url ); ?>">
+		<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+		<span class="nv-cart-count<?php echo $nv_cart_qty ? ' has-items' : ''; ?>"><?php echo (int) $nv_cart_qty; ?></span>
+	</button>
+	<?php endif; ?>
+
 	<button class="nv-theme-toggle" id="nv-theme-toggle" type="button" aria-label="Switch between light and dark theme" title="Toggle theme">
 		<svg class="nv-icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><line x1="12" y1="2.5" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="21.5"/><line x1="2.5" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="21.5" y2="12"/><line x1="5.2" y1="5.2" x2="6.9" y2="6.9"/><line x1="17.1" y1="17.1" x2="18.8" y2="18.8"/><line x1="5.2" y1="18.8" x2="6.9" y2="17.1"/><line x1="17.1" y1="6.9" x2="18.8" y2="5.2"/></svg>
 		<svg class="nv-icon-moon" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>

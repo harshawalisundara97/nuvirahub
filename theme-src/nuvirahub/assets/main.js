@@ -38,6 +38,45 @@
     });
   })();
 
+  /* ---------- 0b. Mini-cart drawer (WooCommerce) ---------- */
+  (function () {
+    const toggle  = $('#nv-cart-toggle');
+    const drawer  = $('#nv-cart-drawer');
+    const overlay = $('#nv-cart-overlay');
+    const closeBtn = $('#nv-cart-close');
+    if (!toggle || !drawer || !overlay) return;
+
+    const open = () => {
+      drawer.classList.add('open');
+      overlay.hidden = false;
+      requestAnimationFrame(() => overlay.classList.add('show'));
+      drawer.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('nv-cart-locked');
+    };
+    const close = () => {
+      drawer.classList.remove('open');
+      overlay.classList.remove('show');
+      drawer.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('nv-cart-locked');
+      setTimeout(() => { overlay.hidden = true; }, 300);
+    };
+
+    toggle.addEventListener('click', (e) => {
+      e.preventDefault();
+      drawer.classList.contains('open') ? close() : open();
+    });
+    overlay.addEventListener('click', close);
+    if (closeBtn) closeBtn.addEventListener('click', close);
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+
+    // When WooCommerce refreshes fragments after add-to-cart, pop the drawer open.
+    document.body.addEventListener('added_to_cart', open);
+    // jQuery-triggered event fallback (WooCommerce fires via jQuery)
+    if (window.jQuery) {
+      window.jQuery(document.body).on('added_to_cart', open);
+    }
+  })();
+
   /* ---------- 0. Page loader fade-out ---------- */
   const loader = $('#nv-loader');
   if (loader) {
