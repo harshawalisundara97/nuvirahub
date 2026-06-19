@@ -41,7 +41,7 @@ add_action( 'init', function () {
 	remove_action( 'woocommerce_after_main_content', 'woocommerce_output_content_wrapper_end', 10 );
 
 	add_action( 'woocommerce_before_main_content', function () {
-		echo '<div class="nv-section nv-reveal nv-woo"><div class="nv-woo-inner">';
+		echo '<div class="nv-section nv-woo"><div class="nv-woo-inner">';
 	}, 10 );
 	add_action( 'woocommerce_after_main_content', function () {
 		echo '</div></div>';
