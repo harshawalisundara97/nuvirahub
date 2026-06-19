@@ -46,6 +46,11 @@ add_action( 'init', function () {
 	add_action( 'woocommerce_after_main_content', function () {
 		echo '</div></div>';
 	}, 10 );
+
+	// The brand design is full-width — drop WooCommerce's sidebar entirely.
+	// (Also stops the get_sidebar() deprecation + default-widget dump on a
+	// theme that has no sidebar.php.)
+	remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
 } );
 
 /* Products per page on the shop archive. */
