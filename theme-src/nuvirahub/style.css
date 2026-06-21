@@ -4467,3 +4467,71 @@ body.nv-cart-locked { overflow: hidden; }
 .nv-minicart-body .woocommerce-mini-cart__buttons a:not(.checkout) {
   background: var(--glass) !important; color: var(--text) !important; border: 1px solid var(--border2) !important;
 }
+
+/* ============================================================
+   46 — WOOCOMMERCE BLOCK CART / CHECKOUT (dark brand skin)
+   ============================================================ */
+.wp-block-woocommerce-checkout,
+.wp-block-woocommerce-cart { color: var(--text); }
+.wc-block-components-form .wc-block-components-text-input input,
+.wc-block-components-text-input input.input-text,
+.wc-block-components-address-form input,
+.wc-block-components-text-input input,
+.wc-block-components-select__select,
+.wc-block-components-combobox input,
+.wc-block-components-textarea {
+  background: var(--glass) !important;
+  border: 1px solid var(--border) !important;
+  color: var(--text) !important;
+  border-radius: 10px !important;
+}
+.wc-block-components-text-input input:focus,
+.wc-block-components-combobox input:focus {
+  border-color: var(--accent2) !important;
+  box-shadow: 0 0 0 1px var(--accent2) !important;
+}
+.wc-block-components-text-input label,
+.wc-block-components-checkout-step__title,
+.wc-block-components-form .wc-block-components-checkout-step__title,
+.wc-block-components-totals-item__label,
+.wc-block-components-product-name,
+.wc-block-components-text-input.is-active label {
+  color: var(--text) !important;
+}
+.wc-block-components-text-input label { color: var(--muted2) !important; }
+.wc-block-components-checkout-step__description,
+.wc-block-components-totals-item__description,
+.wc-block-checkout__actions .wc-block-components-checkout-return-to-cart-button {
+  color: var(--muted) !important;
+}
+.wc-block-checkout__sidebar .wc-block-components-totals-wrapper,
+.wp-block-woocommerce-checkout-order-summary-block,
+.wc-block-components-order-summary {
+  background: var(--glass) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 14px !important;
+}
+.wc-block-components-totals-item__value, .wc-block-components-totals-footer-item { color: var(--text) !important; }
+.wc-block-components-radio-control__option, .wc-block-components-shipping-rates-control__package {
+  color: var(--text) !important;
+  border-color: var(--border) !important;
+}
+.wc-block-checkout__payment-method .wc-block-components-radio-control__option { background: var(--glass); border-radius: 10px; }
+/* Section card panels */
+.wc-block-checkout__form .wc-block-components-checkout-step {
+  background: var(--glass);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 20px !important;
+  margin-bottom: 16px;
+}
+/* Place order + proceed buttons (brand gradient) */
+.wc-block-cart__submit-button,
+.wc-block-components-checkout-place-order-button,
+.wc-block-components-button.contained {
+  background: linear-gradient(135deg, var(--accent), #8b5cf6) !important;
+  color: #fff !important;
+  border-radius: 10px !important;
+}
+.wc-block-cart-items__row, .wc-block-components-order-summary-item { border-color: var(--border) !important; }
+.wc-block-components-product-metadata, .wc-block-cart-item__total { color: var(--muted2) !important; }
