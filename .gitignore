@@ -14,3 +14,11 @@ nuvirahub_full_website_ui.html
 dist/nuvirahub_live.sql
 dist/recover-admin.php
 dist/nuvirahub/
+
+# Full-site deploy packages (large + contain DB/credentials) — never commit
+/dist/live-package/
+/dist/nuvirahub-FULL-SITE.zip
+/dist/nuvirahub-FULL-SITE/
+/dist/nuvirahub-FULL-SITE1/
+/dist/nuvirahub-FULL-SITE*/
+/260622/
