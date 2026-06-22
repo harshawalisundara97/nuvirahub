@@ -64,6 +64,56 @@ add_filter( 'loop_shop_columns', function () {
 } );
 
 /**
+ * Order-received page: "Send your payment slip on WhatsApp" step.
+ * For bank-transfer orders, show clear 1-2-3 instructions and a one-tap
+ * WhatsApp button pre-filled with the order number + total, so the buyer
+ * can attach their transfer slip and we can confirm + ship.
+ */
+add_action( 'woocommerce_thankyou', function ( $order_id ) {
+	if ( ! $order_id ) {
+		return;
+	}
+	$order = wc_get_order( $order_id );
+	if ( ! $order ) {
+		return;
+	}
+	// Only show for bank-transfer (BACS) orders.
+	if ( 'bacs' !== $order->get_payment_method() ) {
+		return;
+	}
+
+	$num   = $order->get_order_number();
+	$total = trim( html_entity_decode( wp_strip_all_tags( wc_price( $order->get_total(), array( 'currency' => $order->get_currency() ) ) ) ) );
+	$name  = $order->get_billing_first_name();
+
+	$msg = sprintf(
+		"Hi Nuvirahub! I've placed order #%s (total %s)%s and paid by bank transfer. Here is my payment slip:",
+		$num,
+		$total,
+		$name ? " — {$name}" : ''
+	);
+	$wa = nuvirahub_wa_link( $msg );
+	?>
+	<div class="nv-payslip">
+		<div class="nv-payslip-head">
+			<span class="nv-payslip-badge">Action needed</span>
+			<h2>Almost done — send us your payment slip</h2>
+			<p>Your order <strong>#<?php echo esc_html( $num ); ?></strong> is reserved. To confirm it and start shipping, please:</p>
+		</div>
+		<ol class="nv-payslip-steps">
+			<li><strong>Transfer <?php echo esc_html( $total ); ?></strong> to our Latvia bank account (details below &amp; emailed to you).</li>
+			<li><strong>Send us the payment slip on WhatsApp</strong> (screenshot or photo) using the button below.</li>
+			<li>We verify the payment and <strong>ship your order</strong> — you'll get a confirmation.</li>
+		</ol>
+		<a class="nv-payslip-wa" href="<?php echo esc_url( $wa ); ?>" target="_blank" rel="noopener">
+			<?php echo nv_icon( 'message-circle', 18 ); ?>Send Payment Slip on WhatsApp
+		</a>
+		<p class="nv-payslip-note">Order reference <strong>#<?php echo esc_html( $num ); ?></strong> is already filled in your message — just attach the slip image.</p>
+	</div>
+	<?php
+}, 8 );
+
+/**
  * Retire the old WhatsApp-only /spices/ page — send it to the real Shop
  * so there's a single, clear buying path.
  */
