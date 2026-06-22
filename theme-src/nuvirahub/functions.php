@@ -206,9 +206,33 @@ function nuvirahub_assets() {
 	$css_ver  = file_exists( $css_path ) ? filemtime( $css_path ) : '3.1.0';
 	$js_ver   = file_exists( $js_path ) ? filemtime( $js_path ) : '3.1.0';
 	wp_enqueue_style( 'nuvirahub-style', get_stylesheet_uri(), array( 'nuvirahub-fonts' ), $css_ver );
-	wp_enqueue_script( 'nuvirahub-main', get_template_directory_uri() . '/assets/main.js', array(), $js_ver, true );
+	// Load main.js deferred so it never blocks first render.
+	wp_enqueue_script( 'nuvirahub-main', get_template_directory_uri() . '/assets/main.js', array(), $js_ver, array( 'in_footer' => true, 'strategy' => 'defer' ) );
 }
 add_action( 'wp_enqueue_scripts', 'nuvirahub_assets' );
+
+/**
+ * Performance: speed-ups that change nothing visually.
+ */
+// Preconnect to the Google Fonts hosts so the font CSS + files start sooner.
+add_filter( 'wp_resource_hints', function ( $hints, $relation ) {
+	if ( 'preconnect' === $relation ) {
+		$hints[] = array( 'href' => 'https://fonts.googleapis.com' );
+		$hints[] = array( 'href' => 'https://fonts.gstatic.com', 'crossorigin' );
+	}
+	return $hints;
+}, 10, 2 );
+
+// Drop the WordPress emoji detection script/styles (unused; native emoji still work).
+add_action( 'init', function () {
+	remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+	remove_action( 'wp_print_styles', 'print_emoji_styles' );
+	remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
+	remove_action( 'admin_print_styles', 'print_emoji_styles' );
+	remove_filter( 'the_content_feed', 'wp_staticize_emoji' );
+	remove_filter( 'comment_text_rss', 'wp_staticize_emoji' );
+	remove_filter( 'wp_mail', 'wp_staticize_emoji_for_email' );
+} );
 
 /**
  * Content width.
