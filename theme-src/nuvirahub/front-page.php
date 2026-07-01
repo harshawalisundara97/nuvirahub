@@ -82,6 +82,25 @@ $nv_has_poster  = file_exists( get_template_directory() . '/assets/video/ai-hand
 	</div>
 </div>
 
+<!-- CLIENT LOGO SHOWCASE -->
+<section class="nv-clients" aria-label="Our clients">
+	<div class="nv-clients-head">
+		<span class="nv-clients-eyebrow">Trusted by teams &amp; founders we work with</span>
+	</div>
+	<div class="nv-clients-track-wrap">
+		<div class="nv-clients-track">
+			<?php
+			$clients = array( 'Nuvira Spice Co.', 'SL Festival', 'Ceylon Exports', 'Latvia Trade', 'StartUp Lanka', 'Dehiwala Logistics', 'CloudWorks', 'BrandLab', 'ERP Systems' );
+			for ( $i = 0; $i < 2; $i++ ) {
+				foreach ( $clients as $client ) {
+					echo '<span class="nv-client-logo">' . esc_html( $client ) . '</span>';
+				}
+			}
+			?>
+		</div>
+	</div>
+</section>
+
 <!-- STARTUP LAUNCHPAD SPOTLIGHT -->
 <div class="nv-section nv-reveal" style="padding-bottom:0">
 	<div class="nv-spotlight">

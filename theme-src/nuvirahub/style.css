@@ -71,16 +71,13 @@ a { color: inherit; text-decoration: none; }
   display: flex; align-items: center; justify-content: space-between;
   background: transparent;
   border-bottom: 1px solid var(--border);
-  transition: transform .35s var(--ease), border-color .3s, box-shadow .3s;
+  transition: border-color .3s, box-shadow .3s;
   gap: 24px;
-  will-change: transform;
 }
 .nv-nav.scrolled {
   border-bottom-color: rgba(255,255,255,0.14);
   box-shadow: 0 8px 32px rgba(0,0,0,0.45);
 }
-/* Smart header: slides up out of view when scrolling down, back on scroll up */
-.nv-nav.nv-nav-hidden { transform: translateY(-100%); }
 /* Blur lives on a pseudo-element so .nv-nav itself isn't a containing block
    for the fixed mobile menu overlay (backdrop-filter would trap it). */
 .nv-nav::before {
@@ -477,6 +474,54 @@ body.nv-menu-open { overflow: hidden; }
   border-radius: 50%;
   background: var(--accent2);
   display: inline-block;
+}
+
+/* Client logo showcase — auto-swiping */
+.nv-clients {
+  padding: 56px 0 60px;
+  overflow: hidden;
+}
+.nv-clients-head {
+  text-align: center;
+  margin-bottom: 28px;
+  padding: 0 24px;
+}
+.nv-clients-eyebrow {
+  font-family: var(--body);
+  font-size: 12px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--muted2);
+}
+.nv-clients-track-wrap {
+  position: relative;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+          mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+}
+.nv-clients-track {
+  display: flex;
+  align-items: center;
+  gap: 64px;
+  width: max-content;
+  animation: marquee 32s linear infinite;
+}
+.nv-clients-track-wrap:hover .nv-clients-track { animation-play-state: paused; }
+.nv-client-logo {
+  flex: 0 0 auto;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: -.01em;
+  color: var(--muted2);
+  opacity: .55;
+  white-space: nowrap;
+  filter: grayscale(1);
+  transition: opacity .3s var(--ease), color .3s var(--ease);
+}
+.nv-client-logo:hover { opacity: 1; color: var(--text); }
+@media (prefers-reduced-motion: reduce) {
+  .nv-clients-track { animation: none; flex-wrap: wrap; justify-content: center; }
 }
 
 /* ============================================================
@@ -1112,6 +1157,15 @@ body.nv-menu-open { overflow: hidden; }
   font-size: 16px;
   line-height: 1.8;
   color: var(--muted2);
+}
+/* Wider container for WooCommerce Cart / Checkout / My Account —
+   the block layouts need room for a two-column split. */
+.nv-content-wide {
+  max-width: 1180px;
+  padding: 0 32px 80px;
+}
+@media (max-width: 700px) {
+  .nv-content-wide { padding: 0 20px 60px; }
 }
 .nv-content h1, .nv-content h2, .nv-content h3 {
   color: var(--text);
@@ -4475,7 +4529,18 @@ body.nv-cart-locked { overflow: hidden; }
    46 — WOOCOMMERCE BLOCK CART / CHECKOUT (dark brand skin)
    ============================================================ */
 .wp-block-woocommerce-checkout,
-.wp-block-woocommerce-cart { color: var(--text); }
+.wp-block-woocommerce-cart { color: var(--text); margin-top: 8px; }
+/* Give the two-column layout (form + order-summary sidebar) breathing room */
+.wc-block-checkout__main,
+.wc-block-cart__main { padding-right: 8px; }
+.wc-block-checkout__sidebar,
+.wc-block-cart__sidebar { padding-left: 8px; }
+@media (min-width: 831px) {
+  .wc-block-checkout .wc-block-components-sidebar-layout,
+  .wc-block-cart .wc-block-components-sidebar-layout { gap: 40px; }
+}
+.wc-block-components-checkout-step__container,
+.wc-block-components-checkout-step__heading-content { margin: 0; }
 .wc-block-components-form .wc-block-components-text-input input,
 .wc-block-components-text-input input.input-text,
 .wc-block-components-address-form input,

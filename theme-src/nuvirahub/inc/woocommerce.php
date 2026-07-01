@@ -101,7 +101,7 @@ add_action( 'woocommerce_thankyou', function ( $order_id ) {
 			<p>Your order <strong>#<?php echo esc_html( $num ); ?></strong> is reserved. To confirm it and start shipping, please:</p>
 		</div>
 		<ol class="nv-payslip-steps">
-			<li><strong>Transfer <?php echo esc_html( $total ); ?></strong> to our Latvia bank account (details below &amp; emailed to you).</li>
+			<li><strong>Transfer <?php echo esc_html( $total ); ?></strong> to our EUR bank account (details below &amp; emailed to you).</li>
 			<li><strong>Send us the payment slip on WhatsApp</strong> (screenshot or photo) using the button below.</li>
 			<li>We verify the payment and <strong>ship your order</strong> — you'll get a confirmation.</li>
 		</ol>

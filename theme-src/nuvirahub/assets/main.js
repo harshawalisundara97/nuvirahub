@@ -90,27 +90,12 @@
     setTimeout(hide, 3000);
   }
 
-  /* ---------- 1. Smart sticky nav: style + hide-on-down / reveal-on-up ---------- */
+  /* ---------- 1. Sticky nav: background style on scroll (always visible) ---------- */
   const nav = $('#nv-nav');
   if (nav) {
-    let lastY = window.scrollY;
     let ticking = false;
-    const REVEAL_AT_TOP = 90;   // never hide near the very top
-    const DELTA = 6;            // ignore tiny jitters
     const update = () => {
-      const y = Math.max(0, window.scrollY);
-      nav.classList.toggle('scrolled', y > 20);
-      // don't hide while the mobile menu or cart drawer is open
-      const locked = document.body.classList.contains('nv-menu-open') ||
-                     document.body.classList.contains('nv-cart-locked');
-      if (!locked && Math.abs(y - lastY) > DELTA) {
-        if (y > lastY && y > REVEAL_AT_TOP) {
-          nav.classList.add('nv-nav-hidden');   // scrolling down
-        } else {
-          nav.classList.remove('nv-nav-hidden'); // scrolling up
-        }
-        lastY = y;
-      }
+      nav.classList.toggle('scrolled', Math.max(0, window.scrollY) > 20);
       ticking = false;
     };
     window.addEventListener('scroll', () => {
@@ -118,60 +103,6 @@
     }, { passive: true });
     update();
   }
-
-  /* ---------- 1b. Smooth (eased) wheel scrolling — desktop only ---------- */
-  (function () {
-    if (reduceMotion) return;
-    if (!window.matchMedia('(pointer:fine)').matches) return; // skip touch/trackpad-less
-
-    const EASE = 0.09;   // lower = smoother/slower glide
-    const STEP = 0.9;    // <1 slightly reduces scroll speed
-    let target = window.scrollY;
-    let current = window.scrollY;
-    let running = false;
-
-    const maxScroll = () =>
-      (document.documentElement.scrollHeight || document.body.scrollHeight) - window.innerHeight;
-    const clamp = (v) => Math.max(0, Math.min(v, maxScroll()));
-
-    // Bail to native scrolling when the pointer is over an inner scrollable area
-    // (cart drawer, modals, selects) or an overlay is open.
-    const overScrollable = (el) => {
-      while (el && el !== document.body) {
-        const oy = getComputedStyle(el).overflowY;
-        if ((oy === 'auto' || oy === 'scroll') && el.scrollHeight > el.clientHeight + 2) return true;
-        el = el.parentElement;
-      }
-      return false;
-    };
-
-    const loop = () => {
-      current += (target - current) * EASE;
-      if (Math.abs(target - current) < 0.4) {
-        current = target;
-        window.scrollTo(0, current);
-        running = false;
-        return;
-      }
-      window.scrollTo(0, current);
-      requestAnimationFrame(loop);
-    };
-
-    window.addEventListener('wheel', (e) => {
-      if (e.ctrlKey) return;                       // pinch-zoom
-      if (document.body.classList.contains('nv-cart-locked') ||
-          document.body.classList.contains('nv-menu-open')) return;
-      if (overScrollable(e.target)) return;        // let inner panels scroll
-      e.preventDefault();
-      const unit = e.deltaMode === 1 ? 16 : (e.deltaMode === 2 ? window.innerHeight : 1);
-      target = clamp(target + e.deltaY * unit * STEP);
-      if (!running) { running = true; current = window.scrollY; requestAnimationFrame(loop); }
-    }, { passive: false });
-
-    // Keep target in sync when scrolled by other means (keyboard, scrollbar, anchors).
-    window.addEventListener('scroll', () => { if (!running) target = window.scrollY; }, { passive: true });
-    window.addEventListener('resize', () => { target = clamp(target); });
-  })();
 
   /* ---------- 2. Mobile menu toggle ---------- */
   const toggle = $('#nv-toggle');
