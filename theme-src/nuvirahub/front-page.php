@@ -188,38 +188,6 @@ $nv_has_poster  = file_exists( get_template_directory() . '/assets/video/ai-hand
 
 <div class="nv-divider"></div>
 
-<!-- MERCHANDISING ROWS (E7) -->
-<div class="nv-section nv-reveal" style="padding-bottom:0">
-	<?php
-	$shop_pg  = nuvirahub_get_page_by_title( 'Shop' );
-	$shop_url = $shop_pg ? get_permalink( $shop_pg->ID ) : home_url( '/shop/' );
-
-	get_template_part( 'parts/product-row', null, array(
-		'badge'     => 'bestseller',
-		'eyebrow'   => 'Nuvira Spice Co.',
-		'title'     => 'Best sellers',
-		'cta_url'   => $shop_url,
-		'cta_label' => 'Shop all',
-	) );
-	get_template_part( 'parts/product-row', null, array(
-		'badge'     => 'new',
-		'eyebrow'   => 'Just landed',
-		'title'     => 'New arrivals',
-		'cta_url'   => $shop_url,
-		'cta_label' => 'Browse catalogue',
-	) );
-	get_template_part( 'parts/product-row', null, array(
-		'badge'     => 'sale',
-		'eyebrow'   => 'Limited time',
-		'title'     => 'Special offers',
-		'cta_url'   => $shop_url,
-		'cta_label' => 'See all offers',
-	) );
-	?>
-</div>
-
-<div class="nv-divider"></div>
-
 <div class="nv-section nv-reveal">
 	<div class="nv-tag">How we work</div>
 	<h2 class="nv-title">A simple, proven process</h2>
