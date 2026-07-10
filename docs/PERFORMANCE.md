@@ -9,7 +9,10 @@ Applied to speed up the site without changing how it looks or works.
 ## On the server — add to the site root `.htaccess` (NOT in the theme zip)
 The block below lives in `wp-content`'s parent (`/.htaccess`, same file WordPress
 manages). On localhost it's already added. **On live nuvirahub.com, paste this
-block ABOVE the `# BEGIN WordPress` line:**
+block ABOVE the `# BEGIN WordPress` line** — and below any existing
+`# BEGIN LSCACHE` / `# END NON_LSCACHE` block if your host's LiteSpeed
+Cache plugin already added one (don't touch or reorder that block, it's
+plugin-managed):
 
 ```apache
 # ===== Nuvirahub performance (safe, no visual change) =====

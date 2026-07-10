@@ -77,6 +77,112 @@
     }
   })();
 
+  /* ---------- 0c. AI support chat widget ---------- */
+  (function () {
+    const toggle    = $('#nv-chat-toggle');
+    const drawer    = $('#nv-chat-drawer');
+    const overlay   = $('#nv-chat-overlay');
+    const closeBtn  = $('#nv-chat-close');
+    const form      = $('#nv-chat-form');
+    const input     = $('#nv-chat-input');
+    const messages  = $('#nv-chat-messages');
+    if (!toggle || !drawer || !overlay || !form || !input || !messages) return;
+
+    let history = [];
+    let sending = false;
+
+    const open = () => {
+      drawer.classList.add('open');
+      overlay.hidden = false;
+      requestAnimationFrame(() => overlay.classList.add('show'));
+      drawer.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('nv-chat-locked');
+      input.focus();
+    };
+    const close = () => {
+      drawer.classList.remove('open');
+      overlay.classList.remove('show');
+      drawer.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('nv-chat-locked');
+      setTimeout(() => { overlay.hidden = true; }, 300);
+    };
+
+    const addMessage = (text, role) => {
+      const el = document.createElement('div');
+      el.className = 'nv-chat-msg ' + (role === 'user' ? 'nv-chat-msg-user' : 'nv-chat-msg-bot');
+      el.textContent = text;
+      messages.appendChild(el);
+      messages.scrollTop = messages.scrollHeight;
+      return el;
+    };
+
+    const addWaButton = (link) => {
+      const wrap = document.createElement('div');
+      wrap.className = 'nv-chat-msg nv-chat-msg-bot';
+      wrap.innerHTML = '<a class="nv-chat-wa-btn" href="' + link + '" target="_blank" rel="noopener">Continue on WhatsApp →</a>';
+      messages.appendChild(wrap);
+      messages.scrollTop = messages.scrollHeight;
+    };
+
+    const addTyping = () => {
+      const el = document.createElement('div');
+      el.className = 'nv-chat-msg nv-chat-msg-bot nv-chat-msg-typing';
+      el.innerHTML = '<span></span><span></span><span></span>';
+      messages.appendChild(el);
+      messages.scrollTop = messages.scrollHeight;
+      return el;
+    };
+
+    toggle.addEventListener('click', () => {
+      drawer.classList.contains('open') ? close() : open();
+    });
+    overlay.addEventListener('click', close);
+    if (closeBtn) closeBtn.addEventListener('click', close);
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && drawer.classList.contains('open')) close(); });
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const text = input.value.trim();
+      if (!text || sending) return;
+
+      sending = true;
+      addMessage(text, 'user');
+      history.push({ role: 'user', content: text });
+      input.value = '';
+      const typingEl = addTyping();
+
+      try {
+        const nonceInput = form.querySelector('#nuvirahub_ai_chat_nonce');
+        const body = new URLSearchParams();
+        body.set('action', 'nuvirahub_ai_chat');
+        body.set('message', text);
+        body.set('history', JSON.stringify(history.slice(-6)));
+        if (nonceInput) body.set('nuvirahub_ai_chat_nonce', nonceInput.value);
+
+        const ajaxUrl = (window.nvAjax && window.nvAjax.url) || '/wp-admin/admin-post.php';
+        const res = await fetch(ajaxUrl, { method: 'POST', body });
+        const json = await res.json();
+
+        typingEl.remove();
+
+        if (json && json.success && json.data) {
+          addMessage(json.data.reply, 'bot');
+          history.push({ role: 'assistant', content: json.data.reply });
+          if (json.data.needs_human && json.data.wa_link) {
+            addWaButton(json.data.wa_link);
+          }
+        } else {
+          addMessage("Sorry, something went wrong — please try WhatsApp instead.", 'bot');
+        }
+      } catch (err) {
+        typingEl.remove();
+        addMessage("Sorry, something went wrong — please try WhatsApp instead.", 'bot');
+      } finally {
+        sending = false;
+      }
+    });
+  })();
+
   /* ---------- 0. Page loader fade-out ---------- */
   const loader = $('#nv-loader');
   if (loader) {
