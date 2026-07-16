@@ -7,6 +7,8 @@
 
 get_header();
 
+$nv_subscribed = isset( $_GET['subscribed'] ) ? sanitize_text_field( wp_unslash( $_GET['subscribed'] ) ) : '';
+
 $nv_portfolio = nuvirahub_get_page_by_title( 'Portfolio' );
 $nv_services  = nuvirahub_get_page_by_title( 'Services' );
 $nv_contact   = nuvirahub_get_page_by_title( 'Contact' );
@@ -288,9 +290,17 @@ $nv_has_poster  = file_exists( get_template_directory() . '/assets/video/ai-hand
 	<div class="nv-newsletter">
 		<div class="nv-tag" style="margin-bottom:12px">Stay in the loop</div>
 		<h2 class="nv-title" style="font-size:32px;margin-bottom:8px">Startup tips, growth insights, monthly.</h2>
-		<p style="font-size:14px;color:var(--muted2)">Practical playbooks from our consulting desk. No spam, ever.</p>
-		<form class="nv-newsletter-form" action="<?php echo esc_url( $contact_url ); ?>" method="get">
-			<input type="email" name="subscribe" placeholder="Your email address" required>
+		<?php if ( 'success' === $nv_subscribed ) : ?>
+			<p style="font-size:14px;color:var(--accent3)">Thanks — you're on the list.</p>
+		<?php elseif ( 'error' === $nv_subscribed ) : ?>
+			<p style="font-size:14px;color:#ef4444">Please enter a valid email address.</p>
+		<?php else : ?>
+			<p style="font-size:14px;color:var(--muted2)">Practical playbooks from our consulting desk. No spam, ever.</p>
+		<?php endif; ?>
+		<form class="nv-newsletter-form" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" method="post">
+			<input type="hidden" name="action" value="nuvirahub_newsletter">
+			<?php wp_nonce_field( 'nuvirahub_newsletter', 'nuvirahub_newsletter_nonce' ); ?>
+			<input type="email" name="nv_newsletter_email" placeholder="Your email address" required>
 			<button class="nv-btn-primary" style="padding:11px 24px" type="submit">Subscribe</button>
 		</form>
 	</div>
