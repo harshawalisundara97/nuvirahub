@@ -79,8 +79,16 @@ function nuvirahub_handle_newsletter() {
 	}
 
 	// Skip inserting an obvious duplicate — same email already on the list.
-	$existing = get_page_by_title( $email, OBJECT, 'nv_newsletter_lead' );
-	if ( ! $existing ) {
+	$existing = get_posts(
+		array(
+			'post_type'      => 'nv_newsletter_lead',
+			'title'          => $email,
+			'posts_per_page' => 1,
+			'post_status'    => 'publish',
+			'fields'         => 'ids',
+		)
+	);
+	if ( empty( $existing ) ) {
 		wp_insert_post(
 			array(
 				'post_type'   => 'nv_newsletter_lead',

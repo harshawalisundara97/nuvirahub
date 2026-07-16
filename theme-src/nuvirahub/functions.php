@@ -48,6 +48,11 @@ require get_template_directory() . '/inc/ai-chat.php';
 require get_template_directory() . '/inc/ai-chat-leads.php';
 
 /**
+ * Newsletter signup — homepage "Stay in the loop" form lead capture.
+ */
+require get_template_directory() . '/inc/newsletter.php';
+
+/**
  * Build a WhatsApp deep-link with a pre-filled message.
  *
  * @param string $message  Plain-text message body. Will be URL-encoded.
