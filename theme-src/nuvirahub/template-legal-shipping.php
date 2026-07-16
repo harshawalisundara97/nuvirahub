@@ -18,7 +18,7 @@ get_header();
 </div>
 
 <div class="nv-section">
-	<div class="nv-legal">
+	<div class="nv-legal nv-reveal">
 		<p class="nv-legal-meta">Last updated: <?php echo esc_html( get_the_modified_date( 'F j, Y' ) ?: gmdate( 'F j, Y' ) ); ?></p>
 
 		<h2>1. Shipping coverage</h2>
@@ -36,7 +36,9 @@ get_header();
 
 		<h2>4. Packaging &amp; product safety</h2>
 		<p>All spices are vacuum-sealed in food-grade pouches, then placed in a rigid outer box. Best-before dates and batch codes are printed on each pouch. Allergen and origin information is disclosed in line with EU Regulation (EU) No 1169/2011.</p>
+	</div>
 
+	<div class="nv-legal nv-reveal">
 		<h2>5. Right of withdrawal (EU consumers)</h2>
 		<p>Under Directive 2011/83/EU, EU consumers have <strong>14 days</strong> from receiving the order to withdraw without giving a reason — <strong>except for sealed food products that have been opened</strong> or are perishable, which are excluded by Article 16(d) of the Directive.</p>
 		<p>In practice:</p>
@@ -51,7 +53,9 @@ get_header();
 
 		<h2>7. Refund method &amp; timing</h2>
 		<p>Refunds are issued via the same payment method used for the original order (SEPA, Wise, Revolut). You receive the refund within <strong>14 working days</strong> of our refund approval.</p>
+	</div>
 
+	<div class="nv-legal nv-reveal">
 		<h2>8. Bulk and B2B orders</h2>
 		<p>Restaurant, deli and importer orders (≥ 2 kg per spice) are governed by individual purchase agreements. Returns are not accepted on bulk orders unless products are defective.</p>
 

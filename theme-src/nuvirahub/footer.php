@@ -100,6 +100,34 @@ if ( ! function_exists( 'nv_link' ) ) {
 	<span class="nv-whatsapp-tooltip">Chat with us on WhatsApp</span>
 </a>
 
+<!-- AI support chat -->
+<button class="nv-chat-toggle" id="nv-chat-toggle" type="button" aria-label="Open chat assistant">
+	<?php echo nv_icon( 'message-circle', 26 ); ?>
+</button>
+<div class="nv-chat-overlay" id="nv-chat-overlay" hidden></div>
+<aside class="nv-chat-drawer" id="nv-chat-drawer" aria-label="Chat assistant" aria-hidden="true">
+	<div class="nv-chat-drawer-head">
+		<div>
+			<h3>Nuvirahub Assistant</h3>
+			<p>Ask about our services, spices, or shipping</p>
+		</div>
+		<button class="nv-chat-close" id="nv-chat-close" type="button" aria-label="Close chat">&times;</button>
+	</div>
+	<div class="nv-chat-messages" id="nv-chat-messages">
+		<div class="nv-chat-msg nv-chat-msg-bot">
+			Hi! I'm the Nuvirahub assistant. Ask me about our services, the spice shop, or shipping — and I'll connect you to WhatsApp for anything I can't answer.
+		</div>
+	</div>
+	<form class="nv-chat-form" id="nv-chat-form">
+		<?php wp_nonce_field( 'nuvirahub_ai_chat', 'nuvirahub_ai_chat_nonce' ); ?>
+		<?php wp_nonce_field( 'nuvirahub_ai_chat_lead', 'nuvirahub_ai_chat_lead_nonce' ); ?>
+		<input type="text" id="nv-chat-input" placeholder="Type your question…" autocomplete="off" required>
+		<button class="nv-chat-send" id="nv-chat-send-btn" type="submit" aria-label="Send">
+			<?php echo nv_icon( 'arrow-right', 18 ); ?>
+		</button>
+	</form>
+</aside>
+
 <?php if ( class_exists( 'WooCommerce' ) ) : ?>
 <!-- Slide-out mini-cart -->
 <div class="nv-cart-overlay" id="nv-cart-overlay" hidden></div>

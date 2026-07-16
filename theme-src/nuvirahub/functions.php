@@ -36,6 +36,23 @@ require get_template_directory() . '/inc/product-reviews.php';
 require get_template_directory() . '/inc/woocommerce.php';
 
 /**
+ * AI support chat widget — Anthropic Claude powered, answers from site
+ * content, hands off to WhatsApp for anything out of scope.
+ */
+require get_template_directory() . '/inc/ai-chat.php';
+
+/**
+ * Chat lead capture — optional name/contact left by a visitor at the
+ * WhatsApp handoff moment, stored as a reviewable wp-admin post type.
+ */
+require get_template_directory() . '/inc/ai-chat-leads.php';
+
+/**
+ * Newsletter signup — homepage "Stay in the loop" form lead capture.
+ */
+require get_template_directory() . '/inc/newsletter.php';
+
+/**
  * Build a WhatsApp deep-link with a pre-filled message.
  *
  * @param string $message  Plain-text message body. Will be URL-encoded.
@@ -208,6 +225,8 @@ function nuvirahub_assets() {
 	wp_enqueue_style( 'nuvirahub-style', get_stylesheet_uri(), array( 'nuvirahub-fonts' ), $css_ver );
 	// Load main.js deferred so it never blocks first render.
 	wp_enqueue_script( 'nuvirahub-main', get_template_directory_uri() . '/assets/main.js', array(), $js_ver, array( 'in_footer' => true, 'strategy' => 'defer' ) );
+	// ajaxurl is only auto-defined in wp-admin; the AI chat widget needs it on the front end.
+	wp_localize_script( 'nuvirahub-main', 'nvAjax', array( 'url' => admin_url( 'admin-post.php' ) ) );
 }
 add_action( 'wp_enqueue_scripts', 'nuvirahub_assets' );
 

@@ -22,3 +22,6 @@ dist/nuvirahub/
 /dist/nuvirahub-FULL-SITE1/
 /dist/nuvirahub-FULL-SITE*/
 /260622/
+
+# Production theme zip is a rebuildable build artifact — never commit
+/dist/nuvirahub.zip
