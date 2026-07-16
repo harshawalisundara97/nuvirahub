@@ -53,9 +53,41 @@ function nuvirahub_ai_system_prompt() {
 	$lines[] = '7. ERP for Enterprise — one connected system for finance, HR/payroll, inventory, CRM, production, BI. 8-12 week implementation.';
 	$lines[] = '8. Construction & Architecture — house design, MEP drawings, BIM modelling, project planning, end-to-end construction.';
 	$lines[] = '';
+	$lines[] = 'ABOUT / FOUNDERS: Nuvirahub was founded by three co-founders — Harsha Walisundara (Engineering Lead, software/apps), Akalanka Navarathne (Logistics Lead, sea/air freight & customs), and Heshan Wijesundara (Commercial Lead, growth/marketing/sales). 50+ projects delivered, 30+ clients, 5 years experience, 98% client satisfaction. If asked about the team or founders, answer briefly using this — do not invent extra detail.';
+	$lines[] = '';
+	$lines[] = 'PORTFOLIO EXAMPLES (only mention if asked about past work/case studies — pick 2-3 relevant ones, do not list all 8 unless asked for everything): SL Festival (live WordPress event platform), Ceylon Review (Flutter/Supabase mobile app), CarePulse (Jetpack Compose health app), Smart Home HMI (Qt6/QML embedded UI), Growdollar (React Native fintech app), RoomWalk (TypeScript 3D web room planner), NuviraHub Calendar (internal scheduling tool), and Nuvirahub.com itself. Full case studies at nuvirahub.com/portfolio.';
+	$lines[] = '';
 	$lines[] = 'NUVIRA SPICE CO. — Ceylon spices sold online, shipped internationally (currently to Latvia and other EU destinations), paid via bank transfer with a WhatsApp payment-slip confirmation:';
 
-	if ( function_exists( 'nuvirahub_products_raw' ) ) {
+	// Live product catalogue from WooCommerce — whatever is in the dashboard
+	// (Products menu) is what the assistant knows: names, prices, descriptions.
+	$wc_listed = false;
+	if ( function_exists( 'wc_get_products' ) ) {
+		$wc_products = wc_get_products(
+			array(
+				'status' => 'publish',
+				'limit'  => 50,
+			)
+		);
+		foreach ( $wc_products as $wc_p ) {
+			$prices = array();
+			if ( $wc_p->is_type( 'variable' ) ) {
+				foreach ( $wc_p->get_available_variations( 'objects' ) as $var ) {
+					$attrs = implode( ' ', $var->get_attributes() );
+					$prices[] = trim( $attrs . ' for €' . $var->get_price() );
+				}
+			} elseif ( '' !== $wc_p->get_price() ) {
+				$prices[] = '€' . $wc_p->get_price();
+			}
+			$short = trim( wp_strip_all_tags( $wc_p->get_short_description() ) );
+			$short = $short ? mb_substr( $short, 0, 120 ) : '';
+			$lines[] = '- ' . $wc_p->get_name() . ( $short ? ' (' . $short . ')' : '' ) . ': ' . implode( ', ', $prices );
+			$wc_listed = true;
+		}
+	}
+
+	// Fallback to the theme's static catalogue only if WooCommerce is unavailable.
+	if ( ! $wc_listed && function_exists( 'nuvirahub_products_raw' ) ) {
 		foreach ( nuvirahub_products_raw() as $p ) {
 			$prices = array();
 			if ( ! empty( $p['options'] ) && is_array( $p['options'] ) ) {
@@ -78,6 +110,20 @@ function nuvirahub_ai_system_prompt() {
 
 	return $prompt;
 }
+
+/**
+ * Rebuild the assistant's knowledge as soon as a product is added or edited
+ * in the dashboard, instead of waiting out the hourly cache. Variation-level
+ * edits (pack-size prices) save without touching the parent post, so hook
+ * those too.
+ */
+function nuvirahub_ai_flush_prompt_cache() {
+	delete_transient( 'nuvirahub_ai_system_prompt' );
+}
+add_action( 'save_post_product', 'nuvirahub_ai_flush_prompt_cache' );
+add_action( 'woocommerce_update_product', 'nuvirahub_ai_flush_prompt_cache' );
+add_action( 'woocommerce_update_product_variation', 'nuvirahub_ai_flush_prompt_cache' );
+add_action( 'woocommerce_save_product_variation', 'nuvirahub_ai_flush_prompt_cache' );
 
 /**
  * AJAX handler — receives a visitor message + short history, calls Claude,
@@ -126,11 +172,28 @@ function nuvirahub_handle_ai_chat() {
 		);
 	}
 
-	// Basic per-IP rate limit to bound API cost exposure.
-	$ip  = isset( $_SERVER['REMOTE_ADDR'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) ) : 'unknown';
+	// Basic per-IP rate limits to bound API cost exposure: a tight burst
+	// guard for scripted hammering, plus the slower rolling window below.
+	$ip = isset( $_SERVER['REMOTE_ADDR'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) ) : 'unknown';
+
+	$burst_key   = 'nv_ai_rl_burst_' . md5( $ip );
+	$burst_count = (int) get_transient( $burst_key );
+	if ( $burst_count >= 5 ) {
+		error_log( '[nuvirahub-ai-chat] burst rate limited: ' . $ip );
+		wp_send_json_success(
+			array(
+				'reply'       => "You're sending messages a bit fast — please continue on WhatsApp and we'll help right away.",
+				'wa_link'     => $wa_link,
+				'needs_human' => true,
+			)
+		);
+	}
+	set_transient( $burst_key, $burst_count + 1, 30 );
+
 	$key = 'nv_ai_rl_' . md5( $ip );
 	$count = (int) get_transient( $key );
 	if ( $count >= 15 ) {
+		error_log( '[nuvirahub-ai-chat] rate limited: ' . $ip );
 		wp_send_json_success(
 			array(
 				'reply'       => "You've reached the chat limit for now — please continue on WhatsApp and we'll help right away.",

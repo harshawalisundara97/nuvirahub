@@ -15,8 +15,17 @@ get_header();
 
 $status = isset( $_GET['wholesale'] ) ? sanitize_text_field( wp_unslash( $_GET['wholesale'] ) ) : '';
 
-// Product dropdown options from the catalogue.
-$nv_products = function_exists( 'nuvirahub_products' ) ? nuvirahub_products() : array();
+// Product dropdown options — live from the WooCommerce dashboard, with the
+// theme's static catalogue as a fallback if WooCommerce is unavailable.
+$nv_products = array();
+if ( function_exists( 'wc_get_products' ) ) {
+	foreach ( wc_get_products( array( 'status' => 'publish', 'limit' => 50, 'orderby' => 'title', 'order' => 'ASC' ) ) as $nv_wc_p ) {
+		$nv_products[] = array( 'name' => $nv_wc_p->get_name() );
+	}
+}
+if ( empty( $nv_products ) && function_exists( 'nuvirahub_products' ) ) {
+	$nv_products = nuvirahub_products();
+}
 ?>
 
 <div class="nv-page-hero nv-reveal">

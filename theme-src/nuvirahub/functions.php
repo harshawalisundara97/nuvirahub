@@ -42,6 +42,12 @@ require get_template_directory() . '/inc/woocommerce.php';
 require get_template_directory() . '/inc/ai-chat.php';
 
 /**
+ * Chat lead capture — optional name/contact left by a visitor at the
+ * WhatsApp handoff moment, stored as a reviewable wp-admin post type.
+ */
+require get_template_directory() . '/inc/ai-chat-leads.php';
+
+/**
  * Build a WhatsApp deep-link with a pre-filled message.
  *
  * @param string $message  Plain-text message body. Will be URL-encoded.

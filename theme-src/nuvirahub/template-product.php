@@ -224,7 +224,7 @@ $main_img = nuvirahub_product_image_url( $product, 0 );
 	</div>
 
 	<!-- Tabs -->
-	<div class="nv-product-tabs">
+	<div class="nv-product-tabs nv-reveal">
 		<div class="nv-product-tablist" role="tablist">
 			<button class="nv-product-tab active" role="tab" aria-selected="true" data-tab="desc">Description</button>
 			<button class="nv-product-tab" role="tab" aria-selected="false" data-tab="specs">Specifications</button>
@@ -355,7 +355,7 @@ $main_img = nuvirahub_product_image_url( $product, 0 );
 
 	<!-- Related products -->
 	<?php if ( ! empty( $related ) ) : ?>
-		<div class="nv-product-related">
+		<div class="nv-product-related nv-reveal">
 			<h2 class="nv-title" style="font-size:24px;text-align:left;margin-bottom:20px">You may also like</h2>
 			<div class="nv-shop-grid" style="grid-template-columns:repeat(auto-fill,minmax(220px,1fr))">
 				<?php

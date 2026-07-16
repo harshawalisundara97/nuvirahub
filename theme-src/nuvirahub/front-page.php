@@ -62,7 +62,7 @@ $nv_has_poster  = file_exists( get_template_directory() . '/assets/video/ai-hand
 		</div>
 		<div class="nv-hero-stats">
 			<div class="nv-stat"><div class="nv-stat-num">3</div><div class="nv-stat-label">Co-founders</div></div>
-			<div class="nv-stat"><div class="nv-stat-num">7</div><div class="nv-stat-label">Service Pillars</div></div>
+			<div class="nv-stat"><div class="nv-stat-num">8</div><div class="nv-stat-label">Service Pillars</div></div>
 			<div class="nv-stat"><div class="nv-stat-num">2026</div><div class="nv-stat-label">Founded · Dehiwala, LK</div></div>
 			<div class="nv-stat"><div class="nv-stat-num">4h</div><div class="nv-stat-label">Reply Time, Mon–Sat</div></div>
 		</div>
@@ -85,12 +85,12 @@ $nv_has_poster  = file_exists( get_template_directory() . '/assets/video/ai-hand
 <!-- CLIENT LOGO SHOWCASE -->
 <section class="nv-clients" aria-label="Our clients">
 	<div class="nv-clients-head">
-		<span class="nv-clients-eyebrow">Trusted by teams &amp; founders we work with</span>
+		<span class="nv-clients-eyebrow">Sectors we deliver for</span>
 	</div>
 	<div class="nv-clients-track-wrap">
 		<div class="nv-clients-track">
 			<?php
-			$clients = array( 'Nuvira Spice Co.', 'SL Festival', 'Ceylon Exports', 'Latvia Trade', 'StartUp Lanka', 'Dehiwala Logistics', 'CloudWorks', 'BrandLab', 'ERP Systems' );
+			$clients = array( 'Software & Apps', 'Startups & Founders', 'Sea & Air Logistics', 'Creative & Design', 'Brand & Marketing', 'Enterprise ERP', 'Construction', 'Nuvira Spice Co.' );
 			for ( $i = 0; $i < 2; $i++ ) {
 				foreach ( $clients as $client ) {
 					echo '<span class="nv-client-logo">' . esc_html( $client ) . '</span>';
@@ -224,7 +224,7 @@ $nv_has_poster  = file_exists( get_template_directory() . '/assets/video/ai-hand
 				<div class="nv-testimonial">
 					<p class="nv-testimonial-text">The Launchpad did exactly what it promised — company registered, tax IDs sorted, brand and website live, all inside two weeks. I only had to show up and sign.</p>
 					<div class="nv-testimonial-author">
-						<div class="nv-testimonial-avatar" style="background:linear-gradient(135deg,#6c63ff,#a78bfa)">DK</div>
+						<div class="nv-testimonial-avatar" style="background:linear-gradient(135deg,var(--accent),var(--accent2))">DK</div>
 						<div>
 							<div style="font-size:14px;font-weight:500">Dilini K.</div>
 							<div style="font-size:11px;color:var(--muted)">Startup founder — Colombo</div>
@@ -236,7 +236,7 @@ $nv_has_poster  = file_exists( get_template_directory() . '/assets/video/ai-hand
 				<div class="nv-testimonial">
 					<p class="nv-testimonial-text">Sea freight quotes in hours, not days. Our first container from Colombo cleared customs without a single surprise charge — they handled every document.</p>
 					<div class="nv-testimonial-author">
-						<div class="nv-testimonial-avatar" style="background:linear-gradient(135deg,#38bdf8,#6c63ff)">RF</div>
+						<div class="nv-testimonial-avatar" style="background:linear-gradient(135deg,var(--accent3),var(--accent))">RF</div>
 						<div>
 							<div style="font-size:14px;font-weight:500">Ruwan F.</div>
 							<div style="font-size:11px;color:var(--muted)">Importer — Negombo</div>
@@ -248,7 +248,7 @@ $nv_has_poster  = file_exists( get_template_directory() . '/assets/video/ai-hand
 				<div class="nv-testimonial">
 					<p class="nv-testimonial-text">They rebuilt our brand from the logo up, and the 3D visualisations sold the project to investors before construction even started.</p>
 					<div class="nv-testimonial-author">
-						<div class="nv-testimonial-avatar" style="background:linear-gradient(135deg,#a78bfa,#38bdf8)">SP</div>
+						<div class="nv-testimonial-avatar" style="background:linear-gradient(135deg,var(--accent2),var(--accent3))">SP</div>
 						<div>
 							<div style="font-size:14px;font-weight:500">Sanjeewa P.</div>
 							<div style="font-size:11px;color:var(--muted)">Property developer — Kandy</div>
@@ -272,22 +272,10 @@ $nv_has_poster  = file_exists( get_template_directory() . '/assets/video/ai-hand
 				<div class="nv-testimonial">
 					<p class="nv-testimonial-text">One ERP for inventory, invoicing and payroll that actually matches how a Sri Lankan SME runs — and support answers on WhatsApp in minutes, not days.</p>
 					<div class="nv-testimonial-author">
-						<div class="nv-testimonial-avatar" style="background:linear-gradient(135deg,#10b981,#38bdf8)">NM</div>
+						<div class="nv-testimonial-avatar" style="background:linear-gradient(135deg,#10b981,var(--accent3))">NM</div>
 						<div>
 							<div style="font-size:14px;font-weight:500">Nuwan M.</div>
 							<div style="font-size:11px;color:var(--muted)">Manufacturing SME — Kandy</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="nv-swipe-slide">
-				<div class="nv-testimonial">
-					<p class="nv-testimonial-text">Your project goes here. We're booking our first client engagements through 2026 — if you're one of the first to work with us, your story (real numbers, real outcomes) sits in this space.</p>
-					<div class="nv-testimonial-author">
-						<div class="nv-testimonial-avatar" style="background:linear-gradient(135deg,var(--accent),var(--accent3))"><?php echo nv_icon( 'sparkles', 16 ); ?></div>
-						<div>
-							<div style="font-size:14px;font-weight:500">Be one of our first clients</div>
-							<div style="font-size:11px;color:var(--muted)">Open slots for 2026</div>
 						</div>
 					</div>
 				</div>

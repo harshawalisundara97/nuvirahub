@@ -18,7 +18,7 @@ get_header();
 </div>
 
 <div class="nv-section">
-	<div class="nv-legal">
+	<div class="nv-legal nv-reveal">
 		<p class="nv-legal-meta">Last updated: <?php echo esc_html( get_the_modified_date( 'F j, Y' ) ?: gmdate( 'F j, Y' ) ); ?></p>
 
 		<h2>1. Acceptance</h2>
@@ -41,7 +41,9 @@ get_header();
 
 		<h2>4. Quotes and engagement</h2>
 		<p>All quotes are valid for 30 days unless stated otherwise. A signed proposal or written email confirmation constitutes a binding engagement. A deposit (typically 50%) is required before work begins; the balance is due on delivery unless milestone payments are agreed in writing.</p>
+	</div>
 
+	<div class="nv-legal nv-reveal">
 		<h2>5. Deliverables &amp; revisions</h2>
 		<p>Each engagement specifies what is delivered. We include up to <strong>two rounds</strong> of revisions per deliverable; additional rounds are billed at our standard hourly rate. Scope changes are quoted separately.</p>
 
@@ -65,7 +67,9 @@ get_header();
 
 		<h2>9. Confidentiality</h2>
 		<p>We treat all information you share as confidential and use it only to deliver your project. A formal NDA is available on request.</p>
+	</div>
 
+	<div class="nv-legal nv-reveal">
 		<h2>10. Liability</h2>
 		<p>Our total liability for any engagement is capped at the fees paid by you for that engagement in the 12 months preceding the claim. We are not liable for indirect, consequential or punitive damages, including loss of profits, data or business opportunity.</p>
 

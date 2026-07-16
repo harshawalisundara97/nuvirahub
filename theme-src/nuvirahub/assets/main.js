@@ -86,9 +86,29 @@
     const form      = $('#nv-chat-form');
     const input     = $('#nv-chat-input');
     const messages  = $('#nv-chat-messages');
-    if (!toggle || !drawer || !overlay || !form || !input || !messages) return;
+    const sendBtn   = $('#nv-chat-send-btn');
+    if (!toggle || !drawer || !overlay || !form || !input || !messages || !sendBtn) return;
 
-    let history = [];
+    const HISTORY_KEY = 'nv_chat_history';
+    const NUDGE_KEY    = 'nv_chat_nudge_shown';
+    const OPENED_KEY   = 'nv_chat_opened';
+
+    const loadStoredHistory = () => {
+      try {
+        const raw = sessionStorage.getItem(HISTORY_KEY);
+        const parsed = raw ? JSON.parse(raw) : [];
+        return Array.isArray(parsed) ? parsed : [];
+      } catch (e) {
+        return [];
+      }
+    };
+    const saveHistory = () => {
+      try {
+        sessionStorage.setItem(HISTORY_KEY, JSON.stringify(history.slice(-20)));
+      } catch (e) { /* storage unavailable/full — chat still works, just won't persist */ }
+    };
+
+    let history = loadStoredHistory();
     let sending = false;
 
     const open = () => {
@@ -98,6 +118,8 @@
       drawer.setAttribute('aria-hidden', 'false');
       document.body.classList.add('nv-chat-locked');
       input.focus();
+      try { sessionStorage.setItem(OPENED_KEY, '1'); } catch (e) {}
+      hideNudge();
     };
     const close = () => {
       drawer.classList.remove('open');
@@ -107,10 +129,13 @@
       setTimeout(() => { overlay.hidden = true; }, 300);
     };
 
-    const addMessage = (text, role) => {
+    const formatTime = (ts) => new Date(ts).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+    const addMessage = (text, role, ts) => {
       const el = document.createElement('div');
       el.className = 'nv-chat-msg ' + (role === 'user' ? 'nv-chat-msg-user' : 'nv-chat-msg-bot');
       el.textContent = text;
+      el.title = formatTime(ts || Date.now());
       messages.appendChild(el);
       messages.scrollTop = messages.scrollHeight;
       return el;
@@ -122,6 +147,45 @@
       wrap.innerHTML = '<a class="nv-chat-wa-btn" href="' + link + '" target="_blank" rel="noopener">Continue on WhatsApp →</a>';
       messages.appendChild(wrap);
       messages.scrollTop = messages.scrollHeight;
+      addLeadCapture();
+    };
+
+    const addLeadCapture = () => {
+      const wrap = document.createElement('div');
+      wrap.className = 'nv-chat-lead';
+      wrap.innerHTML =
+        '<p class="nv-chat-lead-hint">Leave your name &amp; number so we can follow up (optional)</p>' +
+        '<div class="nv-chat-lead-row">' +
+          '<input type="text" class="nv-chat-lead-input" placeholder="Name">' +
+          '<input type="text" class="nv-chat-lead-input" placeholder="Phone or email">' +
+          '<button type="button" class="nv-chat-lead-save">Save</button>' +
+        '</div>';
+      messages.appendChild(wrap);
+      messages.scrollTop = messages.scrollHeight;
+
+      const [nameInput, contactInput] = wrap.querySelectorAll('.nv-chat-lead-input');
+      const saveBtn = wrap.querySelector('.nv-chat-lead-save');
+      saveBtn.addEventListener('click', async () => {
+        const name = nameInput.value.trim();
+        const contact = contactInput.value.trim();
+        if (!contact) { contactInput.focus(); return; }
+        saveBtn.disabled = true;
+
+        try {
+          const leadNonceInput = form.querySelector('#nuvirahub_ai_chat_lead_nonce');
+          const body = new URLSearchParams();
+          body.set('action', 'nuvirahub_ai_chat_lead');
+          body.set('name', name);
+          body.set('contact', contact);
+          body.set('message', history.length ? history[history.length - 1].content : '');
+          if (leadNonceInput) body.set('nuvirahub_ai_chat_lead_nonce', leadNonceInput.value);
+
+          const ajaxUrl = (window.nvAjax && window.nvAjax.url) || '/wp-admin/admin-post.php';
+          await fetch(ajaxUrl, { method: 'POST', body });
+        } catch (e) { /* best-effort — still show confirmation, WA button already works regardless */ }
+
+        wrap.innerHTML = '<p class="nv-chat-lead-hint">Thanks, we\'ll follow up.</p>';
+      });
     };
 
     const addTyping = () => {
@@ -132,6 +196,47 @@
       messages.scrollTop = messages.scrollHeight;
       return el;
     };
+
+    // Restore a persisted conversation (sessionStorage — cleared when the tab closes).
+    // Replaces the static greeting bubble so the drawer doesn't show two greetings.
+    if (history.length) {
+      messages.innerHTML = '';
+      history.forEach((turn) => addMessage(turn.content, turn.role === 'user' ? 'user' : 'bot', turn.ts));
+    }
+
+    let nudgeEl = null;
+    const hideNudge = () => {
+      if (nudgeEl) { nudgeEl.remove(); nudgeEl = null; }
+    };
+    const markNudgeShown = () => { try { sessionStorage.setItem(NUDGE_KEY, '1'); } catch (e) {} };
+
+    const scheduleNudge = () => {
+      let alreadyShown = false;
+      try { alreadyShown = sessionStorage.getItem(NUDGE_KEY) === '1'; } catch (e) {}
+      let alreadyOpened = false;
+      try { alreadyOpened = sessionStorage.getItem(OPENED_KEY) === '1'; } catch (e) {}
+      if (alreadyShown || alreadyOpened) return;
+
+      setTimeout(() => {
+        if (drawer.classList.contains('open')) return;
+        let shown = false;
+        try { shown = sessionStorage.getItem(NUDGE_KEY) === '1'; } catch (e) {}
+        if (shown) return;
+
+        markNudgeShown();
+        nudgeEl = document.createElement('div');
+        nudgeEl.className = 'nv-chat-nudge';
+        nudgeEl.innerHTML =
+          '<span class="nv-chat-nudge-text">Have a question? I\'m here to help</span>' +
+          '<button type="button" class="nv-chat-nudge-close" aria-label="Dismiss">&times;</button>';
+        document.body.appendChild(nudgeEl);
+        requestAnimationFrame(() => nudgeEl.classList.add('show'));
+
+        nudgeEl.querySelector('.nv-chat-nudge-text').addEventListener('click', () => { hideNudge(); open(); });
+        nudgeEl.querySelector('.nv-chat-nudge-close').addEventListener('click', hideNudge);
+      }, 30000);
+    };
+    scheduleNudge();
 
     toggle.addEventListener('click', () => {
       drawer.classList.contains('open') ? close() : open();
@@ -146,8 +251,10 @@
       if (!text || sending) return;
 
       sending = true;
+      sendBtn.disabled = true;
       addMessage(text, 'user');
-      history.push({ role: 'user', content: text });
+      history.push({ role: 'user', content: text, ts: Date.now() });
+      saveHistory();
       input.value = '';
       const typingEl = addTyping();
 
@@ -156,7 +263,7 @@
         const body = new URLSearchParams();
         body.set('action', 'nuvirahub_ai_chat');
         body.set('message', text);
-        body.set('history', JSON.stringify(history.slice(-6)));
+        body.set('history', JSON.stringify(history.slice(-6).map(({ role, content }) => ({ role, content }))));
         if (nonceInput) body.set('nuvirahub_ai_chat_nonce', nonceInput.value);
 
         const ajaxUrl = (window.nvAjax && window.nvAjax.url) || '/wp-admin/admin-post.php';
@@ -167,7 +274,8 @@
 
         if (json && json.success && json.data) {
           addMessage(json.data.reply, 'bot');
-          history.push({ role: 'assistant', content: json.data.reply });
+          history.push({ role: 'assistant', content: json.data.reply, ts: Date.now() });
+          saveHistory();
           if (json.data.needs_human && json.data.wa_link) {
             addWaButton(json.data.wa_link);
           }
@@ -179,6 +287,7 @@
         addMessage("Sorry, something went wrong — please try WhatsApp instead.", 'bot');
       } finally {
         sending = false;
+        sendBtn.disabled = false;
       }
     });
   })();

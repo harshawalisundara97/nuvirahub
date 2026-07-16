@@ -120,8 +120,9 @@ if ( ! function_exists( 'nv_link' ) ) {
 	</div>
 	<form class="nv-chat-form" id="nv-chat-form">
 		<?php wp_nonce_field( 'nuvirahub_ai_chat', 'nuvirahub_ai_chat_nonce' ); ?>
+		<?php wp_nonce_field( 'nuvirahub_ai_chat_lead', 'nuvirahub_ai_chat_lead_nonce' ); ?>
 		<input type="text" id="nv-chat-input" placeholder="Type your question…" autocomplete="off" required>
-		<button class="nv-chat-send" type="submit" aria-label="Send">
+		<button class="nv-chat-send" id="nv-chat-send-btn" type="submit" aria-label="Send">
 			<?php echo nv_icon( 'arrow-right', 18 ); ?>
 		</button>
 	</form>

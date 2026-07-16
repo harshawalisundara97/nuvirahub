@@ -873,9 +873,9 @@ body.nv-menu-open { overflow: hidden; }
   background: rgba(255,255,255,.03);
   border: 1px solid var(--border);
   border-radius: 14px;
-  transition: border-color .25s, background .25s;
+  transition: border-color .25s var(--ease), background .25s, transform .25s var(--ease);
 }
-.nv-founder:hover { border-color: var(--border2); background: rgba(255,255,255,.05); }
+.nv-founder:hover { border-color: var(--border2); background: rgba(255,255,255,.05); transform: translateY(-4px); }
 .nv-founder-photo {
   width: 88px; height: 88px;
   border-radius: 50%;
@@ -916,9 +916,9 @@ body.nv-menu-open { overflow: hidden; }
   border-radius: 12px;
   background: var(--glass);
   border: 1px solid var(--border);
-  transition: all .25s;
+  transition: all .25s var(--ease);
 }
-.nv-value:hover { border-color: var(--border2); background: var(--glass2); }
+.nv-value:hover { border-color: var(--border2); background: var(--glass2); transform: translateY(-4px); }
 .nv-value-icon { font-size: 24px; flex-shrink: 0; }
 
 .nv-skill { margin-bottom: 14px; }
@@ -4370,6 +4370,10 @@ html[data-theme="light"] .nv-star { color: rgba(16,21,40,.18); }
   font-family: var(--body); transition: opacity .2s, transform .2s;
 }
 .nv-shop-searchbar .woocommerce-product-search button:hover { opacity: .9; transform: translateY(-1px); }
+@media (max-width: 480px) {
+  .nv-shop-searchbar .woocommerce-product-search { flex-direction: column; max-width: 100%; }
+  .nv-shop-searchbar .woocommerce-product-search button { padding: 12px 22px; }
+}
 
 /* Shop-by-category tiles */
 .nv-cat-block { margin-bottom: 40px; }
@@ -4655,6 +4659,60 @@ body.nv-chat-locked { overflow: hidden; }
   cursor: pointer;
 }
 .nv-chat-send:disabled { opacity: .5; cursor: default; }
+
+.nv-chat-lead {
+  max-width: 88%;
+  padding: 10px 14px;
+  border-radius: 14px;
+  background: var(--glass);
+  border: 1px solid var(--border);
+  align-self: flex-start;
+}
+.nv-chat-lead-hint { font-size: 12px; color: var(--muted2); margin: 0 0 8px; }
+.nv-chat-lead-row { display: flex; flex-wrap: wrap; gap: 6px; }
+.nv-chat-lead-input {
+  flex: 1 1 100px;
+  min-width: 0;
+  background: rgba(255,255,255,.03);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 7px 10px;
+  color: var(--text);
+  font-family: var(--body);
+  font-size: 13px;
+}
+.nv-chat-lead-input:focus { outline: none; border-color: var(--accent2); }
+.nv-chat-lead-save {
+  flex: 0 0 auto;
+  background: linear-gradient(135deg, var(--accent), #8b5cf6);
+  color: #fff; border: none; border-radius: 10px;
+  padding: 7px 14px; font-size: 13px; font-weight: 600;
+  cursor: pointer;
+}
+.nv-chat-lead-save:disabled { opacity: .5; cursor: default; }
+
+.nv-chat-nudge {
+  position: fixed;
+  bottom: 160px; right: 24px;
+  max-width: 240px;
+  display: flex; align-items: center; gap: 8px;
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 10px 12px;
+  box-shadow: 0 12px 32px rgba(0,0,0,.35);
+  z-index: 199;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity .25s var(--ease), transform .25s var(--ease);
+}
+.nv-chat-nudge.show { opacity: 1; transform: translateY(0); }
+.nv-chat-nudge-text { font-size: 13px; color: var(--text); cursor: pointer; }
+.nv-chat-nudge-close {
+  background: none; border: none; color: var(--muted2);
+  font-size: 18px; line-height: 1; cursor: pointer; flex: 0 0 auto;
+}
+.nv-chat-nudge-close:hover { color: var(--text); }
+@media (max-width: 700px) { .nv-chat-nudge { bottom: 146px; right: 16px; } }
 
 /* ============================================================
    46 — WOOCOMMERCE BLOCK CART / CHECKOUT (dark brand skin)
