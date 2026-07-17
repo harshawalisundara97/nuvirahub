@@ -53,6 +53,12 @@ require get_template_directory() . '/inc/ai-chat-leads.php';
 require get_template_directory() . '/inc/newsletter.php';
 
 /**
+ * Shared testimonial data — used by the homepage carousel and the
+ * dedicated Testimonials page.
+ */
+require get_template_directory() . '/inc/testimonials.php';
+
+/**
  * Build a WhatsApp deep-link with a pre-filled message.
  *
  * @param string $message  Plain-text message body. Will be URL-encoded.
@@ -364,6 +370,49 @@ add_action( 'admin_post_nuvirahub_wholesale', 'nuvirahub_handle_wholesale' );
  * It also publishes a FAQPage block on the Startup Launchpad page, which can
  * earn "People also ask"-style rich snippets.
  */
+/**
+ * Shared FAQ content — used by the dedicated FAQ page and (a subset) by
+ * the Startup Launchpad FAQPage schema.
+ *
+ * @return array List of ['q' => ..., 'a' => ...].
+ */
+function nuvirahub_faq_items() {
+	return array(
+		array(
+			'q' => 'How does billing and pricing work?',
+			'a' => 'Every project gets a free consult, then a clear, fixed-price written proposal before any work begins. See our Pricing page for starting-from estimates per service.',
+		),
+		array(
+			'q' => 'How long does business registration take in Sri Lanka?',
+			'a' => 'Typical timeline is 7–14 working days for a (Pvt) Ltd company. We handle ROC filing, name reservation, Articles of Association, and director consents end-to-end.',
+		),
+		array(
+			'q' => 'What documents do I need to start a business in Sri Lanka?',
+			'a' => 'NIC copies, proposed company name (3 options), registered address proof, director/shareholder details, Form 1 (Application for Incorporation), Forms 18 & 19 (Director consents), and the Articles of Association. We prepare everything for you.',
+		),
+		array(
+			'q' => 'Do I need a VAT registration?',
+			'a' => 'VAT registration is mandatory when annual turnover exceeds LKR 80 million. Below that, it is optional but can be beneficial for B2B operations.',
+		),
+		array(
+			'q' => 'Do you work with clients outside Sri Lanka?',
+			'a' => 'Yes — software, consulting, creative, and ERP work is delivered remotely worldwide. Nuvira Spice Co. currently ships physical spice orders to Latvia and the EU; wholesale/B2B orders can quote other destinations on request.',
+		),
+		array(
+			'q' => 'How do I order spices, and how are they shipped?',
+			'a' => 'Spice orders go through our Shop and are paid by bank transfer (Revolut/EUR) or ordered directly over WhatsApp. Standard tracked shipping to the EU is 5–8 working days.',
+		),
+		array(
+			'q' => 'Can I get bulk / wholesale pricing?',
+			'a' => 'Yes — restaurants, shops, and distributors can request tiered bulk pricing from 2 kg per product via our Wholesale page.',
+		),
+		array(
+			'q' => 'What support do I get after launch?',
+			'a' => 'We don\'t disappear after go-live. Software and ERP engagements include a post-launch support window (ERP includes 3 months free support), and every service line offers ongoing support you can request any time via WhatsApp.',
+		),
+	);
+}
+
 function nuvirahub_schema_jsonld() {
 	$logo_url = get_template_directory_uri() . '/assets/favicons/og-image.png';
 
@@ -448,6 +497,28 @@ function nuvirahub_schema_jsonld() {
 			),
 		);
 		echo '<script type="application/ld+json">' . wp_json_encode( $faq, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT ) . '</script>' . "\n";
+	}
+
+	// FAQPage schema on the dedicated FAQ page — full question set.
+	if ( is_page( 'faq' ) ) {
+		$faq_full = array(
+			'@context'   => 'https://schema.org',
+			'@type'      => 'FAQPage',
+			'mainEntity' => array_map(
+				static function ( $item ) {
+					return array(
+						'@type'          => 'Question',
+						'name'           => $item['q'],
+						'acceptedAnswer' => array(
+							'@type' => 'Answer',
+							'text'  => $item['a'],
+						),
+					);
+				},
+				nuvirahub_faq_items()
+			),
+		);
+		echo '<script type="application/ld+json">' . wp_json_encode( $faq_full, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT ) . '</script>' . "\n";
 	}
 }
 add_action( 'wp_head', 'nuvirahub_schema_jsonld', 5 );

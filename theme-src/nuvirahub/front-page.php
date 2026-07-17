@@ -210,78 +210,20 @@ $nv_has_poster  = file_exists( get_template_directory() . '/assets/video/ai-hand
 
 	<div class="nv-testimonial-carousel nv-swipe-carousel">
 		<div class="nv-swipe-track">
+			<?php foreach ( nuvirahub_testimonials() as $t ) : ?>
 			<div class="nv-swipe-slide">
 				<div class="nv-testimonial">
-					<p class="nv-testimonial-text">Harsha's engineering work has been consistent and dependable. Three years with us, across multiple production systems — fast delivery, clean code, and the willingness to learn whatever the domain needs.</p>
+					<p class="nv-testimonial-text"><?php echo esc_html( $t['text'] ); ?></p>
 					<div class="nv-testimonial-author">
-						<div class="nv-testimonial-avatar">PC</div>
+						<div class="nv-testimonial-avatar"<?php echo $t['avatar_style'] ? ' style="' . esc_attr( $t['avatar_style'] ) . '"' : ''; ?>><?php echo esc_html( $t['initials'] ); ?></div>
 						<div>
-							<div style="font-size:14px;font-weight:500">Pet Care Solution (Pvt) Ltd</div>
-							<div style="font-size:11px;color:var(--muted)">On Harsha — Nuvirahub co-founder</div>
+							<div style="font-size:14px;font-weight:500"><?php echo esc_html( $t['name'] ); ?></div>
+							<div style="font-size:11px;color:var(--muted)"><?php echo esc_html( $t['sub'] ); ?></div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="nv-swipe-slide">
-				<div class="nv-testimonial">
-					<p class="nv-testimonial-text">The Launchpad did exactly what it promised — company registered, tax IDs sorted, brand and website live, all inside two weeks. I only had to show up and sign.</p>
-					<div class="nv-testimonial-author">
-						<div class="nv-testimonial-avatar" style="background:linear-gradient(135deg,var(--accent),var(--accent2))">DK</div>
-						<div>
-							<div style="font-size:14px;font-weight:500">Dilini K.</div>
-							<div style="font-size:11px;color:var(--muted)">Startup founder — Colombo</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="nv-swipe-slide">
-				<div class="nv-testimonial">
-					<p class="nv-testimonial-text">Sea freight quotes in hours, not days. Our first container from Colombo cleared customs without a single surprise charge — they handled every document.</p>
-					<div class="nv-testimonial-author">
-						<div class="nv-testimonial-avatar" style="background:linear-gradient(135deg,var(--accent3),var(--accent))">RF</div>
-						<div>
-							<div style="font-size:14px;font-weight:500">Ruwan F.</div>
-							<div style="font-size:11px;color:var(--muted)">Importer — Negombo</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="nv-swipe-slide">
-				<div class="nv-testimonial">
-					<p class="nv-testimonial-text">They rebuilt our brand from the logo up, and the 3D visualisations sold the project to investors before construction even started.</p>
-					<div class="nv-testimonial-author">
-						<div class="nv-testimonial-avatar" style="background:linear-gradient(135deg,var(--accent2),var(--accent3))">SP</div>
-						<div>
-							<div style="font-size:14px;font-weight:500">Sanjeewa P.</div>
-							<div style="font-size:11px;color:var(--muted)">Property developer — Kandy</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="nv-swipe-slide">
-				<div class="nv-testimonial">
-					<p class="nv-testimonial-text">Ceylon cinnamon arrived in Riga vacuum-sealed, beautifully packed and fresher than anything we can buy locally. Ordering over WhatsApp took two minutes.</p>
-					<div class="nv-testimonial-author">
-						<div class="nv-testimonial-avatar" style="background:linear-gradient(135deg,#f59e0b,#ef4444)">EB</div>
-						<div>
-							<div style="font-size:14px;font-weight:500">Elīna B.</div>
-							<div style="font-size:11px;color:var(--muted)">Nuvira Spice Co. customer — Latvia</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="nv-swipe-slide">
-				<div class="nv-testimonial">
-					<p class="nv-testimonial-text">One ERP for inventory, invoicing and payroll that actually matches how a Sri Lankan SME runs — and support answers on WhatsApp in minutes, not days.</p>
-					<div class="nv-testimonial-author">
-						<div class="nv-testimonial-avatar" style="background:linear-gradient(135deg,#10b981,var(--accent3))">NM</div>
-						<div>
-							<div style="font-size:14px;font-weight:500">Nuwan M.</div>
-							<div style="font-size:11px;color:var(--muted)">Manufacturing SME — Kandy</div>
-						</div>
-					</div>
-				</div>
-			</div>
+			<?php endforeach; ?>
 		</div>
 	</div>
 </div>

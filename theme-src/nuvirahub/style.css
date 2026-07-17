@@ -2114,6 +2114,18 @@ body.nv-menu-open { overflow: hidden; }
   background: linear-gradient(135deg, var(--accent), var(--accent3));
   box-shadow: 0 12px 40px rgba(108,99,255,.25);
 }
+.nv-founder-card .nv-founder-avatar-initials {
+  width: 168px; height: 168px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 22px;
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 48px;
+  color: #fff;
+  background: linear-gradient(135deg, var(--accent2), var(--accent3));
+  box-shadow: 0 12px 40px rgba(108,99,255,.25);
+}
 .nv-founder-card .nv-founder-name { font-size: 24px; }
 .nv-founder-card .nv-founder-role { font-size: 12px; margin: 8px 0 14px; }
 .nv-founder-card .nv-founder-bio {
@@ -2125,6 +2137,7 @@ body.nv-menu-open { overflow: hidden; }
 @media (max-width: 700px) {
   .nv-founder-card { padding: 36px 22px 30px; }
   .nv-founder-card .nv-founder-photo-xl { width: 128px; height: 128px; }
+  .nv-founder-card .nv-founder-avatar-initials { width: 128px; height: 128px; font-size: 36px; }
   .nv-founder-card .nv-founder-name { font-size: 20px; }
 }
 .nv-carousel-dots {
@@ -4830,3 +4843,161 @@ body.nv-chat-locked { overflow: hidden; }
 }
 .nv-payslip-wa:hover { transform: translateY(-1px); box-shadow: 0 10px 28px rgba(37,211,102,.4); }
 .nv-payslip-note { font-size: 12px; color: var(--muted); margin: 12px 0 0; }
+
+/* ============================================================
+   50 — PRICING PAGE
+   ============================================================ */
+.nv-pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin-top: 40px;
+}
+.nv-pricing-card {
+  background: var(--glass);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 32px 28px;
+  backdrop-filter: blur(12px);
+  display: flex;
+  flex-direction: column;
+  transition: all .3s;
+}
+.nv-pricing-card:hover { border-color: rgba(108,99,255,.4); transform: translateY(-4px); }
+.nv-pricing-name {
+  font-family: var(--display);
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.nv-pricing-desc {
+  font-size: 13px;
+  color: var(--muted2);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+.nv-pricing-price {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+.nv-pricing-label {
+  display: block;
+  width: 100%;
+  font-size: 11px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  margin-bottom: 4px;
+}
+.nv-pricing-amount {
+  font-family: var(--display);
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--text);
+}
+.nv-pricing-period {
+  font-size: 12px;
+  color: var(--muted);
+}
+.nv-pricing-features {
+  list-style: none;
+  margin: 0 0 24px;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+  flex-grow: 1;
+}
+.nv-pricing-features li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--text);
+}
+.nv-pricing-features li svg { flex-shrink: 0; margin-top: 2px; color: var(--accent3); }
+.nv-pricing-actions {
+  display: flex;
+  gap: 10px;
+}
+.nv-pricing-actions .nv-btn-ghost,
+.nv-pricing-actions .nv-btn-primary {
+  flex: 1;
+  text-align: center;
+  padding: 10px 14px !important;
+  font-size: 13px;
+}
+
+/* ============================================================
+   51 — FAQ PAGE
+   ============================================================ */
+.nv-faq-list {
+  max-width: 760px;
+  margin: 0 auto;
+  display: grid;
+  gap: 12px;
+}
+.nv-faq-item {
+  background: var(--glass);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 4px 22px;
+  transition: border-color .2s;
+}
+.nv-faq-item[open] { border-color: rgba(108,99,255,.35); }
+.nv-faq-q {
+  list-style: none;
+  cursor: pointer;
+  padding: 18px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--text);
+}
+.nv-faq-q::-webkit-details-marker { display: none; }
+.nv-faq-caret { flex-shrink: 0; color: var(--accent2); transition: transform .25s; display: flex; }
+.nv-faq-caret svg { transform: rotate(90deg); }
+.nv-faq-item[open] .nv-faq-caret svg { transform: rotate(-90deg); }
+.nv-faq-a { padding: 0 0 20px; font-size: 14px; color: var(--muted2); line-height: 1.7; }
+.nv-faq-a p { margin: 0; }
+.nv-faq-a a { color: var(--accent3); }
+
+/* ============================================================
+   52 — SITEMAP PAGE
+   ============================================================ */
+.nv-sitemap-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 40px;
+}
+.nv-sitemap-col h3 {
+  font-family: var(--display);
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: var(--text);
+}
+.nv-sitemap-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+.nv-sitemap-list a {
+  font-size: 13px;
+  color: var(--muted2);
+  text-decoration: none;
+  transition: color .2s;
+}
+.nv-sitemap-list a:hover { color: var(--accent3); }
+
+/* Light-mode tweaks for new pages */
+html[data-theme="light"] .nv-faq-item { background: var(--bg2); }

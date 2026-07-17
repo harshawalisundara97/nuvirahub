@@ -57,6 +57,9 @@ if ( ! function_exists( 'nv_link' ) ) {
 			<h4>Company</h4>
 			<a class="nv-footer-link" href="<?php echo esc_url( nv_link( $nv_about, 'about' ) ); ?>">About Us</a>
 			<a class="nv-footer-link" href="<?php echo esc_url( nv_link( $nv_portfolio, 'portfolio' ) ); ?>">Portfolio</a>
+			<a class="nv-footer-link" href="<?php echo esc_url( nv_link( nuvirahub_get_page_by_title( 'Pricing' ), 'pricing' ) ); ?>">Pricing</a>
+			<a class="nv-footer-link" href="<?php echo esc_url( nv_link( nuvirahub_get_page_by_title( 'Testimonials' ), 'testimonials' ) ); ?>">Testimonials</a>
+			<a class="nv-footer-link" href="<?php echo esc_url( nv_link( nuvirahub_get_page_by_title( 'FAQ' ), 'faq' ) ); ?>">FAQ</a>
 			<a class="nv-footer-link" href="<?php echo esc_url( nv_link( $nv_contact, 'contact' ) ); ?>">Contact</a>
 		</div>
 	</div>
@@ -71,6 +74,7 @@ if ( ! function_exists( 'nv_link' ) ) {
 			<h4><?php echo nv_icon( 'phone', 14 ); ?>Talk</h4>
 			<a href="tel:+94716722599">+94 71 672 2599</a>
 			<a href="<?php echo esc_url( nuvirahub_wa_link( 'Hi Nuvirahub!' ) ); ?>" target="_blank" rel="noopener">WhatsApp us</a>
+			<a href="<?php echo esc_url( add_query_arg( 'intent', 'call', nv_link( $nv_contact, 'contact' ) ) ); ?>">Book a Free Call</a>
 		</div>
 		<div>
 			<h4><?php echo nv_icon( 'mail', 14 ); ?>Email</h4>
@@ -87,7 +91,8 @@ if ( ! function_exists( 'nv_link' ) ) {
 		<span class="nv-footer-legal">
 			<?php if ( $nv_privacy ) : ?><a href="<?php echo esc_url( get_permalink( $nv_privacy->ID ) ); ?>">Privacy</a> · <?php endif; ?>
 			<?php if ( $nv_terms ) : ?><a href="<?php echo esc_url( get_permalink( $nv_terms->ID ) ); ?>">Terms</a> · <?php endif; ?>
-			<?php if ( $nv_shipping ) : ?><a href="<?php echo esc_url( get_permalink( $nv_shipping->ID ) ); ?>">Shipping &amp; Refunds</a><?php endif; ?>
+			<?php if ( $nv_shipping ) : ?><a href="<?php echo esc_url( get_permalink( $nv_shipping->ID ) ); ?>">Shipping &amp; Refunds</a><?php endif; ?> ·
+			<a href="<?php echo esc_url( nv_link( nuvirahub_get_page_by_title( 'Sitemap' ), 'sitemap' ) ); ?>">Sitemap</a>
 		</span>
 	</div>
 </footer>

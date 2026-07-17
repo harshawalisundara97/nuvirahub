@@ -7,6 +7,7 @@
 
 get_header();
 $nv_sent = isset( $_GET['sent'] ) ? sanitize_text_field( wp_unslash( $_GET['sent'] ) ) : '';
+$nv_intent = isset( $_GET['intent'] ) ? sanitize_text_field( wp_unslash( $_GET['intent'] ) ) : '';
 ?>
 
 <div class="nv-page-hero nv-reveal">
@@ -50,7 +51,11 @@ $nv_sent = isset( $_GET['sent'] ) ? sanitize_text_field( wp_unslash( $_GET['sent
 				</div>
 				<div class="nv-form-group"><label>Email address</label><input type="email" name="nv_email" placeholder="john@company.com" required></div>
 				<div class="nv-form-group"><label>Project type</label>
-					<select name="nv_type"><option>Website Design</option><option>E-Commerce</option><option>Brand Identity</option><option>SEO Package</option><option>Ongoing Support</option><option>Other</option></select>
+					<select name="nv_type">
+						<option<?php echo ( 'call' !== $nv_intent ) ? ' selected' : ''; ?>>Website Design</option>
+						<option<?php echo ( 'call' === $nv_intent ) ? ' selected' : ''; ?>>Free Consultation Call</option>
+						<option>E-Commerce</option><option>Brand Identity</option><option>SEO Package</option><option>Ongoing Support</option><option>Other</option>
+					</select>
 				</div>
 				<div class="nv-form-group"><label>Budget range</label>
 					<select name="nv_budget"><option>Under $500</option><option>$500 &ndash; $1,000</option><option>$1,000 &ndash; $2,500</option><option>$2,500+</option></select>
