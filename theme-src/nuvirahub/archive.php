@@ -15,6 +15,18 @@ get_header();
 </div>
 
 <div class="nv-section">
+	<?php
+	$nv_blog_cats = get_categories( array( 'number' => 8 ) );
+	if ( $nv_blog_cats ) :
+		?>
+		<div class="nv-tabs nv-reveal" role="tablist" style="margin:0 auto 32px;justify-self:center;flex-wrap:wrap">
+			<a class="nv-tabp<?php echo ( ! is_category() ) ? ' active' : ''; ?>" href="<?php echo esc_url( home_url( '/blog/' ) ); ?>">All</a>
+			<?php foreach ( $nv_blog_cats as $nv_bc ) : ?>
+				<a class="nv-tabp<?php echo is_category( $nv_bc->term_id ) ? ' active' : ''; ?>" href="<?php echo esc_url( get_category_link( $nv_bc->term_id ) ); ?>"><?php echo esc_html( $nv_bc->name ); ?></a>
+			<?php endforeach; ?>
+		</div>
+	<?php endif; ?>
+
 	<?php if ( have_posts() ) : ?>
 		<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px">
 			<?php

@@ -40,7 +40,7 @@ get_header();
 			</div>
 			<div class="nv-swipe-slide">
 				<div class="nv-founder-card">
-					<img class="nv-founder-photo-xl" src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/founders/heshan.png' ); ?>" alt="Heshan Wijesundara">
+					<div class="nv-founder-avatar-initials">HW</div>
 					<div class="nv-founder-name">Heshan Wijesundara</div>
 					<div class="nv-founder-role">Co-founder · Commercial Lead</div>
 					<p class="nv-founder-bio">Sales Manager in the sea-trade sector with deep B2B sales and cross-border commerce experience. Drives Nuvirahub's growth consulting practice and enterprise client relationships.</p>
@@ -76,7 +76,7 @@ get_header();
 			<div class="nv-grid-4" style="margin-top:20px">
 				<div class="nv-glass" style="text-align:center;padding:20px"><div style="font-family:'Syne',sans-serif;font-size:28px;font-weight:800" class="nv-grad">50+</div><div style="font-size:11px;color:var(--muted);margin-top:4px">Projects</div></div>
 				<div class="nv-glass" style="text-align:center;padding:20px"><div style="font-family:'Syne',sans-serif;font-size:28px;font-weight:800" class="nv-grad">30+</div><div style="font-size:11px;color:var(--muted);margin-top:4px">Clients</div></div>
-				<div class="nv-glass" style="text-align:center;padding:20px"><div style="font-family:'Syne',sans-serif;font-size:28px;font-weight:800" class="nv-grad">5yr</div><div style="font-size:11px;color:var(--muted);margin-top:4px">Experience</div></div>
+				<div class="nv-glass" style="text-align:center;padding:20px"><div style="font-family:'Syne',sans-serif;font-size:28px;font-weight:800" class="nv-grad">5+ yrs</div><div style="font-size:11px;color:var(--muted);margin-top:4px">Founder Experience</div></div>
 				<div class="nv-glass" style="text-align:center;padding:20px"><div style="font-family:'Syne',sans-serif;font-size:28px;font-weight:800" class="nv-grad">98%</div><div style="font-size:11px;color:var(--muted);margin-top:4px">Satisfaction</div></div>
 			</div>
 		</div>
