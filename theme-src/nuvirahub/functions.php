@@ -59,6 +59,12 @@ require get_template_directory() . '/inc/newsletter.php';
 require get_template_directory() . '/inc/testimonials.php';
 
 /**
+ * One-time catalog migration tool (wp-admin -> Tools -> Catalog Update) —
+ * Brand attribute + new spice/grocery products. Safe to leave in place.
+ */
+require get_template_directory() . '/inc/catalog-migration.php';
+
+/**
  * Build a WhatsApp deep-link with a pre-filled message.
  *
  * @param string $message  Plain-text message body. Will be URL-encoded.
