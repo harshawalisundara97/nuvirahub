@@ -220,14 +220,19 @@ add_action( 'woocommerce_before_shop_loop', function () {
 }, 5 );
 
 /**
- * "You may also like" upsell on the cart page — up to 4 published products
- * not already in the cart, shown below the cart totals.
+ * Builds the "You may also like" markup — shared by both the classic
+ * woocommerce_cart_collaterals hook (classic [woocommerce_cart] shortcode)
+ * and the render_block filter below (WooCommerce Cart block), since this
+ * store's Cart page uses the block, not the classic template.
+ *
+ * @return string
  */
-add_action( 'woocommerce_cart_collaterals', function () {
-	if ( WC()->cart->is_empty() ) {
-		return;
+function nuvirahub_cart_upsell_html() {
+	if ( ! function_exists( 'WC' ) || ! WC()->cart || WC()->cart->is_empty() ) {
+		return '';
 	}
 
+	ob_start();
 	$in_cart_ids = array();
 	foreach ( WC()->cart->get_cart() as $item ) {
 		$in_cart_ids[] = $item['product_id'];
@@ -243,7 +248,7 @@ add_action( 'woocommerce_cart_collaterals', function () {
 	);
 
 	if ( empty( $suggestions ) ) {
-		return;
+		return ob_get_clean();
 	}
 	?>
 	<div class="nv-cart-upsell">
@@ -272,5 +277,21 @@ add_action( 'woocommerce_cart_collaterals', function () {
 			<?php endforeach; ?>
 		</div>
 	</div>
-	<?php
+	<?php	return ob_get_clean();
+}
+
+add_action( 'woocommerce_cart_collaterals', function () {
+	echo nuvirahub_cart_upsell_html();
 } );
+
+/**
+ * Block-cart compatible version — appends the same upsell markup after
+ * the WooCommerce Cart block, since that block never fires classic
+ * template hooks like woocommerce_cart_collaterals.
+ */
+add_filter( 'render_block', function ( $block_content, $block ) {
+	if ( 'woocommerce/cart' === $block['blockName'] ) {
+		$block_content .= nuvirahub_cart_upsell_html();
+	}
+	return $block_content;
+}, 10, 2 );
