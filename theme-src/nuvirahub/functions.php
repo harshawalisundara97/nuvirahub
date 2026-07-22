@@ -16,6 +16,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( ! defined( 'NUVIRAHUB_WHATSAPP' ) )       { define( 'NUVIRAHUB_WHATSAPP', '94716722599' ); }
 if ( ! defined( 'NUVIRAHUB_SPICE_BRAND' ) )    { define( 'NUVIRAHUB_SPICE_BRAND', 'Nuvira Spice Co.' ); }
 if ( ! defined( 'NUVIRAHUB_SPICE_CURRENCY' ) ) { define( 'NUVIRAHUB_SPICE_CURRENCY', '€' ); }
+if ( ! defined( 'NUVIRAHUB_GA4_ID' ) )          { define( 'NUVIRAHUB_GA4_ID', '' ); } // e.g. 'G-XXXXXXXXXX', set in wp-config.php
+if ( ! defined( 'NUVIRAHUB_GSC_VERIFICATION' ) ) { define( 'NUVIRAHUB_GSC_VERIFICATION', '' ); } // Search Console meta-tag content, set in wp-config.php
 
 /**
  * Product data model (E1) — central catalogue + query helpers.
@@ -63,6 +65,16 @@ require get_template_directory() . '/inc/testimonials.php';
  * Brand attribute + new spice/grocery products. Safe to leave in place.
  */
 require get_template_directory() . '/inc/catalog-migration.php';
+
+/**
+ * Live search-suggestion AJAX endpoint for the shop search bar.
+ */
+require get_template_directory() . '/inc/product-search.php';
+
+/**
+ * WooCommerce transactional email branding (colors, logo, footer text).
+ */
+require get_template_directory() . '/inc/email-branding.php';
 
 /**
  * Build a WhatsApp deep-link with a pre-filled message.
@@ -266,6 +278,30 @@ add_action( 'init', function () {
 } );
 
 /**
+ * Security hardening — theme-level protections that don't need a plugin.
+ * (2FA, Wordfence, backups, and login-attempt limiting still need a
+ * plugin installed on the live site — see docs/GO-LIVE-CHECKLIST.md.)
+ */
+
+// Security response headers on every front-end request.
+add_action( 'send_headers', function () {
+	if ( is_admin() ) {
+		return;
+	}
+	header( 'X-Content-Type-Options: nosniff' );
+	header( 'Referrer-Policy: strict-origin-when-cross-origin' );
+	header( 'X-Frame-Options: SAMEORIGIN' );
+} );
+
+// Disable XML-RPC — not used by this theme, common brute-force target.
+add_filter( 'xmlrpc_enabled', '__return_false' );
+
+// Remove the WordPress version number from <head> and feeds — avoids
+// advertising the exact core version to automated vulnerability scanners.
+remove_action( 'wp_head', 'wp_generator' );
+add_filter( 'the_generator', '__return_empty_string' );
+
+/**
  * Content width.
  */
 function nuvirahub_content_width() {
@@ -295,10 +331,37 @@ function nuvirahub_fallback_menu() {
 }
 
 /**
+ * Simple per-IP rate limiter for public unauthenticated form handlers
+ * (contact, wholesale, newsletter). Returns true if the request should be
+ * BLOCKED (limit reached), false if it's allowed to proceed.
+ *
+ * @param string $action  Unique key for the endpoint being limited.
+ * @param int    $limit   Max requests allowed within the window.
+ * @param int    $window  Window length in seconds.
+ * @return bool
+ */
+function nuvirahub_is_rate_limited( $action, $limit, $window ) {
+	$ip  = isset( $_SERVER['REMOTE_ADDR'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) ) : 'unknown';
+	$key = 'nv_rl_' . $action . '_' . md5( $ip );
+
+	$count = (int) get_transient( $key );
+	if ( $count >= $limit ) {
+		return true;
+	}
+	set_transient( $key, $count + 1, $window );
+	return false;
+}
+
+/**
  * Simple, safe contact form handler.
  * Posts back to admin-post.php; sends an email to the site admin.
  */
 function nuvirahub_handle_contact() {
+	if ( nuvirahub_is_rate_limited( 'contact', 5, 10 * MINUTE_IN_SECONDS ) ) {
+		wp_safe_redirect( home_url( '/contact/?sent=error' ) );
+		exit;
+	}
+
 	if ( ! isset( $_POST['nuvirahub_contact_nonce'] ) ||
 		! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nuvirahub_contact_nonce'] ) ), 'nuvirahub_contact' ) ) {
 		wp_safe_redirect( home_url( '/contact/?sent=error' ) );
@@ -333,6 +396,11 @@ add_action( 'admin_post_nuvirahub_contact', 'nuvirahub_handle_contact' );
 function nuvirahub_handle_wholesale() {
 	$back = wp_get_referer() ? wp_get_referer() : home_url( '/wholesale/' );
 	$back = remove_query_arg( array( 'wholesale' ), $back );
+
+	if ( nuvirahub_is_rate_limited( 'wholesale', 5, 10 * MINUTE_IN_SECONDS ) ) {
+		wp_safe_redirect( add_query_arg( 'wholesale', 'error', $back ) );
+		exit;
+	}
 
 	if ( ! isset( $_POST['nuvirahub_wholesale_nonce'] ) ||
 		! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nuvirahub_wholesale_nonce'] ) ), 'nuvirahub_wholesale' ) ) {

@@ -34,3 +34,25 @@ jobs:
             fi
           done < <(find theme-src/nuvirahub -name '*.php' -print0)
           exit $status
+
+  build-zip:
+    name: Build theme zip
+    needs: php-lint
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build dist/nuvirahub.zip
+        run: |
+          mkdir -p dist
+          cd theme-src
+          zip -rq ../dist/nuvirahub.zip nuvirahub -x "*.DS_Store"
+
+      - name: Upload as workflow artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: nuvirahub-theme
+          path: dist/nuvirahub.zip
+          retention-days: 30

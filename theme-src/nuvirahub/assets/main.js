@@ -916,4 +916,61 @@
     });
   });
 
+  /* ---------- 12. Shop search autocomplete ---------- */
+  (function () {
+    const input = $('.nv-shop-searchbar input[type=\"search\"]');
+    if (!input) return;
+
+    let dropdown = null;
+    let debounceTimer = null;
+    let currentTerm = '';
+
+    const closeDropdown = () => {
+      if (dropdown) { dropdown.remove(); dropdown = null; }
+    };
+
+    const renderResults = (results) => {
+      closeDropdown();
+      if (!results.length) return;
+      dropdown = document.createElement('div');
+      dropdown.className = 'nv-search-suggest';
+      results.forEach((r) => {
+        const item = document.createElement('a');
+        item.className = 'nv-search-suggest-item';
+        item.href = r.url;
+        item.innerHTML =
+          (r.image ? '<span class=\"nv-search-suggest-thumb\" style=\"background-image:url(\'' + r.image + '\')\"></span>' : '<span class=\"nv-search-suggest-thumb\"></span>') +
+          '<span class=\"nv-search-suggest-info\"><span class=\"nv-search-suggest-name\"></span><span class=\"nv-search-suggest-price\"></span></span>';
+        item.querySelector('.nv-search-suggest-name').textContent = r.name;
+        item.querySelector('.nv-search-suggest-price').textContent = r.price_html;
+        dropdown.appendChild(item);
+      });
+      input.parentElement.style.position = 'relative';
+      input.parentElement.appendChild(dropdown);
+    };
+
+    input.addEventListener('input', () => {
+      const term = input.value.trim();
+      currentTerm = term;
+      clearTimeout(debounceTimer);
+      if (term.length < 2) { closeDropdown(); return; }
+      debounceTimer = setTimeout(async () => {
+        try {
+          const ajaxUrl = (window.nvAjax && window.nvAjax.url) || '/wp-admin/admin-post.php';
+          const url = ajaxUrl + '?action=nuvirahub_product_search_suggest&term=' + encodeURIComponent(term);
+          const res = await fetch(url);
+          const json = await res.json();
+          if (term === currentTerm && json && json.success) {
+            renderResults(json.data || []);
+          }
+        } catch (e) { /* best-effort — plain form search still works */ }
+      }, 250);
+    });
+
+    document.addEventListener('click', (e) => {
+      if (dropdown && !input.parentElement.contains(e.target)) closeDropdown();
+    });
+    input.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeDropdown(); });
+  })();
+
 })();

@@ -60,6 +60,21 @@
 	<meta name="twitter:description" content="<?php echo esc_attr( $nv_desc ); ?>">
 	<meta name="twitter:image" content="<?php echo esc_url( $nv_og_image ); ?>">
 
+	<?php if ( NUVIRAHUB_GSC_VERIFICATION ) : ?>
+	<meta name="google-site-verification" content="<?php echo esc_attr( NUVIRAHUB_GSC_VERIFICATION ); ?>">
+	<?php endif; ?>
+
+	<?php if ( NUVIRAHUB_GA4_ID ) : ?>
+	<!-- Google Analytics (GA4) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo esc_attr( NUVIRAHUB_GA4_ID ); ?>"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+		gtag('config', <?php echo wp_json_encode( NUVIRAHUB_GA4_ID ); ?>);
+	</script>
+	<?php endif; ?>
+
 	<?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>

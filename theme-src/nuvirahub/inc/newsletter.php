@@ -65,6 +65,11 @@ function nuvirahub_handle_newsletter() {
 	$back = wp_get_referer() ? wp_get_referer() : home_url( '/' );
 	$back = remove_query_arg( array( 'subscribed' ), $back );
 
+	if ( nuvirahub_is_rate_limited( 'newsletter', 5, 10 * MINUTE_IN_SECONDS ) ) {
+		wp_safe_redirect( add_query_arg( 'subscribed', 'error', $back ) );
+		exit;
+	}
+
 	if ( ! isset( $_POST['nuvirahub_newsletter_nonce'] ) ||
 		! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nuvirahub_newsletter_nonce'] ) ), 'nuvirahub_newsletter' ) ) {
 		wp_safe_redirect( add_query_arg( 'subscribed', 'error', $back ) );
