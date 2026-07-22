@@ -218,3 +218,59 @@ add_action( 'woocommerce_before_shop_loop', function () {
 	echo '</div></div>';
 	echo '<h2 class="nv-shop-allheading">All products</h2>';
 }, 5 );
+
+/**
+ * "You may also like" upsell on the cart page — up to 4 published products
+ * not already in the cart, shown below the cart totals.
+ */
+add_action( 'woocommerce_cart_collaterals', function () {
+	if ( WC()->cart->is_empty() ) {
+		return;
+	}
+
+	$in_cart_ids = array();
+	foreach ( WC()->cart->get_cart() as $item ) {
+		$in_cart_ids[] = $item['product_id'];
+	}
+
+	$suggestions = wc_get_products(
+		array(
+			'status'  => 'publish',
+			'limit'   => 4,
+			'exclude' => $in_cart_ids,
+			'orderby' => 'rand',
+		)
+	);
+
+	if ( empty( $suggestions ) ) {
+		return;
+	}
+	?>
+	<div class="nv-cart-upsell">
+		<h2 class="nv-cart-upsell-heading">You may also like</h2>
+		<div class="nv-shop-grid nv-cart-upsell-grid">
+			<?php foreach ( $suggestions as $p ) :
+				$image_id = $p->get_image_id();
+				$image    = $image_id ? wp_get_attachment_image_url( $image_id, 'medium' ) : '';
+				$url      = get_permalink( $p->get_id() );
+				?>
+				<article class="nv-shop-card">
+					<a class="nv-shop-thumb-link" href="<?php echo esc_url( $url ); ?>">
+						<div class="nv-shop-thumb">
+							<?php if ( $image ) : ?>
+								<div class="nv-shop-thumb-img" style="background-image:url('<?php echo esc_url( $image ); ?>')"></div>
+							<?php else : ?>
+								<span class="nv-shop-thumb-emoji">📦</span>
+							<?php endif; ?>
+						</div>
+					</a>
+					<div class="nv-shop-body">
+						<a class="nv-shop-title-link" href="<?php echo esc_url( $url ); ?>"><h3><?php echo esc_html( $p->get_name() ); ?></h3></a>
+						<span class="nv-shop-price"><?php echo wp_kses_post( $p->get_price_html() ); ?></span>
+					</div>
+				</article>
+			<?php endforeach; ?>
+		</div>
+	</div>
+	<?php
+} );

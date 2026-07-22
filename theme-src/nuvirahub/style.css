@@ -4351,6 +4351,49 @@ html[data-theme="light"] .nv-star { color: rgba(16,21,40,.18); }
   color: #fff !important; border-radius: 10px !important;
 }
 
+/* ---- Cart upsell ("You may also like") ---- */
+.nv-cart-upsell { margin-top: 32px; }
+.nv-cart-upsell-heading { font-family: var(--display); font-size: 20px; font-weight: 800; margin-bottom: 16px; }
+.nv-cart-upsell-grid { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+
+/* ---- My Account dashboard ---- */
+.woocommerce-MyAccount-navigation ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+.woocommerce-MyAccount-navigation li { border: none; }
+.woocommerce-MyAccount-navigation li a {
+  display: block; padding: 11px 16px; border-radius: 10px;
+  color: var(--muted2); font-size: 14px; font-weight: 500; text-decoration: none;
+  background: var(--glass); border: 1px solid var(--border); transition: all .2s;
+}
+.woocommerce-MyAccount-navigation li a:hover { color: var(--text); border-color: var(--border2); }
+.woocommerce-MyAccount-navigation li.is-active a {
+  color: #fff; background: linear-gradient(135deg, var(--accent), #8b5cf6); border-color: transparent;
+}
+.woocommerce-MyAccount-content { color: var(--text); }
+.woocommerce-MyAccount-content table.shop_table { margin-top: 16px; }
+.woocommerce-EditAccountForm .form-row label, .woocommerce-Address-title { color: var(--muted2); }
+.woocommerce-address-fields address { color: var(--muted2); }
+
+/* ---- Product reviews ---- */
+#reviews .commentlist { list-style: none; margin: 0 0 32px; padding: 0; display: grid; gap: 16px; }
+#reviews .comment_container {
+  display: flex; gap: 14px;
+  background: var(--glass); border: 1px solid var(--border); border-radius: 14px;
+  padding: 18px;
+}
+#reviews .comment-text { flex: 1; }
+#reviews .comment-text p.meta { color: var(--muted); font-size: 12px; margin: 0 0 8px; }
+#reviews .comment-text .description p { color: var(--text); margin: 0; }
+#reviews .avatar { border-radius: 50%; width: 42px; height: 42px; flex-shrink: 0; }
+#reviews #respond .comment-form-rating label { color: var(--muted2); display: block; margin-bottom: 6px; }
+#reviews #respond .comment-form-rating select { display: none; } /* stars widget replaces the raw select */
+#reviews .stars a { color: var(--muted); }
+#reviews .stars a::before { color: inherit; }
+#reviews .stars a:hover, #reviews .stars a:hover ~ a { color: #f59e0b; }
+#reviews #respond .form-submit input {
+  background: linear-gradient(135deg, var(--accent), #8b5cf6); color: #fff; border: none;
+  border-radius: 10px; padding: 12px 28px; cursor: pointer; font-weight: 600;
+}
+
 /* ============================================================
    44 — SHOP CATEGORY LANDING + PRODUCT SEARCH (WooCommerce)
    ============================================================ */
@@ -4387,6 +4430,43 @@ html[data-theme="light"] .nv-star { color: rgba(16,21,40,.18); }
   .nv-shop-searchbar .woocommerce-product-search { flex-direction: column; max-width: 100%; }
   .nv-shop-searchbar .woocommerce-product-search button { padding: 12px 22px; }
 }
+
+/* Live search-suggestion dropdown */
+.nv-search-suggest {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0; right: 0;
+  max-width: 560px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 16px 40px rgba(0,0,0,.35);
+  overflow: hidden;
+  z-index: 60;
+}
+.nv-search-suggest-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  text-decoration: none;
+  border-bottom: 1px solid var(--border);
+  transition: background .15s;
+}
+.nv-search-suggest-item:last-child { border-bottom: none; }
+.nv-search-suggest-item:hover { background: var(--glass); }
+.nv-search-suggest-thumb {
+  width: 40px; height: 40px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  background: var(--glass2) center/cover no-repeat;
+}
+.nv-search-suggest-info { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.nv-search-suggest-name {
+  font-size: 13px; font-weight: 500; color: var(--text);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.nv-search-suggest-price { font-size: 12px; color: var(--accent2); }
 
 /* Shop-by-category tiles */
 .nv-cat-block { margin-bottom: 40px; }
