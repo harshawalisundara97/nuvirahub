@@ -938,11 +938,24 @@
         const item = document.createElement('a');
         item.className = 'nv-search-suggest-item';
         item.href = r.url;
-        item.innerHTML =
-          (r.image ? '<span class=\"nv-search-suggest-thumb\" style=\"background-image:url(\'' + r.image + '\')\"></span>' : '<span class=\"nv-search-suggest-thumb\"></span>') +
-          '<span class=\"nv-search-suggest-info\"><span class=\"nv-search-suggest-name\"></span><span class=\"nv-search-suggest-price\"></span></span>';
-        item.querySelector('.nv-search-suggest-name').textContent = r.name;
-        item.querySelector('.nv-search-suggest-price').textContent = r.price_html;
+
+        const thumb = document.createElement('span');
+        thumb.className = 'nv-search-suggest-thumb';
+        if (r.image) thumb.style.backgroundImage = 'url(' + JSON.stringify(r.image) + ')';
+
+        const info = document.createElement('span');
+        info.className = 'nv-search-suggest-info';
+        const nameEl = document.createElement('span');
+        nameEl.className = 'nv-search-suggest-name';
+        nameEl.textContent = r.name;
+        const priceEl = document.createElement('span');
+        priceEl.className = 'nv-search-suggest-price';
+        priceEl.textContent = r.price_html;
+        info.appendChild(nameEl);
+        info.appendChild(priceEl);
+
+        item.appendChild(thumb);
+        item.appendChild(info);
         dropdown.appendChild(item);
       });
       input.parentElement.style.position = 'relative';
